@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fashion.control.Control;
 import com.fashion.control.MainControl;
+import com.fashion.control.productDetailControl;
+import com.fashion.control.productDetailFormControl;
 
 
 public class FrontControl extends HttpServlet {
@@ -24,6 +26,9 @@ public class FrontControl extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/main.ko", new MainControl());	// 목록보기
+		
+		map.put("/productDetailForm.ko", new productDetailFormControl());
+		map.put("/productDetail.ko", new productDetailControl());
 	}
 	
 	@Override
