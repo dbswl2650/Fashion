@@ -28,7 +28,7 @@
 			</a>
 			<div class="menuBar">
 				<a href="">검색</a> <a href="">제품 페이지</a> <span>|</span> <a href="">장바구니</a>
-				<a href="">회원가입</a> <a href="">로그인</a>
+				<a href="">회원가입</a> <a href="./login.jsp">로그인</a>
 			</div>
 		</nav>
 	</header>

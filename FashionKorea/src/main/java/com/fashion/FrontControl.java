@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fashion.control.Control;
 import com.fashion.control.MainControl;
+import com.fashion.control.loginControl;
 
 
 public class FrontControl extends HttpServlet {
@@ -24,6 +25,7 @@ public class FrontControl extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/main.ko", new MainControl());	// 목록보기
+		map.put("/login.do", new loginControl()); // 로그인 링크
 	}
 	
 	@Override
