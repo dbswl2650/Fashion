@@ -1,4 +1,4 @@
-package control;
+package com.fashion.control;
 
 import java.io.IOException;
 

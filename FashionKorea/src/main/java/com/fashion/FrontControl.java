@@ -1,3 +1,5 @@
+package com.fashion;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import control.Control;
-import control.MainControl;
+import com.fashion.control.Control;
+import com.fashion.control.MainControl;
 
 
 public class FrontControl extends HttpServlet {

@@ -1,4 +1,4 @@
-package control;
+package com.fashion.control;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,8 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ClothesDAO;
-import vo.Clothes;
+import com.fashion.dao.ClothesDAO;
+import com.fashion.vo.Clothes;
 
 public class MainControl implements Control {
 	ClothesDAO cdao = new ClothesDAO();

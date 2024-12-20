@@ -1,4 +1,4 @@
-package vo;
+package com.fashion.vo;
 
 public class Clothes {
 	int clothes_no;

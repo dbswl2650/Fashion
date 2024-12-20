@@ -1,10 +1,10 @@
-package dao;
+package com.fashion.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import vo.Clothes;
+import com.fashion.vo.Clothes;
 
 public class ClothesDAO extends DAO {
 	private String selectAllSql = "select count(clothes_no) as count"

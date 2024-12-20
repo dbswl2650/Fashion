@@ -1,4 +1,4 @@
-package dao;
+package com.fashion.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
