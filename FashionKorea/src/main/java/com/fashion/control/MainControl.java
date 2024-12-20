@@ -27,7 +27,7 @@ public class MainControl implements Control {
 			}
 			
 			request.setAttribute("clothesList", clothesList);
-			request.getRequestDispatcher("main.html").forward(request, response);
+			request.getRequestDispatcher("html/main.html").forward(request, response);
 		}
 		else if (request.getMethod().equals("POST")) {
 		}
