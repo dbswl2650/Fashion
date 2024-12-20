@@ -1,42 +1,42 @@
 package com.fashion.vo;
 
 public class Clothes {
-	int clothes_no;
-	int category_no;
+	int clothesNo;
+	int categoryNo;
 	String name;
 	int price;
 	String color;
-	String clothes_size;
+	String clothesSize;
 	String image;
 	String category;
 	String about;
-	String image_detail;
+	String imageDetail;
 	public Clothes() {
 		this(-1, -1, "", 0, "", "", "", "", "", "");
 	}
 	public Clothes(int clno, int cano, String name, int price, String color, String clsize, String img, String category, String about, String imgdetail) {
-		setClothes_no(clno);
-		setCategory_no(cano);
+		setClothesNo(clno);
+		setCategoryNo(cano);
 		setName(name);
 		setPrice(price);
 		setColor(color);
-		setClothes_size(clsize);
+		setClothesSize(clsize);
 		setImage(img);
 		setCategory(category);
 		setAbout(about);
-		setImage_detail(imgdetail);
+		setImageDetail(imgdetail);
 	}
-	public int getClothes_no() {
-		return clothes_no;
+	public int getClothesNo() {
+		return clothesNo;
 	}
-	public void setClothes_no(int clothes_no) {
-		this.clothes_no = clothes_no;
+	public void setClothesNo(int clothesNo) {
+		this.clothesNo = clothesNo;
 	}
-	public int getCategory_no() {
-		return category_no;
+	public int getCategoryNo() {
+		return categoryNo;
 	}
-	public void setCategory_no(int category_no) {
-		this.category_no = category_no;
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
 	}
 	public String getName() {
 		return name;
@@ -56,11 +56,11 @@ public class Clothes {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public String getClothes_size() {
-		return clothes_size;
+	public String getClothesSize() {
+		return clothesSize;
 	}
-	public void setClothes_size(String clothes_size) {
-		this.clothes_size = clothes_size;
+	public void setClothesSize(String clothesSize) {
+		this.clothesSize = clothesSize;
 	}
 	public String getImage() {
 		return image;
@@ -80,10 +80,10 @@ public class Clothes {
 	public void setAbout(String about) {
 		this.about = about;
 	}
-	public String getImage_detail() {
-		return image_detail;
+	public String getImageDetail() {
+		return imageDetail;
 	}
-	public void setImage_detail(String image_detail) {
-		this.image_detail = image_detail;
+	public void setImageDetail(String imageDetail) {
+		this.imageDetail = imageDetail;
 	}
 }

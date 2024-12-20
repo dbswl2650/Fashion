@@ -106,15 +106,15 @@ public class ClothesDAO extends DAO {
 			rs = psmt.executeQuery();
 			
 			while (rs.next()) {
-				clothes.setCategory_no(rs.getInt("category_no"));
+				clothes.setCategoryNo(rs.getInt("category_no"));
 				clothes.setName(rs.getString("name"));
 				clothes.setPrice(rs.getInt("price"));
 				clothes.setColor(rs.getString("color"));
-				clothes.setClothes_size(rs.getString("clothes_size"));
+				clothes.setClothesSize(rs.getString("clothes_size"));
 				clothes.setImage(rs.getString("image"));
 				clothes.setCategory(rs.getString("category"));
 				clothes.setAbout(rs.getString("about"));
-				clothes.setImage_detail(rs.getString("image_detail"));
+				clothes.setImageDetail(rs.getString("image_detail"));
 				break;
 			}
 		}
@@ -138,15 +138,15 @@ public class ClothesDAO extends DAO {
 			
 			psmt = conn.prepareStatement(insertSql);
 			psmt.setInt(1, new_cno);
-			psmt.setInt(2, clothes.getCategory_no());
+			psmt.setInt(2, clothes.getCategoryNo());
 			psmt.setString(3, clothes.getName());
 			psmt.setInt(4, clothes.getPrice());
 			psmt.setString(5, clothes.getColor());
-			psmt.setString(6, clothes.getClothes_size());
+			psmt.setString(6, clothes.getClothesSize());
 			psmt.setString(7, clothes.getImage());
 			psmt.setString(8, clothes.getCategory());
 			psmt.setString(9, clothes.getAbout());
-			psmt.setString(10, clothes.getImage_detail());
+			psmt.setString(10, clothes.getImageDetail());
 			
 			if (psmt.executeUpdate() > 1) {
 				return true;
@@ -167,16 +167,16 @@ public class ClothesDAO extends DAO {
 		}
 		try {
 			psmt = conn.prepareStatement(updateSql);
-			psmt.setInt(10, clothes.getClothes_no());
-			psmt.setInt(1, clothes.getCategory_no());
+			psmt.setInt(10, clothes.getClothesNo());
+			psmt.setInt(1, clothes.getCategoryNo());
 			psmt.setString(2, clothes.getName());
 			psmt.setInt(3, clothes.getPrice());
 			psmt.setString(4, clothes.getColor());
-			psmt.setString(5, clothes.getClothes_size());
+			psmt.setString(5, clothes.getClothesSize());
 			psmt.setString(6, clothes.getImage());
 			psmt.setString(7, clothes.getCategory());
 			psmt.setString(8, clothes.getAbout());
-			psmt.setString(9, clothes.getImage_detail());
+			psmt.setString(9, clothes.getImageDetail());
 			
 			if (psmt.executeUpdate() > 1) {
 				return true;
