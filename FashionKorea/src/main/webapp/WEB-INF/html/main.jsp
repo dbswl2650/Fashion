@@ -39,9 +39,7 @@
 	
 	<!-- 상품 목록 -->
 	<article>
-		<c:forEach var="cloth" items="${clothesList }">
-			<p>${cloth.name }</p>
-		</c:forEach>
+		
 	</article>
 </main>
 <link href="./css/main.css" rel="stylesheet"/>
