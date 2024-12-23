@@ -11,7 +11,7 @@
 		<div class="row">
 		<c:forEach var="cloth" items="${clothesList}">
 			<div class="card col-sm-2">
-				<img src="${cloth.image}" class="card-img-top" alt="${cloth.name}">
+				<img src="images/product/${cloth.image}" class="card-img-top" alt="${cloth.name}">
 				<div class="card-body">
 					<h5 class="card-title">${cloth.name}</h5>
 					<h5 class="card-title" style="color:red">가격 : ${cloth.price}</h5>

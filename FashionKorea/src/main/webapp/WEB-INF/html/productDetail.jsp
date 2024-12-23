@@ -29,7 +29,7 @@
 		<div class="container px-4 px-lg-5 my-5" th:object="">
 			<div class="row gx-4 gx-lg-5 align-items-center">
 				<div class="col-md-6">
-					<img class="card-img-top mb-5 mb-md-0" th:src="" alt="..." />
+					<img class="card-img-top mb-5 mb-md-0" src="images/product/${cloth.image}" th:src="" alt="${cloth.image}" />
 				</div>
 				<div class="col-md-6">
 					<h1 class="display-5 fw-bolder" th:text="">Shop	item template</h1>
@@ -77,7 +77,10 @@
 			<div th:each=""	class="text-center">
 				<p>${cloth.about}</p>
 				<img class="card-img-top rounded mb-5 mb-md-0"
-				 style="padding-bottom: 50px; width: 550px; height: 700px" th:src="${imge_detail}">
+				 style="padding-bottom: 50px; width: 550px; height: 700px" 
+				 src="images/product/${cloth.imageDetail}"
+				 th:src=""
+				 alt="${cloth.imageDetail}">
 			</div>
 		</div>
 	</section>
