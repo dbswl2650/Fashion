@@ -42,6 +42,7 @@
 		
 	</article>
 </main>
+
 <link href="./css/main.css" rel="stylesheet"/>
 <script src="./js/main.js"></script>
 

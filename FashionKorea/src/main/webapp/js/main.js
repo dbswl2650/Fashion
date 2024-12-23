@@ -1,4 +1,4 @@
-// 옷 정보 카드 읽기
+// 옷 카드를 보여준다
 function selectCard(cloth) {
 	let cardHtml = `<div class="card" style="width: 18rem;">
 						<img src="${cloth.image}" class="card-img-top" alt="${cloth.name}">
@@ -12,10 +12,10 @@ function selectCard(cloth) {
 							<a href="#" class="btn btn-primary">Go somewhere</a>
 						</div>
 					</div>`;
-	document.querySelector('article').innerHTML += cardHtml;
+	document.querySelector('article').insertAdjacentHTML('afterbegin', cardHtml);
 }
 
-// 옷 정보 카드 삭제
+// 옷 카드를 삭제한다
 function deleteCard(rno) {
 	fetch('removeReply.do?rno=' + rno)
 	.then(result => result.json())
@@ -31,20 +31,19 @@ function deleteCard(rno) {
 	.catch(err => console.log(err));
 }
 
-
-/* fetch('main.ko')
+fetch('main.ko')
 .then(result => result.json())
 .then(result => {
-	document.querySelector('article').innerHTML += '<div>';
+	document.querySelector('article').insertAdjacentHTML('afterbegin', '<div>');
 	
 	let count = 0;
 	for (let cloth of result) {
 		selectCard(cloth);
 		if (count % 5 == 4) {
-			document.querySelector('article').innerHTML += '</div><div>';
+			document.querySelector('article').insertAdjacentHTML('afterbegin', '</div><div>');
 		}
 	}
 	
-	document.querySelector('article').innerHTML += '</div>';
+	document.querySelector('article').insertAdjacentHTML('afterbegin', '</div>');
 })
-.catch(err => console.log(err)); */
+.catch(err => console.log(err));
