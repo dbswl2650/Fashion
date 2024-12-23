@@ -50,13 +50,17 @@ text-align: center;
 </head>
 <body>
 
+
+
 <div class="box">
   <h1>로그인</h1>
+  <form action="login.ko" method="post">
   <input type="text" name="uid" id="uid" placeholder="아이디" />
   <input type="password" name="upw" id="upw" placeholder="비밀번호" />
   <button>로그인</button>
 
-  <button type="button" onclick="location.href='회원가입.html'">회원가입</button>
+  <button type="button" onclick="location.href='signup.ko'">회원가입</button>
+  </form>
 </div>
  <!--   <input type="email" placeholder="Email" />-->
  <!--   <input type="password" placeholder="Password" />-->

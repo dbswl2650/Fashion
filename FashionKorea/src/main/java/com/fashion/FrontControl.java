@@ -12,30 +12,45 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fashion.control.Control;
 import com.fashion.control.MainControl;
-import com.fashion.control.loginControl;
-
+import com.fashion.control.MyPageControl;
+import com.fashion.control.SigninControl;
+import com.fashion.control.SignupControl;
+import com.fashion.control.SignupProcessControl;
+import com.fashion.control.productDetailControl;
+import com.fashion.control.productDetailFormControl;
 
 public class FrontControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Map<String, Control> map;
+
 	public FrontControl() {
-		map = new HashMap<>();	// 필드의 값을 초기화
+		map = new HashMap<>(); // 필드의 값을 초기화
 	}
-	
+
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		map.put("/main.ko", new MainControl());	// 목록보기
-		map.put("/login.do", new loginControl()); // 로그인 링크
+		map.put("/main.ko", new MainControl()); // 목록보기
+		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
+
+		map.put("/productDetailForm.ko", new productDetailFormControl());
+		map.put("/productDetail.ko", new productDetailControl());
+		
+		map.put("/signin.ko", new SigninControl()); // 로그인 페이지
+		map.put("/signup.ko", new SignupControl()); // 회원가입 페이지
+		map.put("/signupProcess.ko", new SignupProcessControl()); // 회원가입 프로세스 제어
+		
+		
 	}
-	
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// http://localhost:80/fashion_lje/*
 		String context = request.getContextPath();
 		String path = request.getRequestURI().substring(context.length());
-		
+
 		System.out.println(path);
-		
+
 		// 요청url === 실행할 컨트롤
 		Control control = map.get(path);
 		control.exec(request, response);
