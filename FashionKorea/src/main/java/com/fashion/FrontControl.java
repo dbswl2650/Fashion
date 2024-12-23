@@ -48,8 +48,8 @@ public class FrontControl extends HttpServlet {
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
 
 		map.put("/productList.ko", new ProductListControl());
-		map.put("/productDetailForm.ko", new ProductDetailFormControl());
 		map.put("/productDetail.ko", new ProductDetailControl());
+		map.put("/productDetailForm.ko", new ProductDetailFormControl());
 	}
 
 	@Override
