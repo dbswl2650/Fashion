@@ -15,6 +15,7 @@ import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
 import com.fashion.control.MainControl;
 import com.fashion.control.MyPageControl;
+import com.fashion.control.ProductDetailControl;
 import com.fashion.control.ProductDetailFormControl;
 import com.fashion.control.ProductListControl;
 import com.fashion.control.SignupControl;
