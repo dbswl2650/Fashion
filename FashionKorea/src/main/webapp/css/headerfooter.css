@@ -36,11 +36,6 @@ div.menuBar > a:hover{
 	height: 450px;
 }
 
-/* 이지응 추가 */
-div.carousel-inner {
-	z-index: -1;
-}
-
 article {
 	height: 850px;
 	background-color: white;
