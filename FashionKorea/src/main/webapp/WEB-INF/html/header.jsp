@@ -35,12 +35,8 @@
 				<span>|</span>
 				<a href="cartForm.ko">장바구니</a>
 				<a href="signup.ko">회원가입</a>
-				<c:if test="${ member != null }">
-						<a href="mypage.ko">마이페이지(${ memberName })</a>
-				</c:if>
-				<c:else test="${ member == null }">
-						<a href="loginForm.ko">로그인</a>
-				</c:else>
+				<a href="myPage.ko">마이페이지</a>
+				<a href="loginForm.ko">로그인</a>
 
 			</div>
 		</nav>

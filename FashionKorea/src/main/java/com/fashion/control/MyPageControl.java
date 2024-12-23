@@ -11,12 +11,13 @@ public class MyPageControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("id");
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("member_id");
+		if (session.getAttribute("login") != null) {
+	        response.sendRedirect("myPage.ko");
+	    } else {
+	        request.getRequestDispatcher("WEB-INF/html/myPage.jsp").forward(request, response);
+	    }
 		
-		response.sendRedirect("myPage.ko");
 	}
 
 }

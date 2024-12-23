@@ -1,55 +1,63 @@
-<%@page import="com.fashion.vo.MemberVO"%>
+<%@page import="com.fashion.dao.LoginDAO"%>
+<%@page import="com.fashion.control.LoginControl"%>
+<%@ page import="com.fashion.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="./header.jsp"></jsp:include>
-<div class="col-4">
-	<table class="w3-table w3-centered w3-card-4 w3-bordered"
-		style="margin-top: 50px; width: 100%;">
-		<thead class="w3-dark-grey">
-			<tr>
-				<td colspan="2">
-					<h1>${ member.memberName }의 상세정보
-					</h1>
-				</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th>고객 ID</th>
-				<td>${ member.memberId }</td>
-			</tr>
-			<tr>
-				<th>고객 이름</th>
-				<td>${ member.memberName }</td>
-			</tr>
-			<tr>
-				<th>고객 휴대번호</th>
-				<td>${ member.memberPhone }</td>
-			</tr>
-			<tr>
-				<th>고객 주소</th>
-				<td>${ member.memberAdd }</td>
-			</tr>
-			<tr>
-				<th>생년월일</th>
-				<td>${ member.memberAge }</td>
-			</tr>
-			<tr>
-				<th>메일</th>
-				<td>${ member.memberMail }</td>
-			</tr>
-			<tr>
-				<td width="50%;"><a class="a-to-button"
-					href="/shop/customer/checkInfoUpdateCustomer.jsp"
-					style="width: 100%;">회원정보 수정</a></td>
-				<td width="50%;"><a class="a-to-button"
-					href="/shop/customer/deleteCustomerForm.jsp" style="width: 100%;">회원
-						탈퇴</a></td>
+<link href="./css/headerfooter.css" rel="stylesheet" />
+<%
+	MemberVO mvo = new MemberVO();
+	int number = mvo.getMemberNo();
+	String name = mvo.getMemberName(); 
+    String id = mvo.getMemberId();
+    String pw = mvo.getMemberPw();
+    // 필수입력사항이 아닌 경우 => null이 나올 수 있음
+    String phone = (mvo.getMemberPhone() == null) ? "" : mvo.getMemberPhone();
+    String email = (mvo.getMemberMail() == null) ? "" : mvo.getMemberMail();
+    String address = (mvo.getMemberAdd() == null) ? "" : mvo.getMemberAdd();
+    String age = (mvo.getMemberAge() == null) ? "" : mvo.getMemberAge();
+%>
+<form method="post" id="mypage-form">
+    <table align="center">
+        <tr>
+            <td>* 아이디</td>
+            <td><input type="text" name="userId" value="<%= id %>"  readonly maxlength="12" required></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>* 이름</td>
+            <td><input type="text" name="userName" value="<%= name %>" maxlength="5" required></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;전화번호</td>
+            <td><input type="text" name="phone" value="<%= phone %>" placeholder="- 포함해서 입력해주세요"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;이메일</td>
+            <td><input type="email" name="email" value="<%= email %>"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;주소</td>
+            <td><input type="text" name="address" value="<%= address %>"></td>
+            <td></td>
+        </tr>
+       
+    </table>
+    <br><br>
+    <script>
+        
+    </script>
 
-			</tr>
-		</tbody>
-	</table>
+    <div align="center">
+        <button type="submit" class="btn btn-sm btn-secondary">정보변경</button>
+        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updatePwdFor">비밀번호변경</button>
+        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteMember">회원탈퇴</button>
+    </div>
 
-</div>
+    <br><br>
+</form>
 <jsp:include page="./footer.jsp"></jsp:include>
