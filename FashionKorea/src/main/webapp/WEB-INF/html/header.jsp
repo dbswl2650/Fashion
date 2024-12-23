@@ -28,12 +28,14 @@
 				</div>
 			</a>
 			<div class="menuBar">
+
 				<a href="">검색</a>
-				<a href="productDetailForm.ko">상품 페이지</a>
+				<a href="">상품 페이지</a>
 				<span>|</span>
 				<a href="">장바구니</a>
-				<a href="">회원가입</a>
+				<a href="signup.ko">회원가입</a>
 				<a href="loginForm.ko">로그인</a>
+
 			</div>
 		</nav>
 	</header>
