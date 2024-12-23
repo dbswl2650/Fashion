@@ -15,3 +15,4 @@ public class ProductDetailControl implements Control {
 	}
 
 }
+
