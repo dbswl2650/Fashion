@@ -1,12 +1,13 @@
 package com.fashion.control;
 
-import com.fashion.dao.MemberDAO;
-import com.fashion.vo.MemberVO;
+import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import com.fashion.dao.LoginDAO;
+import com.fashion.vo.MemberVO;
 
 public class SignupProcessControl implements Control {
 
@@ -50,8 +51,8 @@ public class SignupProcessControl implements Control {
         member.setMemberAdd(address);
 
         // DAO 호출
-        MemberDAO dao = new MemberDAO();
-        boolean isInserted = dao.insertMember(member);
+        LoginDAO ldao = new LoginDAO();
+        boolean isInserted = ldao.insertMember(member);
 
         // 회원가입 결과에 따라 메인 페이지 이동
         if (isInserted) {
