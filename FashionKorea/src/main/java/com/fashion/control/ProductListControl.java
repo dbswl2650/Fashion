@@ -23,7 +23,10 @@ public class ProductListControl implements Control {
 			
 			for (int i = 0; i < clothesNoList.size(); i++) {
 				Integer clothesNo = clothesNoList.get(i);
-				clothesList.add(cdao.selectOneClothes(clothesNo));
+				Clothes clothes = cdao.selectOneClothes(clothesNo);
+//				System.out.println(clothes + ", " + clothes.getClass().getName());
+//				System.out.println(clothes.getAbout() + ", " + clothes.getAbout().getClass().getName());
+				clothesList.add(clothes);
 			}
 			
 			request.setAttribute("clothesList", clothesList);
