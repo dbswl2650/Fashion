@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 public class LoginDAO extends DAO {
 	public String login(String id, String pw) {
+		connect();
 		String sql = "select * from member where member_id = ? and  member_pw = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
