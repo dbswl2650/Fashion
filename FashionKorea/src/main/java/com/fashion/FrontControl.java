@@ -40,14 +40,12 @@ public class FrontControl extends HttpServlet {
 		map.put("/loginForm.ko", new LoginFormControl());
 		map.put("/login.ko", new LoginControl()); // 로그인 페이지 보기
 		
-		
 		map.put("/signup.ko", new SignupControl()); // 회원가입 페이지
 		map.put("/signupProcess.ko", new SignupProcessControl()); // 회원가입 프로세스 제어
 		
-		
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
 
-		map.put("/productList.ko", new ProductListControl());
+		map.put("/productList.ko", new ProductListControl());	// 상품 목록
 		map.put("/productDetail.ko", new ProductDetailControl());
 		map.put("/productDetailForm.ko", new ProductDetailFormControl());
 	}

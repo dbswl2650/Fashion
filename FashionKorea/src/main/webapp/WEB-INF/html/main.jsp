@@ -33,7 +33,7 @@
 			<div class="first-headline">fashion korea</div>
 		</div>
 		<div class="button-area">
-			<button onclick="" class="button-style">상품 보러가기</button>
+			<button onclick="location.href='productList.ko';" class="button-style">상품 보러가기</button>
 		</div>
 	</div>
 </main>

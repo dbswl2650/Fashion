@@ -29,7 +29,7 @@
 			</a>
 			<div class="menuBar">
 
-				<a href="">검색</a>
+				<a href="productList.ko">검색</a>
 				<a href="">상품 페이지</a>
 				<span>|</span>
 				<a href="">장바구니</a>
