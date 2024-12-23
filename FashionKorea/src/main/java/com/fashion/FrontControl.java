@@ -15,7 +15,7 @@ import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
 import com.fashion.control.MainControl;
 import com.fashion.control.MyPageControl;
-
+import com.fashion.control.MyPageFormControl;
 import com.fashion.control.SignupControl;
 import com.fashion.control.SignupProcessControl;
 
@@ -33,6 +33,8 @@ public class FrontControl extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		
 		map.put("/main.ko", new MainControl()); // 목록보기
+		
+		map.put("/myPageForm.ko", new MyPageFormControl());
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
 		
 		map.put("/loginForm.ko", new LoginFormControl());
