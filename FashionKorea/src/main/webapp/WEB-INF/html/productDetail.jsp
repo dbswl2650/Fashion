@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link href="./css/main.css" rel="stylesheet" />
-<script src="./js/main.js"></script>
+
+<link href="./css/headerfooter.css" rel="stylesheet" />
+
 <jsp:include page="./header.jsp"></jsp:include>
+
 <form action="productDetail.ko">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -34,7 +35,7 @@
 					<h1 class="display-5 fw-bolder" th:text="">Shop	item template</h1>
 					<div class="fs-5 mb-5">
 						<input type="hidden" th:value="" id="price"	name="price">
-						<span class="text-decoration-none" th:text=""></span>원
+						<span class="text-decoration-none" th:text="">${cloth.price}</span>원
 					</div>
 					<hr class="my-4">
 					<div class="input-group fs-5 mb-5">
@@ -74,6 +75,7 @@
 		<hr class="my-4">
 		<div class="container px-4 px-lg-5 mt-5">
 			<div th:each=""	class="text-center">
+				<p>${cloth.about}</p>
 				<img class="card-img-top rounded mb-5 mb-md-0"
 				 style="padding-bottom: 50px; width: 550px; height: 700px" th:src="${imge_detail}">
 			</div>

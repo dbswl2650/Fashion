@@ -12,31 +12,20 @@ import com.fashion.dao.ClothesDAO;
 import com.fashion.vo.Clothes;
 
 public class ProductListControl implements Control {
-	ClothesDAO cdao = new ClothesDAO();
-	
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (request.getMethod().equals("GET")) {
-			List<Integer> clothesNoList = cdao.selectSomeClothes();
-			List<Clothes> clothesList = new ArrayList<>();
-			
-			for (int i = 0; i < clothesNoList.size(); i++) {
-				Integer clothesNo = clothesNoList.get(i);
-				Clothes clothes = cdao.selectOneClothes(clothesNo);
-//				System.out.println(clothes + ", " + clothes.getClass().getName());
-//				System.out.println(clothes.getAbout() + ", " + clothes.getAbout().getClass().getName());
-				clothesList.add(clothes);
-			}
-			
-			request.setAttribute("clothesList", clothesList);
-			request.getRequestDispatcher("WEB-INF/html/productList.jsp").forward(request, response);
+		ClothesDAO cdao = new ClothesDAO();
+		List<Integer> clothesNoList = cdao.selectSomeClothes();
+		List<Clothes> clothesList = new ArrayList<>();
+		
+		for (int i = 0; i < clothesNoList.size(); i++) {
+			Integer clothesNo = clothesNoList.get(i);
+			Clothes clothes = cdao.selectOneClothes(clothesNo);
+			clothesList.add(clothes);
 		}
-		else if (request.getMethod().equals("POST")) {
-		}
-		else if (request.getMethod().equals("PUT")) {
-		}
-		else if (request.getMethod().equals("DELETE")) {
-		}
+		
+		request.setAttribute("clothesList", clothesList);
+		request.getRequestDispatcher("WEB-INF/html/productList.jsp").forward(request, response);
 	}
 }

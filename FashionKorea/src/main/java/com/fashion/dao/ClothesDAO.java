@@ -106,6 +106,7 @@ public class ClothesDAO extends DAO {
 			rs = psmt.executeQuery();
 			
 			while (rs.next()) {
+				clothes.setClothesNo(cno);
 				clothes.setCategoryNo(rs.getInt("category_no"));
 				clothes.setName(rs.getString("name"));
 				clothes.setPrice(rs.getInt("price"));
