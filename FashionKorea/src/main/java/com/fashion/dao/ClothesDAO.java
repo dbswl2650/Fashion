@@ -69,15 +69,24 @@ public class ClothesDAO extends DAO {
 		}
 		return count;
 	}
-	public List<Integer> selectSomeClothes() {
+	public List<Integer> selectSomeClothes(String search) {
 		List<Integer> result = new ArrayList<>();
 		if (connect() == false) {
 			System.out.println("연결 에러");
 			return result;
 		}
 		
+		String where = "";
+		if (search != null && search != "") {
+			where = " where name like '%'||'" + search + "'||'%'" 
+					+ "	or color like '%'||'" + search + "'||'%'"
+					+ "	or clothes_size like '%'||'" + search + "'||'%'"
+					+ "	or category like '%'||'" + search + "'||'%'"
+					+ "	or about like '%'||'" + search + "'||'%'";
+		}
+		
 		try {
-			psmt = conn.prepareStatement(selectSomeSql);
+			psmt = conn.prepareStatement(selectSomeSql + where);
 			rs = psmt.executeQuery();
 			
 			while (rs.next()) {
@@ -106,6 +115,7 @@ public class ClothesDAO extends DAO {
 			rs = psmt.executeQuery();
 			
 			while (rs.next()) {
+				clothes.setClothesNo(cno);
 				clothes.setCategoryNo(rs.getInt("category_no"));
 				clothes.setName(rs.getString("name"));
 				clothes.setPrice(rs.getInt("price"));
