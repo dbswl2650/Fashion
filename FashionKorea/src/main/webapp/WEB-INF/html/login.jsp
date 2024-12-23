@@ -46,23 +46,24 @@ h1 {
 
 /*.active*/
 </style>
+
 <jsp:include page="./header.jsp"></jsp:include>
-	<form action="login.ko">
-		<div class="box">
-			<h1>로그인</h1>
-			<input type="text" name="uid" id="uid" placeholder="아이디" /> <input
-				type="password" name="upw" id="upw" placeholder="비밀번호" />
-			<button>로그인</button>
 
-			<button type="button" onclick="location.href='회원가입.html'">회원가입</button>
-		</div>
-		<!--   <input type="email" placeholder="Email" />-->
-		<!--   <input type="password" placeholder="Password" />-->
-	</form>
+<link href="./css/headerfooter.css" rel="stylesheet" />
 
-
-
-	<script>
-		
-	</script>
-	<jsp:include page="./footer.jsp"></jsp:include>
+<form action="login.ko">
+	<div class="box">
+		<h1>로그인</h1>
+		<input type="text" name="uid" id="uid" placeholder="아이디" /> <input
+			type="password" name="upw" id="upw" placeholder="비밀번호" />
+		<button>로그인</button>
+		<button type="button" onclick="location.href='회원가입.html'">회원가입</button>
+	</div>
+</form>
+<link href="./css/login.css" rel="stylesheet" />
+<script>
+	
+</script>
+<!--   <input type="email" placeholder="Email" />-->
+<!--   <input type="password" placeholder="Password" />-->
+<jsp:include page="./footer.jsp"></jsp:include>

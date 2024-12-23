@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <jsp:include page="./header.jsp"></jsp:include>
+
+<link href="./css/headerfooter.css" rel="stylesheet"/>
 
 <main>
 	<!-- 머찐 캐러셀 -->
@@ -32,17 +33,14 @@
 			<div class="first-headline">fashion korea</div>
 		</div>
 		<div class="button-area">
-			<!-- dummy "location.href='../product/product.html'" -->
-			<button onclick="" class="button-style">상품 보러가기</button>
+			<button onclick="location.href='productList.ko';" class="button-style">상품 보러가기</button>
 		</div>
 	</div>
-	
-	<!-- 상품 목록 -->
-	<article>
-		
-	</article>
 </main>
-<link href="./css/main.css" rel="stylesheet"/>
-<script src="./js/main.js"></script>
+<style>
+	div.carousel-inner {
+		z-index: -1;
+	}
+</style>
 
 <jsp:include page="./footer.jsp"></jsp:include>

@@ -6,10 +6,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MainControl implements Control {	
+import com.fashion.dao.MemberDAO;
+import com.fashion.vo.MemberVO;
+
+public class SignupControl implements Control {
+
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/html/main.jsp").forward(request, response);
-	}
+		
+
+		request.getRequestDispatcher("WEB-INF/html/signup.jsp").forward(request, response);
+
+	
+  }
 }

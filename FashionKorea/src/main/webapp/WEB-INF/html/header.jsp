@@ -28,12 +28,22 @@
 				</div>
 			</a>
 			<div class="menuBar">
-				<a href="">검색</a>
-				<a href="">상품 페이지</a>
+
+				<input type="text" id="searchbar">
+				<a href="productList.ko" id="searchbutton">검색</a>
+				<a href="productList.ko">상품 페이지</a>
 				<span>|</span>
-				<a href="">장바구니</a>
-				<a href="">회원가입</a>
+				<a href="cartForm.ko">장바구니</a>
+				<a href="signup.ko">회원가입</a>
 				<a href="loginForm.ko">로그인</a>
+
 			</div>
 		</nav>
+		<script>
+			searchbar.value = <%=request.getParameter("search")%>;
+			searchbar.oninput = function() {
+				let search = searchbar.value;
+				searchbutton.href = "productList.ko?search=" + search;
+			}
+		</script>
 	</header>
