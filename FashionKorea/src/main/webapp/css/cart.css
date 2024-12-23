@@ -39,13 +39,12 @@ div.menuBar > a:hover{
 }
 .carousel.slide{
   width: 100%;
-  height: 250px;
+  height: 300px;
 }
 section{
   height: 850px;
   background-color: white;
   background-size: cover;
-   background-image: url("../images/main/slide1.jpg"); /*<<백그라운에 넣을지 캐러셀에 넣을지 고민해봐야됨 */
   background-position: 46% 4%;
   background-repeat: no-repeat;
   display: flex;
