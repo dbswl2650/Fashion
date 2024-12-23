@@ -8,7 +8,6 @@
 <form action="productDetail.ko" >
 
 
-
 </form>
 
 <jsp:include page="./footer.jsp"></jsp:include>

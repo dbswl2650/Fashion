@@ -19,8 +19,9 @@ import com.fashion.control.MyPageControl;
 import com.fashion.control.SignupControl;
 import com.fashion.control.SignupProcessControl;
 
-import com.fashion.control.productDetailControl;
-import com.fashion.control.productDetailFormControl;
+import com.fashion.control.ProductDetailControl;
+import com.fashion.control.ProductDetailFormControl;
+
 
 public class FrontControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,13 +40,16 @@ public class FrontControl extends HttpServlet {
 		map.put("/loginForm.ko", new LoginFormControl());
 		map.put("/login.ko", new LoginControl()); // 로그인 페이지 보기
 		
-		map.put("/productDetailForm.ko", new productDetailFormControl());
-		map.put("/productDetail.ko", new productDetailControl());
 		
 		map.put("/signup.ko", new SignupControl()); // 회원가입 페이지
 		map.put("/signupProcess.ko", new SignupProcessControl()); // 회원가입 프로세스 제어
 		
 		
+		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
+
+		map.put("/productDetailForm.ko", new ProductDetailFormControl());
+		map.put("/productDetail.ko", new ProductDetailControl());
+
 	}
 
 	@Override
