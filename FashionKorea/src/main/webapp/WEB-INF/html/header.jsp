@@ -31,9 +31,9 @@
 
 				<input type="text" id="searchbar">
 				<a href="productList.ko" id="searchbutton">검색</a>
-				<a href="productList.ko">상품 페이지</a>
+				<a href="">상품 페이지</a>
 				<span>|</span>
-				<a href="cartForm.ko">장바구니</a>
+				<a href="">장바구니</a>
 				<a href="signup.ko">회원가입</a>
 				<a href="loginForm.ko">로그인</a>
 

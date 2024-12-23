@@ -14,8 +14,8 @@ public class LoginControl implements Control {
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id = request.getParameter("memberId");
-		String pw = request.getParameter("memberPw");
+		String id = (String) request.getAttribute("memberId");
+		String pw = (String) request.getAttribute("memberPw");
 		System.out.println(id + pw);
 		LoginDAO ldao = new LoginDAO();
 		if (ldao.login(id, pw) != null) {
