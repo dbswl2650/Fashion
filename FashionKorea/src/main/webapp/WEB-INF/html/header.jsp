@@ -29,7 +29,7 @@
 			</a>
 			<div class="menuBar">
 
-				<input class="" type="text" id="searchbar">
+				<input type="text" id="searchbar">
 				<a href="productList.ko" id="searchbutton">검색</a>
 				<a href="">상품 페이지</a>
 				<span>|</span>
@@ -41,8 +41,7 @@
 		</nav>
 		<script>
 			searchbar.value = <%=request.getParameter("search")%>;
-			
-			searchbutton.onmouseover = function() {
+			searchbar.oninput = function() {
 				let search = searchbar.value;
 				searchbutton.href = "productList.ko?search=" + search;
 			}

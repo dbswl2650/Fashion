@@ -9,6 +9,9 @@
 	<!-- 상품 목록 -->
 	<article>
 		<div class="row">
+		<c:if test="${clothesList.size() == 0}">
+			<p>찾으시는 물품이 없는 것 같습니다...</p>
+		</c:if>
 		<c:forEach var="cloth" items="${clothesList}">
 			<div class="card col-sm-2">
 				<img src="images/product/${cloth.image}" class="card-img-top" alt="${cloth.name}">
