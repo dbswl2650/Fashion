@@ -49,7 +49,6 @@ public class FrontControl extends HttpServlet {
 
 		map.put("/productDetailForm.ko", new ProductDetailFormControl());
 		map.put("/productDetail.ko", new ProductDetailControl());
-
 	}
 
 	@Override
