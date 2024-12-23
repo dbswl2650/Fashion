@@ -15,8 +15,8 @@ import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
 import com.fashion.control.MainControl;
 import com.fashion.control.MyPageControl;
-import com.fashion.control.productDetailControl;
-import com.fashion.control.productDetailFormControl;
+import com.fashion.control.ProductDetailControl;
+import com.fashion.control.ProductDetailFormControl;
 
 public class FrontControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,8 +35,8 @@ public class FrontControl extends HttpServlet {
 		
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
 
-		map.put("/productDetailForm.ko", new productDetailFormControl());
-		map.put("/productDetail.ko", new productDetailControl());
+		map.put("/productDetailForm.ko", new ProductDetailFormControl());
+		map.put("/productDetail.ko", new ProductDetailControl());
 	}
 
 	@Override
