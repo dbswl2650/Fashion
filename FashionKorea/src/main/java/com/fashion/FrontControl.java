@@ -15,6 +15,7 @@ import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
 import com.fashion.control.MainControl;
 import com.fashion.control.MyPageControl;
+import com.fashion.control.ProductListControl;
 import com.fashion.control.productDetailControl;
 import com.fashion.control.productDetailFormControl;
 
@@ -35,6 +36,7 @@ public class FrontControl extends HttpServlet {
 		
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
 
+		map.put("/productList.ko", new ProductListControl());
 		map.put("/productDetailForm.ko", new productDetailFormControl());
 		map.put("/productDetail.ko", new productDetailControl());
 	}
