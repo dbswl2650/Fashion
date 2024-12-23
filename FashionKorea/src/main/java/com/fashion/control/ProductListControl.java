@@ -15,8 +15,10 @@ public class ProductListControl implements Control {
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String search = request.getParameter("search");
+		
 		ClothesDAO cdao = new ClothesDAO();
-		List<Integer> clothesNoList = cdao.selectSomeClothes();
+		List<Integer> clothesNoList = cdao.selectSomeClothes(search);
 		List<Clothes> clothesList = new ArrayList<>();
 		
 		for (int i = 0; i < clothesNoList.size(); i++) {
