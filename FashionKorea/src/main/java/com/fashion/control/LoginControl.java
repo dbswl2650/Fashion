@@ -14,6 +14,7 @@ public class LoginControl implements Control {
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// TODO Auto-generated method stub
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		System.out.println(id + pw);
