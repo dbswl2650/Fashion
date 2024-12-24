@@ -65,6 +65,8 @@ h1 {
 		<h1>로그인</h1>
 		<input type="text" name="id" id="id" placeholder="아이디" />
 		 <input	type="password" name="pw" id="pw" placeholder="비밀번호" />
+		<input type="text" name="id" id="id" placeholder="아이디" /> <input
+			type="password" name="pw" id="pw" placeholder="비밀번호" />
 		<button>로그인</button>
 		<button type="button" onclick="location.href='회원가입.html'">회원가입</button>
 >>>>>>> branch 'main' of https://github.com/dbswl2650/Fashion.git
