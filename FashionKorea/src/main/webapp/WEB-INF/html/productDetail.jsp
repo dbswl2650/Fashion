@@ -1,24 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="./css/headerfooter.css" rel="stylesheet" />
 <link href="./css/productDetail.css" rel="stylesheet">
 <jsp:include page="./header.jsp"></jsp:include>
 
-<form action="cartForm.ko">
-	<html xmlns:th="http://www.thymeleaf.org">
+<form action="productDetail.ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>제품상세</title>
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-	rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 <link href="/css/styles.css" rel="stylesheet" />
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
 .lead {
@@ -50,7 +50,7 @@ a:hover{
 						src="images/product/${cloth.image}" th:src="" alt="${cloth.image}" />
 				</div>
 				<div class="col-md-6">
-					<h1 class="display-6 fw-bolder">${cloth.name }</h1>
+					<h1 class="display-5 fw-bolder" th:text="">Shop	item template</h1>
 					<div class="fs-5 mb-5">
 						<input type="hidden" th:value="${cloth.price}" id="price"
 							name="price"> <span class="text-decoration-none"

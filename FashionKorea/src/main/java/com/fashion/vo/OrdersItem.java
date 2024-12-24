@@ -3,9 +3,9 @@ package com.fashion.vo;
 import lombok.Data;
 
 @Data
-public class Cart {
-	int cartNo;
+public class OrdersItem {
+	int ordersitemNo;
+	int ordersNo;
 	int clothesNo;
 	int quantity;
-	int memberNo;
 }
