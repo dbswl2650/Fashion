@@ -7,19 +7,19 @@ import java.util.List;
 import com.fashion.vo.Clothes;
 
 public class ClothesDAO extends DAO {
-	private String selectAllSql = "select count(clothes_no) as count"
+	private String selectAllSql = "select count(clothes_no) as count" 
 			+ "					   from clothes";
-	private String selectSomeSql = "select clothes_no"
+	private String selectSomeSql = "select clothes_no" 
 			+ "						from clothes";
-	private String selectOneSql = "select category_no,"
-			+ "						 name,"
+	private String selectOneSql = "select category_no," 
+			+ "						 name," 
 			+ "						 price,"
-			+ "						 color,"
-			+ "						 clothes_size,"
+			+ "						 color," 
+			+ "						 clothes_size," 
 			+ "						 image,"
-			+ "						 category,"
+			+ "						 category," 
 			+ "						 about,"
-			+ "						 image_detail"
+			+ "						 image_detail" 
 			+ "					   from clothes"
 			+ "					   where clothes_no=?";
 	private String insertSql = "insert into clothes(clothes_no,"
@@ -31,7 +31,7 @@ public class ClothesDAO extends DAO {
 			+ "					  image,"
 			+ "					  category,"
 			+ "					  about,"
-			+ "					  image_detail"
+			+ "					  image_detail)"
 			+ "					values(clothes_sql.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private String updateSql = "update clothes"
 			+ "					set category_no=?,"
@@ -85,6 +85,8 @@ public class ClothesDAO extends DAO {
 					+ "	or about like '%'||'" + search + "'||'%'";
 		}
 		
+		System.out.println("Final sql is : " + selectSomeSql + where);
+		
 		try {
 			psmt = conn.prepareStatement(selectSomeSql + where);
 			rs = psmt.executeQuery();
@@ -105,10 +107,9 @@ public class ClothesDAO extends DAO {
 		Clothes clothes = new Clothes();
 		if (connect() == false) {
 			System.out.println("연결 에러");
-			clothes.setName("연결 에러");
 			return clothes;
 		}
-		
+
 		try {
 			psmt = conn.prepareStatement(selectOneSql);
 			psmt.setInt(1, cno);
@@ -141,10 +142,8 @@ public class ClothesDAO extends DAO {
 			System.out.println("연결 에러");
 			return false;
 		}
+		
 		try {
-			psmt = conn.prepareStatement("select max(clothes_no) as max_no from clothes");
-			rs = psmt.executeQuery();
-			
 			psmt = conn.prepareStatement(insertSql);
 			psmt.setInt(1, clothes.getCategoryNo());
 			psmt.setString(2, clothes.getName());
@@ -173,6 +172,7 @@ public class ClothesDAO extends DAO {
 			System.out.println("연결 에러");
 			return false;
 		}
+		
 		try {
 			psmt = conn.prepareStatement(updateSql);
 			psmt.setInt(10, clothes.getClothesNo());
