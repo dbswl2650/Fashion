@@ -44,6 +44,7 @@ public class FrontControl extends HttpServlet {
 
 		map.put("/signup.ko", new SignupControl()); // 회원가입 페이지
 		map.put("/signupProcess.ko", new SignupProcessControl()); // 회원가입 프로세스 제어
+//		map.put("/selectSameId.ko", new SelectSameIdControl()); // 아이디 유효성 중복검사
 
 		map.put("/productList.ko", new ProductListControl()); // 상품 목록
 		

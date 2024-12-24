@@ -26,9 +26,12 @@ public class SignupProcessControl implements Control {
         String age = request.getParameter("da");
         String address = request.getParameter("add");
 
+        LoginDAO logindao = new LoginDAO(); // 로그인 DAO 가져오기
+        
         // 서버 측 검증
         if (name == null || name.trim().isEmpty() ||
             id == null || id.trim().isEmpty() ||
+            logindao.selectSameId(id.trim()) || // 로그인 DAO에 id 유효성 중복값 가져와서 검증
             pw == null || pw.trim().isEmpty() ||
             !pw.equals(confirmPw) ||
             mail == null || mail.trim().isEmpty() ||

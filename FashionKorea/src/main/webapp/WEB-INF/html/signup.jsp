@@ -48,17 +48,24 @@ text-align: center;
 
 </style>
 </head>
+
+<jsp:include page="./header.jsp"></jsp:include>
+
+<link href="./css/headerfooter.css" rel="stylesheet" />
+
 <body>
 
-<div class="box">
+<div >
   <h1>회원가입</h1>
-  <form action="signupProcess.ko" method="post">
+  <form class="box" action="signupProcess.ko" method="post">
   <%-- requst(리퀘스트/요청)get(겟/받기)Context(컨텍스트/문맥)Path(패스/경로) 컨텍스트 경로(Context Path) 를 반환함
        signupProcess.ko(사인업 프로세스)는 실제 요청을 처리할 엔드포인트(URL)--%>
    <span>이름</span>
   <input type="text" name="name" id="name" maxlength="10" placeholder="이름" />
    <span>아이디</span>
   <input type="text" name="uid" id="uid" maxlength="10" placeholder="아이디" />
+  <input type="button" id="btn" value="중복검사">
+   <span id="result"></span>
    <span>비밀번호</span>
   <input type="password" name="upw" id="upw" maxlength="20" placeholder="비밀번호" />
    <span>비밀번호 확인</span>
@@ -90,4 +97,5 @@ text-align: center;
 </script>
 
 </body>
+<jsp:include page="./footer.jsp"></jsp:include>
 </html>
