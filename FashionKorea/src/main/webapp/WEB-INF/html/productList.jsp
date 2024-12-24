@@ -13,13 +13,13 @@
 
 <main>
 	<!-- 상품 목록 -->
-	<article>
-		<div class="row">
+	<article style="overflow: scroll;">
+		<div class="row row-gap-3 column-gap-3 d-flex justify-content-center">
 		<c:if test="${clothesList.size() == 0}">
 			<p>찾으시는 물품이 없는 것 같습니다...</p>
 		</c:if>
 		<c:forEach var="cloth" items="${clothesList}">
-			<div class="card product__item">
+			<div class="card product__item col-md-2">
 				<div class="card-img-top product__item__pic set-bg" data-setbg="images/product/${cloth.image}" style="background-image: url(&quot;img/trending/trend-1.jpg&quot;);">
 					<div class="ep">hamburger</div>
 					<div class="comment"><i class="fa fa-comments"></i>pizza</div>
