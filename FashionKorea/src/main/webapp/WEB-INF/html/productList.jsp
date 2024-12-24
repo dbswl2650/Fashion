@@ -25,7 +25,7 @@
 				<c:set var="cloth" value="${clothesList.get(i)}"></c:set>
 				<c:set var="category" value="${categoryList.get(i)}"></c:set>
 				<div class="card product__item col-md-2">
-					<div class="card-img-top product__item__pic set-bg" data-setbg="images/product/${cloth.image}" style="background-image: url(&quot;img/trending/trend-1.jpg&quot;);">
+					<div class="card-img-top product__item__pic set-bg" data-setbg="images/product/${cloth.image}" style="background-image: url('images/product/${cloth.image}');">
 						<div class="ep">hamburger</div>
 						<div class="comment"><i class="fa fa-comments"></i>pizza</div>
 						<div class="view"><i class="fa fa-eye"></i>chicken waffle</div>
