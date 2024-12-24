@@ -20,7 +20,7 @@ public class LoginControl implements Control {
 		LoginDAO ldao = new LoginDAO();
 		if (ldao.login(id, pw) != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("logId", id); // 서버존재.
+			session.setAttribute("member_id", id); // 서버존재.
 			
 			// 목록이동.
 			response.sendRedirect("main.ko");

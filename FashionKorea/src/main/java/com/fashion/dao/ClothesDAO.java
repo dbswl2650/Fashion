@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fashion.vo.Clothes;
+import com.fashion.vo.Review;
 
 public class ClothesDAO extends DAO {
 	private String selectAllSql = "select count(clothes_no) as count" + "					   from clothes";
@@ -24,7 +25,10 @@ public class ClothesDAO extends DAO {
 			+ "					  image=?," + "					  category=?," + "					  about=?,"
 			+ "					  image_detail=?" + "					where clothes_no=?";
 	private String deleteSql = "delete from clothes" + "					where clothes_no=?";
+	
+	
 
+	
 	public int selectAllClothes() {
 		int count = 0;
 		if (connect() == false) {
@@ -79,6 +83,7 @@ public class ClothesDAO extends DAO {
 		return result;
 	}
 
+	
 	public Clothes selectOneClothes(int cno) {
 		connect();
 		String sql = "select * from clothes where clothes_no = ? ";
