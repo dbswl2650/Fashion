@@ -58,17 +58,17 @@ text-align: center;
    <span>이름</span>
   <input type="text" name="name" id="name" maxlength="10" placeholder="이름" />
    <span>아이디</span>
-  <input type="text" name="uid" id="uid" maxlength="10" placeholder="아이디" />
+  <input type="text" name="id" id="id" maxlength="10" placeholder="아이디" />
    <span>비밀번호</span>
-  <input type="password" name="upw" id="upw" maxlength="20" placeholder="비밀번호" />
+  <input type="password" name="pw" id="pw" maxlength="20" placeholder="비밀번호" />
    <span>비밀번호 확인</span>
-  <input type="password" name="confirm_upw" id="confirm_upw" maxlength="20" placeholder="비밀번호 확인" />
+  <input type="password" name="confirm_pw" id="confirm_pw" maxlength="20" placeholder="비밀번호 확인" />
    <span>메일</span>
-  <input type="email" name="em" id="em" maxlength="50" placeholder="메일" />
+  <input type="email" name="mail" id="mail" maxlength="50" placeholder="메일" />
    <span>휴대폰번호</span>
-  <input type="tel" name="pho" id="pho" maxlength="15" placeholder="휴대폰번호" />
+  <input type="tel" name="phone" id="phone" maxlength="15" placeholder="휴대폰번호" />
    <span>생년월일</span>
-  <input type="date" name="da" id="da" placeholder="생년월일" />
+  <input type="date" name="age" id="age" placeholder="생년월일" />
    <span>주소</span>
   <input type="text" name="add" id="add" placeholder="주소" />
   
@@ -78,7 +78,7 @@ text-align: center;
 
 <script>
   function validateForm() {
-    const password = document.getElementById('upw').value;
+    const password = document.getElementById('pw').value;
     const confirmPw = document.getElementById('confirmPw').value;
 
     if (password !== confirmPw) {

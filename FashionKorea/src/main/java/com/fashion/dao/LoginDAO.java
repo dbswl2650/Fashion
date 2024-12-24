@@ -10,6 +10,7 @@ import com.fashion.vo.MemberVO;
 
 public class LoginDAO extends DAO {
 	// 로그인 페이지
+	
 	public String login(String id, String pw) {
 		System.out.println(id + pw);
 		connect();

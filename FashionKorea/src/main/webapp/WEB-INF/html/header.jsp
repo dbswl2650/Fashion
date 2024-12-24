@@ -35,8 +35,16 @@
 				<span>|</span>
 				<a href="cartForm.ko">장바구니</a>
 				<a href="signup.ko">회원가입</a>
-				<a href="myPage.ko">마이페이지</a>
+				
+				<%
+				String memberId = (String) session.getAttribute("member_id");
+				String memberName = (String) session.getAttribute("member_name");
+				if(memberId == null) {
+				%>
 				<a href="loginForm.ko">로그인</a>
+				<% } else {%>
+				<a href="myPage.ko">마이페이지(<%= memberName %>)</a>
+				<% }%>
 
 			</div>
 		</nav>
