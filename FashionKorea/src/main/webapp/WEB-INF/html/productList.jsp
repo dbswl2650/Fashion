@@ -11,8 +11,6 @@
 
 <jsp:include page="./header.jsp"></jsp:include>
 
-
-
 <main class="overflow-x-hidden overflow-y-visible bg-body">
 	<!-- 상품 목록 -->
 	<c:choose>
