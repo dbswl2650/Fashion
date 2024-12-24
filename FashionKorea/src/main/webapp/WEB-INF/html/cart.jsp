@@ -1,3 +1,6 @@
+<%@page import="com.fashion.vo.CartItem"%>
+<%@page import="java.util.List"%>
+<%@page import="com.fashion.dao.CartDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -57,6 +60,13 @@ font-family: "Jua", sans-serif;
     }
 </style>
 </head>
+<%
+//로그인 되어있는 아이디 가져오기
+String id = (String)session.getAttribute("id");
+//멤버 넘버에 맞는 장바구니 목록 불러오기
+CartDAO cdao = new CartDAO();
+List<CartItem> clist = cdao.selectCart("1");
+%>
 <body>
 	<!-- 헤더 -->
 	<header>
@@ -93,9 +103,48 @@ font-family: "Jua", sans-serif;
             </tr>
           </thead>
           <tbody>
+          <tr data-pcode="${cart.pcode}">
+                            <th scope="row">
+                                <div class="d-flex align-items-center">
+                                    <img src="./images/product/${prodInfo.image}" class="img-fluid me-5 rounded-circle"
+                                        style="width: 80px; height: 80px;" alt="">
+                                </div>
+                            </th>
+                            <td>
+                                <p class="mb-0 mt-4">${prodInfo.pname}</p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">${prodInfo.price} 원</p>
+                            </td>
+                            <td>
+                                <div class="input-group quantity mt-4" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm text-center border-0"
+                                        value="${cart.qty}">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">${cart.qty * prodInfo.price}  원</p>
+                            </td>
+                            <td>
+                                <button class="btn btn-md rounded-circle bg-light border mt-4">
+                                    <i class="fa fa-times text-danger"></i>
+                                </button>
+                            </td>
+                        </tr>
           </tbody>
         </table>
       </div>
+
 
      
       <div class="row g-4 justify-content-end">
