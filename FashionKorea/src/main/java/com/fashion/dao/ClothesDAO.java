@@ -98,6 +98,8 @@ public class ClothesDAO extends DAO {
 					+ "	or about like '%'||'" + search + "'||'%'";
 		}
 		
+		System.out.println("Final sql is : " + selectSomeSql + where);
+		
 		try {
 			psmt = conn.prepareStatement(selectSomeSql + where);
 			rs = psmt.executeQuery();
