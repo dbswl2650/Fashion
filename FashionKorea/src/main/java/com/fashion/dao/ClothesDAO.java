@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fashion.vo.Clothes;
+import com.fashion.vo.Review;
 
 public class ClothesDAO extends DAO {
 	private String selectAllSql = "select count(clothes_no) as count" 
@@ -22,30 +23,17 @@ public class ClothesDAO extends DAO {
 			+ "						 image_detail" 
 			+ "					   from clothes"
 			+ "					   where clothes_no=?";
-	private String insertSql = "insert into clothes(clothes_no,"
-			+ "					  category_no,"
-			+ "					  name,"
-			+ "					  price,"
-			+ "					  color,"
-			+ "					  clothes_size,"
-			+ "					  image,"
-			+ "					  category,"
-			+ "					  about,"
-			+ "					  image_detail)"
-			+ "					values(clothes_sql.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private String updateSql = "update clothes"
-			+ "					set category_no=?,"
-			+ "					  name=?,"
-			+ "					  price=?,"
-			+ "					  color=?,"
-			+ "					  clothes_size=?,"
-			+ "					  image=?,"
-			+ "					  category=?,"
-			+ "					  about=?,"
-			+ "					  image_detail=?"
-			+ "					where clothes_no=?";
-	private String deleteSql = "delete from clothes"
-			+ "					where clothes_no=?";
+	private String insertSql = "insert into clothes(clothes_no," + "					  category_no,"
+			+ "					  name," + "					  price," + "					  color,"
+			+ "					  clothes_size," + "					  image," + "					  category,"
+			+ "					  about," + "					  image_detail"
+			+ "					values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private String updateSql = "update clothes" + "					set category_no=?," + "					  name=?,"
+			+ "					  price=?," + "					  color=?," + "					  clothes_size=?,"
+			+ "					  image=?," + "					  category=?," + "					  about=?,"
+			+ "					  image_detail=?" + "					where clothes_no=?";
+	private String deleteSql = "delete from clothes" + "					where clothes_no=?";
+
 	public int selectAllClothes() {
 		int count = 0;
 		if (connect() == false) {
@@ -103,6 +91,7 @@ public class ClothesDAO extends DAO {
 		}
 		return result;
 	}
+
 	public Clothes selectOneClothes(int cno) {
 		Clothes clothes = new Clothes();
 		if (connect() == false) {

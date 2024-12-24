@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.my-4 {
+	display: none;
+}
+
+.cotaniner {
+	margin: 0 auto;
+	overflow:scroll;
+}
+
+.box {
+	text-align: center;
+	margin: auto;
+	border-top: 2px solid black;
+	border-bottom: 2px solid grey;
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
+	font-weight: bold;
+	float: left;
+	width: 30%;
+	padding: 10px;
+	font-size:15px
+}
+
+.box a {
+	text-decoration-line: none;
+}
+
+
+a:visited {
+	color: inherit;
+}

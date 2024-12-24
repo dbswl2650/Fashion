@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fashion.dao.ClothesDAO;
+import com.fashion.dao.ReviewDAO;
 import com.fashion.vo.Clothes;
+import com.fashion.vo.Review;
 
 public class ProductDetailFormControl implements Control {
 	
@@ -20,8 +22,11 @@ public class ProductDetailFormControl implements Control {
 		
 		ClothesDAO cdao = new ClothesDAO();
 		Clothes clothes = cdao.selectOneClothes(Integer.parseInt(cno));
+		ReviewDAO rdao = new ReviewDAO();
+		Review review = rdao.review(Integer.parseInt(cno));
 		
-		req.setAttribute("cloth", clothes);		
+		req.setAttribute("cloth", clothes);
+		req.setAttribute("review", review);
 		req.getRequestDispatcher("WEB-INF/html/productDetail.jsp").forward(req, resp);
 	}
 }
