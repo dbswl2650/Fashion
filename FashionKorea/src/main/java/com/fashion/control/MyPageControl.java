@@ -12,16 +12,24 @@ import com.fashion.vo.MemberVO;
 
 public class MyPageControl implements Control {
 
-	@Override
-	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 회원정보를 불러오고 => 회원정보를 담고 => myPage.jsp 넘긴다
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("member_id");
-		LoginDAO login = new LoginDAO();
-		MemberVO mvo = login.selectMember(Integer.parseInt(id));
-		request.setAttribute("loginInfo", mvo);
-		
-	    request.getRequestDispatcher("WEB-INF/html/myPage.jsp").forward(request, response);
-	    }
+    @Override
+    public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String memberId = (String) session.getAttribute("member_id");
 
+        if (memberId == null) {
+            response.sendRedirect("loginForm.ko");
+            return;
+        }
+
+        LoginDAO ldao = new LoginDAO();
+        MemberVO member = ldao.getMemberInfo(memberId);
+
+        if (member != null) {
+            request.setAttribute("memberInfo", member);
+            request.getRequestDispatcher("WEB-INF/html/myPage.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("loginForm.ko");
+        }
+    }
 }

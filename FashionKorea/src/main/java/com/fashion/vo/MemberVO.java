@@ -1,11 +1,9 @@
 package com.fashion.vo;
 
 import lombok.Data;
-import java.util.Date;  
 
 @Data
 public class MemberVO {
-
     private int memberNo;        // 번호
     private String memberName;   // 이름
     private String memberId;     // 아이디

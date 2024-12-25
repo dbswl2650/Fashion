@@ -11,26 +11,35 @@ import com.fashion.vo.MemberVO;
 public class LoginDAO extends DAO {
 	// 로그인 페이지
 	
-	public String login(String id, String pw) {
-		System.out.println(id + pw);
-		connect();
-		String sql = "select * from member where member_id = ? and  member_pw = ?";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-			psmt.setString(2, pw);
+	public MemberVO login(String id, String pw) {
+	    connect();
+	    String sql = "SELECT * FROM member WHERE member_id = ? AND member_pw = ?";
+	    MemberVO member = null;
 
-			// 결과조회.
-			rs = psmt.executeQuery();
-			if (rs.next()) {
-				return rs.getString("member_name");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			disConnect();
-		}
-		return null;
+	    try {
+	        psmt = conn.prepareStatement(sql);
+	        psmt.setString(1, id);
+	        psmt.setString(2, pw);
+
+	        rs = psmt.executeQuery();
+	        if (rs.next()) {
+	            member = new MemberVO();
+	            member.setMemberNo(rs.getInt("member_no"));
+	            member.setMemberName(rs.getString("member_name"));
+	            member.setMemberId(rs.getString("member_id"));
+	            member.setMemberPw(rs.getString("member_pw"));
+	            member.setMemberMail(rs.getString("member_mail"));
+	            member.setMemberPhone(rs.getString("member_phone"));
+	            member.setMemberAge(rs.getString("member_age"));
+	            member.setMemberAdd(rs.getString("member_add"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        disConnect();
+	    }
+
+	    return member; // MemberVO 객체 반환
 	}
 	// 회원가입 페이지
 	public boolean insertMember(MemberVO member) {
@@ -61,34 +70,34 @@ public class LoginDAO extends DAO {
 	}
 	
 	// 마이패이지 나타내기..
-	public MemberVO selectMember(int memberNo) {
-		connect();
-		String sql = "select * from member where member_no = ?";
+	public MemberVO getMemberInfo(String memberId) {
+	    String sql = "SELECT * FROM member WHERE member_id = ?";
+	    MemberVO member = null;
 
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, memberNo);
-			rs = psmt.executeQuery(); // 조회.
+	    try {
+	        connect();
+	        psmt = conn.prepareStatement(sql);
+	        psmt.setString(1, memberId);
 
-			while (rs.next()) {
-				MemberVO mrd = new MemberVO();
-				mrd.setMemberNo(rs.getInt("member_no"));
-				mrd.setMemberName(rs.getString("member_name"));
-				mrd.setMemberId(rs.getString("member_id"));
-				mrd.setMemberPw(rs.getString("member_pw"));
-				mrd.setMemberMail(rs.getString("member_mail"));
-				mrd.setMemberAge(rs.getString("member_age"));
-				mrd.setMemberAdd(rs.getString("member_add"));
-				mrd.setMemberPhone(rs.getString("member_phone"));
-				return mrd;
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			disConnect();
-		}
-		return null;
+	        rs = psmt.executeQuery();
+	        
+	        while (rs.next()) {
+	            member = new MemberVO();
+	            member.setMemberNo(rs.getInt("member_no"));
+	            member.setMemberName(rs.getString("member_name"));
+	            member.setMemberId(rs.getString("member_id"));
+	            member.setMemberPw(rs.getString("member_pw"));
+	            member.setMemberMail(rs.getString("member_mail"));
+	            member.setMemberPhone(rs.getString("member_phone"));
+	            member.setMemberAge(rs.getString("member_age"));
+	            member.setMemberAdd(rs.getString("member_add"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        disConnect();
+	    }
+	    return member;
 	}
 	
 	// 회원 정보 수정
@@ -122,3 +131,4 @@ public class LoginDAO extends DAO {
 		return false;
 	}
 }
+

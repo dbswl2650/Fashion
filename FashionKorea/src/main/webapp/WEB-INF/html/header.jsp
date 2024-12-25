@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@page import="com.fashion.vo.MemberVO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,27 +30,31 @@
 			</a>
 			<div class="menuBar">
 
-				<input type="text" id="searchbar">
-				<a href="productList.ko" id="searchbutton">검색</a>
-				<a href="productList.ko">상품 페이지</a>
-				<span>|</span>
-				<a href="cartForm.ko">장바구니</a>
-				<a href="signup.ko">회원가입</a>
-				
+				<input type="text" id="searchbar"> <a href="productList.ko"
+					id="searchbutton">검색</a> <a href="productList.ko">상품 페이지</a> <span>|</span>
+				<a href="cartForm.ko">장바구니</a> <a href="signup.ko">회원가입</a>
+
+
 				<%
-				String memberId = (String) session.getAttribute("member_id");
-				String memberName = (String) session.getAttribute("member_name");
-				if(memberId == null) {
+				MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
+				if (loginInfo == null) {
 				%>
 				<a href="loginForm.ko">로그인</a>
-				<% } else {%>
-				<a href="myPage.ko">마이페이지(<%= memberName %>)</a>
-				<% }%>
-
+				<%
+				} else {
+				String memberName = loginInfo.getMemberName();
+				%>
+				<a href="myPage.ko">마이페이지 (<%=memberName%>)
+				</a> <a href="logout.ko">로그아웃</a>
+				<%
+				}
+				%>
 			</div>
 		</nav>
 		<script>
-			searchbar.value = <%=request.getParameter("search")%>;
+			searchbar.value =
+		<%=request.getParameter("search")%>
+			;
 			searchbar.oninput = function() {
 				let search = searchbar.value;
 				searchbutton.href = "productList.ko?search=" + search;

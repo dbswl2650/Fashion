@@ -54,9 +54,7 @@ public class FrontControl extends HttpServlet {
 		// http://localhost:80/fashion_lje/*
 		String context = request.getContextPath();
 		String path = request.getRequestURI().substring(context.length());
-
-		System.out.println(path);
-
+		
 		// 요청url === 실행할 컨트롤
 		Control control = map.get(path);
 		control.exec(request, response);
