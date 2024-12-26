@@ -43,7 +43,7 @@ public class ProductListControl implements Control {
 			categoryList.add(category);
 			
 			Boolean isFamous = false;
-			if (oidao.selectClothesNoCount(clothesNo) == 5) {	// 5가 바로 인기 임계치
+			if (oidao.selectClothesNoCount(clothesNo) >= 5) {	// 5가 바로 인기 임계치
 				isFamous = true;
 			}
 			isFamousList.add(isFamous);
