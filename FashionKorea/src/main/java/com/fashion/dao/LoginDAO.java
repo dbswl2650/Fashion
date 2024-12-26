@@ -10,7 +10,7 @@ import com.fashion.vo.MemberVO;
 
 public class LoginDAO extends DAO {
 	public String login(String id, String pw) {
-		connect();
+		connect(); // sql 조회해서 로그인 메서드
 		String sql = "select * from member where member_id = ? and  member_pw = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -27,11 +27,37 @@ public class LoginDAO extends DAO {
 		} finally {
 			disConnect();
 		}
-		return null;
+		return null ;
+	
+	public MemberVO login(String id, String pw) {
+	    connect();
+	    String sql = "SELECT * FROM member WHERE member_id = ? AND member_pw = ?";
+	    MemberVO member = null;
+
+	    try {
+	        psmt = conn.prepareStatement(sql);
+	        psmt.setString(1, id);
+	        psmt.setString(2, pw);
+
+	        rs = psmt.executeQuery();
+	        if (rs.next()) {
+	            member = new MemberVO();
+	            member.setMemberNo(rs.getInt("member_no"));
+	            member.setMemberName(rs.getString("member_name"));
+	            member.setMemberId(rs.getString("member_id"));
+	            member.setMemberPw(rs.getString("member_pw"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        disConnect();
+	    }
+
+	    return member;
 	}
 	
 	public boolean insertMember(MemberVO member) {
-		connect();
+		connect(); // sql 회원가입 등록 메서드
 		String sql = "insert into member " //
 				+ "(member_no, member_name, member_id, member_pw, member_mail, member_age, member_add, member_phone) " //
 				+ "values(member_seq.nextval, ?, ?, ?, ?, ?, ?, ?) ";
@@ -56,4 +82,57 @@ public class LoginDAO extends DAO {
 		}
 		return false;
 	}
+	
+	// 마이패이지 나타내기..
+		public MemberVO getMemberInfo(String memberId) {
+		    String sql = "SELECT * FROM member WHERE member_id = ?";
+		    MemberVO member = null;
+
+		    try {
+		        connect();
+		        psmt = conn.prepareStatement(sql);
+		        psmt.setString(1, memberId);
+
+		        rs = psmt.executeQuery();
+		        
+		        while (rs.next()) {
+		            member = new MemberVO();
+		            member.setMemberNo(rs.getInt("member_no"));
+		            member.setMemberName(rs.getString("member_name"));
+		            member.setMemberId(rs.getString("member_id"));
+		            member.setMemberPw(rs.getString("member_pw"));
+		            member.setMemberMail(rs.getString("member_mail"));
+		            member.setMemberPhone(rs.getString("member_phone"));
+		            member.setMemberAge(rs.getString("member_age"));
+		            member.setMemberAdd(rs.getString("member_add"));
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+		        disConnect();
+		    }
+		    return member;
+		}
+		// 회원정보 수정..
+//		public boolean updateMember(MemberVO member) {
+//			connect();
+//			String sql = "update member set title = ?, content = ? where board_no = ?";
+//
+//			try {
+//				psmt = conn.prepareStatement(sql);
+//				psmt.setString(1, board.getTitle());
+//				psmt.setString(2, board.getContent());
+//				psmt.setInt(3, board.getBoardNo());
+//				int r = psmt.executeUpdate(); // 쿼리실행.
+//				if (r > 0) {
+//					return true;
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			} finally {
+//				disConnect();
+//			}
+//			return false;
+//		}
 }
+
