@@ -40,7 +40,13 @@
 			</div>
 		</nav>
 		<script>
-			searchbar.value = '<%=request.getParameter("search")%>';
+			let search = '<%=request.getParameter("search")%>';
+			if (search == 'null') {
+				searchbar.value = '';
+			}
+			else {
+				searchbar.value = search;
+			}
 			
 			searchbutton.onclick = function() {
 				let search = searchbar.value;
