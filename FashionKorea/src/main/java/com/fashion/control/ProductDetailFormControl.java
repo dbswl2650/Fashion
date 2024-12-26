@@ -17,9 +17,6 @@ public class ProductDetailFormControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String cno = req.getParameter("cno");
-		if (cno == null) {
-			cno = "0";
-		}
 		
 		ClothesDAO cdao = new ClothesDAO();
 		Clothes clothes = cdao.selectOneClothes(Integer.parseInt(cno));

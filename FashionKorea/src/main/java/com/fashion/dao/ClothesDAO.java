@@ -86,7 +86,6 @@ public class ClothesDAO extends DAO {
 	
 	public Clothes selectOneClothes(int cno) {
 		connect();
-		String sql = "select * from clothes where clothes_no = ? ";
 
 		try {
 			psmt = conn.prepareStatement(selectOneSql);
