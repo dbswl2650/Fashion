@@ -30,22 +30,12 @@
 			</a>
 			<div class="menuBar">
 
-				<input type="text" id="searchbar"> <a href="productList.ko"
-					id="searchbutton">검색</a> <a href="productList.ko">상품 페이지</a> <span>|</span>
-				<a href="cartForm.ko">장바구니</a> <a href="signup.ko">회원가입</a>
 				<input type="text" id="searchbar">
 				<a href="productList.ko" id="searchbutton">검색</a>
 				<a href="">상품 페이지</a>
 				<span>|</span>
 				<a href="">장바구니</a>
 				<a href="signup.ko">회원가입</a>
-				<% String memberId = (String) session.getAttribute("memberId");
-                if (memberId == null) {%>
-				<a href="loginForm.ko">로그인</a>
-                <%} else {%>
-				<a href="logoutForm.ko">로그아웃 (<%=memberId%>)</a>
-				<%}%>
-
 
 				<%
 				MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");

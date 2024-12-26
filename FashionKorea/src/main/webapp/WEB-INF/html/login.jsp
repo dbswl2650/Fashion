@@ -59,7 +59,6 @@ h1 {
 			type="password" name="pw" id="pw" placeholder="비밀번호" />
 		<button>로그인</button>
 		<button type="button" onclick="location.href='signup.jsp'">회원가입</button>
-		=======
 	</div>
 </form>
 <link href="./css/login.css" rel="stylesheet" />

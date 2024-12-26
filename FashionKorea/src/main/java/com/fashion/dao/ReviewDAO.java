@@ -6,7 +6,7 @@ import com.fashion.vo.Review;
 
 public class ReviewDAO extends DAO {
 
-	private String selectReviewSql = "select * "
+	private String selectReviewSql = "select  "
 			+ " from review "
 			+ " where clothes_no = ? ";
 	
