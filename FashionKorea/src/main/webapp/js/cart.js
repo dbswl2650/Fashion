@@ -23,6 +23,8 @@
 
         totalSum()
         saveQty(logId, pcode, 1);
+		
+		
       });
     });
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@page import="com.fashion.vo.MemberVO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +41,21 @@
                 <%} else {%>
 				<a href="logoutForm.ko">로그아웃 (<%=memberId%>)</a>
 				<%}%>
+				<%
+				String loginInfo = (String) session.getAttribute("member_id");
+				/*>MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");<*/
+				if (loginInfo == null) {
+				%>
+				<a href="loginForm.ko">로그인</a>
+				<%
+				} else {
+				String memberName = loginInfo;
+				%>
+				<a href="myPage.ko">마이페이지 (<%=memberName%>)
+				</a> <a href="logout.ko">로그아웃</a>
+				<%
+				}
+				%>
 
 			</div>
 		</nav>
