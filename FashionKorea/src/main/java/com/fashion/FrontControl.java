@@ -36,6 +36,7 @@ public class FrontControl extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 
 		map.put("/main.ko", new MainControl()); // 목록보기
+		
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
 
 		map.put("/loginForm.ko", new LoginFormControl());
@@ -44,8 +45,6 @@ public class FrontControl extends HttpServlet {
 
 		map.put("/signup.ko", new SignupControl()); // 회원가입 페이지
 		map.put("/signupProcess.ko", new SignupProcessControl()); // 회원가입 프로세스 제어
-
-		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
 
 		map.put("/productList.ko", new ProductListControl()); // 상품 목록
 		
@@ -66,9 +65,7 @@ public class FrontControl extends HttpServlet {
 		// http://localhost:80/fashion_lje/*
 		String context = request.getContextPath();
 		String path = request.getRequestURI().substring(context.length());
-
-		System.out.println(path);
-
+		
 		// 요청url === 실행할 컨트롤
 		Control control = map.get(path);
 		control.exec(request, response);

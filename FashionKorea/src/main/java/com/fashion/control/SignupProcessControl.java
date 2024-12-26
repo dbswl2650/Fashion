@@ -18,12 +18,12 @@ public class SignupProcessControl implements Control {
 
         // 폼 데이터 가져오기
         String name = request.getParameter("name");
-        String id = request.getParameter("uid");
-        String pw = request.getParameter("upw");
+        String id = request.getParameter("id");
+        String pw = request.getParameter("pw");
         String confirmPw = request.getParameter("confirm_upw");
-        String mail = request.getParameter("em");
-        String phone = request.getParameter("pho");
-        String age = request.getParameter("da");
+        String mail = request.getParameter("mail");
+        String phone = request.getParameter("phone");
+        String age = request.getParameter("age");
         String address = request.getParameter("add");
 
         // 서버 측 검증
