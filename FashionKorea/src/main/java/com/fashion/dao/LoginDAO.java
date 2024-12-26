@@ -27,7 +27,7 @@ public class LoginDAO extends DAO {
 		} finally {
 			disConnect();
 		}
-		return null;
+		return null ;
 	}
 	
 	public boolean insertMember(MemberVO member) {
