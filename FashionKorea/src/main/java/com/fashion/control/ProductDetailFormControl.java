@@ -2,6 +2,7 @@ package com.fashion.control;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +21,13 @@ public class ProductDetailFormControl implements Control {
 		
 		ClothesDAO cdao = new ClothesDAO();
 		Clothes clothes = cdao.selectOneClothes(Integer.parseInt(cno));
+		
 		ReviewDAO rdao = new ReviewDAO();
-		Review review = rdao.review(Integer.parseInt(cno));
+		
+		List<Review> result = rdao.review(cno);
 		
 		req.setAttribute("cloth", clothes);
-		req.setAttribute("review", review);
+		req.setAttribute("review", result);
 		req.getRequestDispatcher("WEB-INF/html/productDetail.jsp").forward(req, resp);
 	}
 }

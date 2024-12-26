@@ -3,12 +3,10 @@
 .my-4 {
 	display: none;
 }
-
 .cotaniner {
 	margin: 0 auto;
 	overflow:scroll;
 }
-
 .box {
 	text-align: center;
 	margin: auto;
@@ -22,12 +20,26 @@
 	padding: 10px;
 	font-size:15px
 }
-
 .box a {
 	text-decoration-line: none;
 }
 
-
 a:visited {
 	color: inherit;
+}
+.container p{
+	font-weight: bold;
+	font-size: 50px;
+}
+
+.lead:hover {
+	color: blue;
+}
+
+a:hover {
+	color: green;
+}
+.table thead th{
+	background-color:grey;
+	color:white;
 }

@@ -1,45 +1,46 @@
 package com.fashion.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fashion.vo.Review;
 
 public class ReviewDAO extends DAO {
 
-	private String selectReviewSql = "select * "
-			+ " from review "
-			+ " where clothes_no = ? ";
-	
-	public Review review(int cno) {
+	public List<Review> review(String review) {
+		List<Review> result = new ArrayList<>();
+		String sql = "select re.comments, " //
+				+ "re.wdate, " //
+				+ "re.r_score, " //
+				+ "re.n_title, " //
+				+ "re.n_image, " //
+				+ "m.member_name " //
+				+ "from review re " //
+				+ "join member m on re.member_no = m.member_no "
+				+ "where re.clothes_no = ? ";
 		connect();
-		String sql = "select * from review where clothes_no = ? ";
-				
+
 		try {
-			psmt = conn.prepareStatement(selectReviewSql);
-			psmt.setInt(1, cno);
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, review);
 			rs = psmt.executeQuery();
-			
-			while(rs.next()) {
-				Review review = new Review();
-				review.setReviewNo(cno);
-				review.setMemberNo(rs.getInt("member_no"));
-				review.setClothesNo(rs.getInt("clothes_no"));
-				review.setType(rs.getString("type"));
-				review.setComments(rs.getString("comments"));
-				review.setWDate(rs.getDate("date"));
-				review.setRScore(rs.getString("score"));
-				review.setNTitle(rs.getString("title"));
-				review.setNImage(rs.getString("image"));
-				
-				return review;
+
+			while (rs.next()) {
+				Review rv = new Review();
+				rv.setComments(rs.getString("comments"));
+				rv.setRScore(rs.getString("r_score"));
+				rv.setNTitle(rs.getString("n_title"));
+//				rv.setNImage(rs.getString("n_image"));
+
+				result.add(rv);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			disConnect();
 		}
-		return null;
+		return result;
 	}
-	
+
 }
