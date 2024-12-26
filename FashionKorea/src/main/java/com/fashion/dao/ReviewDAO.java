@@ -5,14 +5,36 @@ import java.sql.SQLException;
 import com.fashion.vo.Review;
 
 public class ReviewDAO extends DAO {
-
+	private String countReviewSql = "select count(review_no) as count"
+			+ "						 from review"
+			+ "						 where clothes_no=?";
 	private String selectReviewSql = "select * "
 			+ " from review "
 			+ " where clothes_no = ? ";
 	
+	public int selectCountReview(int cno) {
+		int result = 0;
+		connect();
+		
+		try {
+			psmt = conn.prepareStatement(countReviewSql);
+			psmt.setInt(1, cno);
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				result = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return result;
+	}
+	
 	public Review review(int cno) {
 		connect();
-		String sql = "select * from review where clothes_no = ? ";
+//		String sql = "select * from review where clothes_no = ? ";
 				
 		try {
 			psmt = conn.prepareStatement(selectReviewSql);
