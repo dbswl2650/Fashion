@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fashion.control.CartControl;
+import com.fashion.control.CartFormControl;
 import com.fashion.control.Control;
 import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
@@ -47,10 +49,12 @@ public class FrontControl extends HttpServlet {
 
 		map.put("/productList.ko", new ProductListControl()); // 상품 목록
 		
-//		map.put("/cartForm.ko", new CartFormControl());
-//		map.put("/cart.ko", new CartControl());
 		
 		map.put("/productDetail.ko", new ProductDetailControl());
+		
+		map.put("/cartForm.ko", new CartFormControl());
+		map.put("/cart.ko", new CartControl()); 
+		
 		map.put("/productDetailForm.ko", new ProductDetailFormControl());
 	}
 
