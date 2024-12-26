@@ -13,19 +13,22 @@ public class LoginControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// TODO Auto-generated method stub
-		String id = request.getParameter("memberId");
-		String pw = request.getParameter("memberPw");
-		System.out.println(id + pw);
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		System.out.println("로그인 시도: ID=" + id + ", PW=" + pw);
+		
 		LoginDAO ldao = new LoginDAO();
 		if (ldao.login(id, pw) != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member_id", id); // 서버존재.
 			
-			// 목록이동.
+			 // 로그인 성공 시 메인 페이지로 이동
 			response.sendRedirect("main.ko");
 			
 		} else {
+			// 로그인 실패 시 로그인 폼으로 이동
 			response.sendRedirect("loginForm.ko");
 		}
 	}

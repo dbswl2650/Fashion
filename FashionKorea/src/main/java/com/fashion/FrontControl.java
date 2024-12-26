@@ -15,11 +15,13 @@ import com.fashion.control.CartFormControl;
 import com.fashion.control.Control;
 import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
+import com.fashion.control.LogoutControl;
 import com.fashion.control.MainControl;
 import com.fashion.control.MyPageControl;
 import com.fashion.control.ProductDetailControl;
 import com.fashion.control.ProductDetailFormControl;
 import com.fashion.control.ProductListControl;
+import com.fashion.control.SelectSameIdcontrol;
 import com.fashion.control.SignupControl;
 import com.fashion.control.SignupProcessControl;
 
@@ -39,9 +41,11 @@ public class FrontControl extends HttpServlet {
 
 		map.put("/loginForm.ko", new LoginFormControl());
 		map.put("/login.ko", new LoginControl()); // 로그인 페이지 보기
+		map.put("/logout.ko", new LogoutControl()); // 로그아웃
 
 		map.put("/signup.ko", new SignupControl()); // 회원가입 페이지
 		map.put("/signupProcess.ko", new SignupProcessControl()); // 회원가입 프로세스 제어
+		map.put("/selectSameId.ko", new SelectSameIdcontrol()); // 아이디 중복검사
 
 		map.put("/productList.ko", new ProductListControl()); // 상품 목록
 		
