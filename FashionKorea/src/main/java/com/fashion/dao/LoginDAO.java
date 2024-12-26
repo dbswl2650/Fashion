@@ -94,26 +94,32 @@ public class LoginDAO extends DAO {
 		    }
 		    return member;
 		}
-		// 회원정보 수정..
-//		public boolean updateMember(MemberVO member) {
-//			connect();
-//			String sql = "update member set title = ?, content = ? where board_no = ?";
-//
-//			try {
-//				psmt = conn.prepareStatement(sql);
-//				psmt.setString(1, board.getTitle());
-//				psmt.setString(2, board.getContent());
-//				psmt.setInt(3, board.getBoardNo());
-//				int r = psmt.executeUpdate(); // 쿼리실행.
-//				if (r > 0) {
-//					return true;
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			} finally {
-//				disConnect();
-//			}
-//			return false;
-//		}
+//		 회원정보 수정..
+		public boolean updateMember(MemberVO member) {
+		    connect();
+		    String sql = "UPDATE member " +
+		                 "SET member_name = ?, member_mail = ?, member_pw = ?, " +
+		                 "member_add = ?, member_phone = ?, member_age = ? " +
+		                 "WHERE member_id = ?";
+
+		    try {
+		        psmt = conn.prepareStatement(sql);
+		        psmt.setString(1, member.getMemberName());
+		        psmt.setString(2, member.getMemberMail());
+		        psmt.setString(3, member.getMemberPw());
+		        psmt.setString(4, member.getMemberAdd());
+		        psmt.setString(5, member.getMemberPhone());
+		        psmt.setString(6, member.getMemberAge());
+		        psmt.setString(7, member.getMemberId());
+
+		        int r = psmt.executeUpdate();
+		        return r > 0;
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+		        disConnect();
+		    }
+		    return false;
+		}
 }
 

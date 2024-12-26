@@ -25,7 +25,7 @@ import com.fashion.control.SelectSameIdcontrol;
 import com.fashion.control.SignupControl;
 import com.fashion.control.SignupProcessControl;
 import com.fashion.control.UpDateMemberControl;
-import com.fashion.control.UpDateMypageCheckControl;
+import com.fashion.control.UpDateMyPageCheckControl;
 
 public class FrontControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class FrontControl extends HttpServlet {
 		map.put("/main.ko", new MainControl()); // 목록보기
 		
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
-		map.put("/upDateMypageCheck.ko", new UpDateMypageCheckControl()); // 회원정보 체크
+		map.put("/upDateMyPageCheck.ko", new UpDateMyPageCheckControl()); // 회원정보 체크
 		map.put("/upDateMember.ko", new UpDateMemberControl()); // 회원정보 수정
 
 		map.put("/loginForm.ko", new LoginFormControl());
@@ -72,6 +72,13 @@ public class FrontControl extends HttpServlet {
 
 		// 요청url === 실행할 컨트롤
 		Control control = map.get(path);
+
+		if (control == null) {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND, "Page not found");
+			return;
+		}
+		System.out.println("Request Path: " + path);
+		System.out.println("Control Object: " + (control != null ? control.getClass().getName() : "null"));
 		control.exec(request, response);
 	}
 }

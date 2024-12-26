@@ -35,12 +35,6 @@
 				<span>|</span>
 				<a href="cartForm.ko">장바구니</a>
 				<a href="signup.ko">회원가입</a>
-				<% String memberId = (String) session.getAttribute("member_id");
-                if (memberId == null) {%>
-				<a href="loginForm.ko">로그인</a>
-                <%} else {%>
-				<a href="logoutForm.ko">로그아웃 (<%=memberId%>)</a>
-				<%}%>
 				<%
 				String loginInfo = (String) session.getAttribute("member_id");
 				/*>MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");<*/
@@ -52,7 +46,7 @@
 				String memberName = loginInfo;
 				%>
 				<a href="myPage.ko">마이페이지 (<%=memberName%>)
-				</a> <a href="logout.ko">로그아웃</a>
+				</a> <a href="logoutForm.ko">로그아웃</a>
 				<%
 				}
 				%>

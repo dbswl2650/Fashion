@@ -35,7 +35,9 @@ if (loginInfo != null) {
 		
 		<br>
      <div class="btns" align="center">
-        <button type="submit" class="btn btn-primary" onclick = "location.href = 'upDateMypageCheck.ko';">수정하기</button>
+        <form action="upDateMyPageCheck.ko" method="post">
+    		<button type="submit" class="btn btn-primary">수정하기</button>
+		</form>
         <button type="button" class="btn btn-danger">회원탈퇴</button>
      </div>
 	</div>
