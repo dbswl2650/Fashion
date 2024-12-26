@@ -40,10 +40,12 @@
 			</div>
 		</nav>
 		<script>
-			searchbar.value = <%=request.getParameter("search")%>;
-			searchbar.oninput = function() {
+			searchbar.value = '<%=request.getParameter("search")%>';
+			
+			searchbutton.onclick = function() {
 				let search = searchbar.value;
-				searchbutton.href = "productList.ko?search=" + search;
+				if (search != null && search != "")
+					searchbutton.href = "productList.ko?search=" + search;
 			}
 		</script>
 	</header>
