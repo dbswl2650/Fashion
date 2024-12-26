@@ -93,10 +93,50 @@ font-family: "Jua", sans-serif;
             </tr>
           </thead>
           <tbody>
+          <c:forEach var="carts" items="${cart }">
+          <tr data-pcode="${cart.cart_no}">
+                            <th scope="row">
+                                <div class="d-flex align-items-center">
+                                    <img src="images/<c:out value=${cart.image}"> class="img-fluid me-5 rounded-circle"
+                                        style="width: 80px; height: 80px;" alt="">
+                                </div>
+                            </th>
+                            <td>
+                                <p class="mb-0 mt-4"><c:out value="${cart.name}"></c:out></p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">${cart.price} 원</p>
+                            </td>
+                            <td>
+                                <div class="input-group quantity mt-4" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm text-center border-0"
+                                        value="${cart.quantity}">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">${cart.quantity * cart.price}  원</p>
+                            </td>
+                            <td>
+                                <button class="btn btn-md rounded-circle bg-light border mt-4">
+                                    <i class="fa fa-times text-danger"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </c:forEach>
           </tbody>
         </table>
       </div>
-
+	
      
       <div class="row g-4 justify-content-end">
         <div class="col-8"></div>
@@ -106,7 +146,7 @@ font-family: "Jua", sans-serif;
               <a class="display-6 mb-4">장바구니 <span class="fw-normal">합계</span></a>
               <div class="d-flex justify-content-between mb-4">
                 <h5 class="mb-0 me-4"></h5>
-                <p class="mb-0">얼른 사주세요!</p>
+                <p class="mb-0">얼른 주문해주세용</p>
               </div>
               <div class="d-flex justify-content-between">
                 <h5 class="mb-0 me-4"></h5>
