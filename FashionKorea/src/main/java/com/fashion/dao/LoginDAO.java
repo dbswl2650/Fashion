@@ -1,16 +1,12 @@
 package com.fashion.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import com.fashion.vo.MemberVO;
 
 public class LoginDAO extends DAO {
 	// 로그인 페이지
-	
+
 	public MemberVO login(String id, String pw) {
 	    connect();
 	    String sql = "SELECT * FROM member WHERE member_id = ? AND member_pw = ?";
