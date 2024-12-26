@@ -49,6 +49,8 @@ public class FrontControl extends HttpServlet {
 
 		map.put("/productList.ko", new ProductListControl()); // 상품 목록
 		
+		map.put("/cartForm.ko", new CartFormControl());
+		map.put("/cart.ko", new CartControl());
 		
 		map.put("/productDetail.ko", new ProductDetailControl());
 		
