@@ -26,9 +26,12 @@ public class SignupProcessControl implements Control {
         String age = request.getParameter("da");
         String address = request.getParameter("add");
 
+//        LoginDAO logindao = new LoginDAO(); // 로그인 DAO 가져오기
+        
         // 서버 측 검증
         if (name == null || name.trim().isEmpty() ||
             id == null || id.trim().isEmpty() ||
+//            logindao.selectSameId(id.trim()) || // 로그인 DAO에 id 유효성 중복값 가져와서 검증
             pw == null || pw.trim().isEmpty() ||
             !pw.equals(confirmPw) ||
             mail == null || mail.trim().isEmpty() ||
@@ -61,6 +64,8 @@ public class SignupProcessControl implements Control {
             request.setAttribute("error", "회원가입에 실패했습니다.");
             request.getRequestDispatcher("WEB-INF/html/signup.jsp").forward(request, response);
         }
+                    
+        
         System.out.println("폼 데이터 확인: ");
         System.out.println("이름: " + name);
         System.out.println("아이디: " + id);
@@ -70,5 +75,5 @@ public class SignupProcessControl implements Control {
         System.out.println("휴대폰번호: " + phone);
         System.out.println("생년월일: " + age);
         System.out.println("주소: " + address);
-    }
+    }   
 }

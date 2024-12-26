@@ -9,6 +9,25 @@ import java.sql.Statement;
 import com.fashion.vo.MemberVO;
 
 public class LoginDAO extends DAO {
+	public String login(String id, String pw) {
+		connect(); // sql 조회해서 로그인 메서드
+		String sql = "select * from member where member_id = ? and  member_pw = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+
+			// 결과조회.
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				return rs.getString("member_name");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return null ;
 	
 	public MemberVO login(String id, String pw) {
 	    connect();
@@ -38,7 +57,7 @@ public class LoginDAO extends DAO {
 	}
 	
 	public boolean insertMember(MemberVO member) {
-		connect();
+		connect(); // sql 회원가입 등록 메서드
 		String sql = "insert into member " //
 				+ "(member_no, member_name, member_id, member_pw, member_mail, member_age, member_add, member_phone) " //
 				+ "values(member_seq.nextval, ?, ?, ?, ?, ?, ?, ?) ";
@@ -116,3 +135,4 @@ public class LoginDAO extends DAO {
 //			return false;
 //		}
 }
+
