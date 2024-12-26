@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="./css/elegant-icons.css" type="text/css"/>
 <link rel="stylesheet" href="./css/plyr.css" type="text/css"/>
 <link rel="stylesheet" href="./css/nice-select.css" type="text/css"/>
-<link rel="stylesheet" href="./css/slicknav.css" type="text/css"/>
+<link rel="stylesheet" href="./css/slicknav.min.css" type="text/css"/>
 <link rel="stylesheet" href="./css/style.css" type="text/css"/>
 
 <jsp:include page="./header.jsp"></jsp:include>

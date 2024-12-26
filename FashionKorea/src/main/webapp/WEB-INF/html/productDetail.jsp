@@ -4,7 +4,7 @@
 
 <link href="./css/headerfooter.css" rel="stylesheet" />
 <link href="./css/productDetail.css" rel="stylesheet" />
-<link href="/css/styles.css" rel="stylesheet" />
+<link href="./css/style.css" rel="stylesheet" />
 <jsp:include page="./header.jsp" />
 <form action="cartForm.ko">
 	<html xmlns:th="http://www.thymeleaf.org">
