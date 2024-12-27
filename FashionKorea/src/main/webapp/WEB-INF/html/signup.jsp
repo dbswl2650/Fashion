@@ -64,7 +64,7 @@ text-align: center;
   <input type="text" name="name" id="name" maxlength="10" placeholder="이름" />
    <span>아이디</span>
   <input type="text" name="uid" id="uid" maxlength="10" placeholder="아이디" />
-  <input type="button" id="btn" value="중복검사">
+  <input type="button" id="btn" value="중복검사" onclick="idcheck()">
    <span id="result"></span>
    <span>비밀번호</span>
   <input type="password" name="upw" id="upw" maxlength="20" placeholder="비밀번호" />
@@ -105,6 +105,20 @@ text-align: center;
        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
   }
   
+<!-- 아이디 중복확인 -->
+function idcheck() {
+	fetch('loginForm.ko')
+	.then(result => result.json())
+	.then(result => {
+		if ('${hasSameId}' == true) {
+			alert("중복된 아이디입니다!");
+		}
+		else {
+			alert("사용 가능한 아이디입니다.");
+		}
+	})
+	.catch(err => console.log(err));
+}
 </script>
 
 </body>

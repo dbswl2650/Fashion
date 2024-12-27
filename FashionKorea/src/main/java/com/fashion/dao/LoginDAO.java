@@ -121,5 +121,26 @@ public class LoginDAO extends DAO {
 		    }
 		    return false;
 		}
+		
+		 //id 중복검사 같은 id가 있는지 없는지 검증하는 함수	
+		public boolean selectSameId(String id) {
+	    	connect();
+	    	String sql = "select member_id from member where member_id=?";
+	    	
+	    	try {
+	    		psmt = conn.prepareStatement(sql);
+	    		psmt.setString(1, id);
+	    		rs = psmt.executeQuery();
+	    		
+	    		while (rs.next()) {
+	    			return true;
+	    		}
+	    	} catch (SQLException e) {
+	    		e.printStackTrace();
+	    	} finally {
+	    		disConnect();
+	    	}
+	    	return false;
+		}
 }
 
