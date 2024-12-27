@@ -11,4 +11,6 @@ public class CartItem {
 	int quantity;
 	int totalPrice;
 	int cartNo;
+	int memberNo;
+	String memberId;
 }

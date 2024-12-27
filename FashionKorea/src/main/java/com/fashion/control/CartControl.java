@@ -18,10 +18,12 @@ public class CartControl implements Control {
 		// TODO Auto-generated method stub
 		resp.setContentType("text/json;charset=utf-8");
 		HttpSession session = req.getSession();
+		String memberNo = (String) session.getAttribute("member_id");
 		CartDAO cartdao = new CartDAO();
-		String no = (String) session.getAttribute("member_no");
-		List<CartItem> cart = cartdao.selectCart(no);
-		req.setAttribute("cart", cart);	
+		
+		List<CartItem> cart = cartdao.selectCart(memberNo);
+		req.setAttribute("cartList", cart);	
+		req.getRequestDispatcher("WEB-INF/html/cart.jsp").forward(req, resp);
 	}
 
 }

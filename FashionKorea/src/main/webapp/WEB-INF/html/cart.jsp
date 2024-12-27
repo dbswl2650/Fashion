@@ -1,5 +1,14 @@
+<%@page import="com.fashion.vo.MemberVO"%>
+<%@page import="com.fashion.vo.CartItem"%>
+<%@page import="java.util.List"%>
+<%@page import="com.fashion.dao.CartDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+String loginInfo = (String) session.getAttribute("member_id");
+MemberVO memberInfo = (MemberVO) session.getAttribute("loginInfo");
+%>    
 
 <!DOCTYPE html>
 <html>
@@ -57,6 +66,7 @@ font-family: "Jua", sans-serif;
     }
 </style>
 </head>
+
 <body>
 	<!-- 헤더 -->
 	<header>
@@ -93,16 +103,16 @@ font-family: "Jua", sans-serif;
             </tr>
           </thead>
           <tbody>
-          <c:forEach var="carts" items="${cart }">
+          <c:forEach var="cart" items="${cartList}">
           <tr data-pcode="${cart.cart_no}">
                             <th scope="row">
                                 <div class="d-flex align-items-center">
-                                    <img src="images/<c:out value=${cart.image}"> class="img-fluid me-5 rounded-circle"
-                                        style="width: 80px; height: 80px;" alt="">
+                                    <img src="images/{cart.image}"> <class="img-fluid me-5 rounded-circle"
+                                        style="width: 80px; height: 80px;" alt="{cart.name}">
                                 </div>
                             </th>
                             <td>
-                                <p class="mb-0 mt-4"><c:out value="${cart.name}"></c:out></p>
+                                <p class="mb-0 mt-4">${cart.name}</p>
                             </td>
                             <td>
                                 <p class="mb-0 mt-4">${cart.price} 원</p>

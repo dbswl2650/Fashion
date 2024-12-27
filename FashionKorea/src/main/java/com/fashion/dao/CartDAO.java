@@ -5,20 +5,20 @@ import java.util.List;
 import com.fashion.vo.CartItem;
 public class CartDAO extends DAO{
 	
-	public List<CartItem> selectCart(String member_no) {
+	public List<CartItem> selectCart(String member_id) {
 	connect();
-	String sql = "SELECT c.image AS image,"//
-			+ "          c.name AS name,"//
-			+ "          c.price AS price,"//
-			+ "          ca.quantity AS quantity,"//
-			+ "          (c.price * ca.quantity) AS totalPrice"//
-			+ " FROM     cart ca"//
-			+ "          JOIN clothes c ON ca.clothes_no = c.clothes_no"//
-			+ " WHERE    ca.member_no = ?";
+	String sql = "SELECT  c.image AS image"
+			+ ",          c.name AS name"
+			+ ",          c.price AS price"
+			+ ",          ca.quantity AS quantity"
+			+ ",          (c.price * ca.quantity) AS price"
+			+ "FROM       cart ca JOIN clothes c ON ca.clothes_no = c.clothes_no"
+			+ "JOIN member m ON ca.member_no = m.member_no"
+			+ "WHERE      m.member_id = ?";
 	List<CartItem> clist = new ArrayList<>();
 	try {
 		psmt = conn.prepareStatement(sql);
-		psmt.setString(1, member_no);
+		psmt.setString(1, member_id);
 		
 		rs = psmt.executeQuery();
 		while (rs.next()) {
