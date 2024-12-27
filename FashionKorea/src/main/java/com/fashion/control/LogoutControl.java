@@ -14,7 +14,7 @@ public class LogoutControl implements Control {
 		HttpSession sesstion = request.getSession();
 		sesstion.invalidate();
 		
-		response.sendRedirect("WEB-INF/html/main.jsp");
+		response.sendRedirect("main.ko");
 		
 		// 로그인한 사용자 번호 삭제후 로그아웃 기능하기
 	}

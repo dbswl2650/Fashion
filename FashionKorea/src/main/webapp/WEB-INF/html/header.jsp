@@ -46,7 +46,7 @@
 				String memberName = loginInfo;
 				%>
 				<a href="myPage.ko">마이페이지 (<%=memberName%>)
-				</a> <a href="logoutForm.ko">로그아웃</a>
+				</a> <a href="logout.ko">로그아웃</a>
 				<%
 				}
 				%>
