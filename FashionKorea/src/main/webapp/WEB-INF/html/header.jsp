@@ -45,8 +45,8 @@
 				} else {
 				String memberName = loginInfo;
 				%>
-				<a href="myPage.ko">마이페이지 (<%=memberName%>)
-				</a> <a href="logout.ko">로그아웃</a>
+				<a href="myPage.ko">마이페이지 (<%=memberName%>)</a>
+				<a href="logout.ko">로그아웃</a>
 				<%
 				}
 				%>
