@@ -42,4 +42,25 @@ public class ReviewDAO extends DAO {
 		return result;
 	}
 
+	public Integer selectCountReview(int cno) {
+		int result = 0;
+		String sql = "select count(review_no) as count"
+				+ "	  from review"
+				+ "	  where clothes_no=?";
+		connect();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, cno);
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return result;
+	}
 }
