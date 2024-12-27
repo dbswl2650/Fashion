@@ -17,16 +17,15 @@ public class UpDateMyPageCheckControl implements Control {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("member_id");
-		
+
 		LoginDAO ldao = new LoginDAO();
 		MemberVO member = ldao.getMemberInfo(memberId);
-		
-		if (member != null) {
-	        System.out.println("Member Info: " + member);
-	        request.setAttribute("memberInfo", member);
-	        request.getRequestDispatcher("WEB-INF/html/upDateMyPageCheck.jsp").forward(request, response);
-	    } 
-		
-	}
 
+		if (member != null) {
+			System.out.println("Member Info: " + member);
+			request.setAttribute("memberInfo", member);
+			request.getRequestDispatcher("WEB-INF/html/upDateMyPageCheck.jsp").forward(request, response);
+		}
+
+	}
 }
