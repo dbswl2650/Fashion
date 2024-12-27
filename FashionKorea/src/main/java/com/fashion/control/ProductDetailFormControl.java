@@ -25,8 +25,8 @@ public class ProductDetailFormControl implements Control {
 		ReviewDAO rdao = new ReviewDAO();
 		
 		List<Review> result = rdao.review(cno);
-		
-		req.setAttribute("cloth", clothes);
+		System.out.println(result);
+		req.setAttribute("clothes", clothes);
 		req.setAttribute("review", result);
 		req.getRequestDispatcher("WEB-INF/html/productDetail.jsp").forward(req, resp);
 	}

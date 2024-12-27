@@ -9,8 +9,10 @@ import com.fashion.vo.Review;
 public class ReviewDAO extends DAO {
 
 	public List<Review> review(String review) {
+		connect();
 		List<Review> result = new ArrayList<>();
-		String sql = "select re.comments, " //
+		String sql = "select re.review_no, "
+				+ "re.comments, " //
 				+ "re.wdate, " //
 				+ "re.score, " //
 				+ "re.title, " //
@@ -19,7 +21,6 @@ public class ReviewDAO extends DAO {
 				+ "from review re " //
 				+ "join member m on re.member_no = m.member_no "
 				+ "where re.clothes_no = ? ";
-		connect();
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, review);
@@ -27,10 +28,13 @@ public class ReviewDAO extends DAO {
 
 			while (rs.next()) {
 				Review rv = new Review();
+				rv.setReviewNo(rs.getInt("review_no"));
 				rv.setComments(rs.getString("comments"));
+				rv.setWdateDate(rs.getDate("wdate"));
 				rv.setScore(rs.getString("score"));
 				rv.setTitle(rs.getString("title"));
 				rv.setImage(rs.getString("image"));
+				rv.setMemberName(rs.getString("member_name"));
 
 				result.add(rv);
 			}
@@ -39,6 +43,7 @@ public class ReviewDAO extends DAO {
 		} finally {
 			disConnect();
 		}
+		System.out.println(result);
 		return result;
 	}
 
