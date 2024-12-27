@@ -13,8 +13,8 @@ public class Review {
 	String type;
 	String comments;
 	Date wDate;
-	String rScore;
-	String nTitle;
-	String nImage;
+	String score;
+	String title;
+	String image;
 	
 }
