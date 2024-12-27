@@ -43,3 +43,6 @@ a:hover {
 	background-color:grey;
 	color:white;
 }
+table #body tr{
+	vertical-align:center;
+}

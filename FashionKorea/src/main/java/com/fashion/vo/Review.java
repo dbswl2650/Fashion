@@ -12,9 +12,12 @@ public class Review {
 	int clothesNo;
 	String type;
 	String comments;
-	Date wDate;
+	Date wdateDate;
 	String score;
 	String title;
 	String image;
 	
+	String memberName; 
 }
+
+
