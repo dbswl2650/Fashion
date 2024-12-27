@@ -8,7 +8,7 @@ String loginInfo = (String) session.getAttribute("member_id");
 MemberVO memberInfo = (MemberVO) session.getAttribute("loginInfo");
 if (loginInfo != null) {
 %>
-
+<form action = "upDateMyPageCheck.ko" method = "post">
  <section class="row m-3" style="min-height: 500px">
  <div class="body center">
  	<h2 class="m-4">나의 프로필</h2>
@@ -17,14 +17,14 @@ if (loginInfo != null) {
 		person
 	</span>
 	<div class="form-group">
-		<label for="userId">* ID :</label> 
-			<input type="text" class="form-control" id="userId" name="userId"
+		<label for="Id">* ID :</label> 
+			<input type="text" class="form-control" id="Id" name="Id"
 			value="${ memberInfo.getMemberId() }" readonly><br> 
-		<label for="userName">* Name :</label> 
-			<input type="text" class="form-control" id="userName" name="userName"
+		<label for="Name">* Name :</label> 
+			<input type="text" class="form-control" id="Name" name="Name"
 			value="${ memberInfo.getMemberName() }"><br> 
 		<label for="email"> Email :</label> 
-			<input type="email" class="form-control" id="email" name="email"
+			<input type="email" class="form-control" id="Mail" name="Mail"
 		 	value="${ memberInfo.getMemberMail() }"><br> 
 		<label for="phone"> Phone :</label> 
 			<input type="tel" class="form-control" id="phone" name="phone"
@@ -35,14 +35,13 @@ if (loginInfo != null) {
 		
 		<br>
      <div class="btns" align="center">
-        <form action="upDateMyPageCheck.ko" method="post">
-    		<button type="submit" class="btn btn-primary">수정하기</button>
-		</form>
+    	<button type="submit" class="btn btn-primary" onclick= "upDateMyPageCheck.ko">수정하기</button>
         <button type="button" class="btn btn-danger">회원탈퇴</button>
      </div>
 	</div>
   </div>
 </section>
+</form>
 <%
 } else {
 %>

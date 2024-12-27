@@ -15,17 +15,20 @@ public class UpDateMyPageCheckControl implements Control {
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("member_id");
-
+		
 		LoginDAO ldao = new LoginDAO();
 		MemberVO member = ldao.getMemberInfo(memberId);
-
-		if (member != null) {
-			System.out.println("Member Info: " + member);
+		
+		System.out.println(member.getMemberId());
+		String name = member.getMemberName();
+		
+		if (member != null) {	
 			request.setAttribute("memberInfo", member);
 			request.getRequestDispatcher("WEB-INF/html/upDateMyPageCheck.jsp").forward(request, response);
 		}
-
 	}
 }

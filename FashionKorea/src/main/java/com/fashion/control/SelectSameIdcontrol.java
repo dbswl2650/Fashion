@@ -7,6 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fashion.dao.LoginDAO;
+import com.fashion.vo.MemberVO;
+
 public class SelectSameIdcontrol implements Control {
 
 	@Override
@@ -22,35 +25,13 @@ public class SelectSameIdcontrol implements Control {
         String id = request.getParameter("uid");
 
 		
-		// 2. DB에 있는 지 확인하기 // 같은 id가 있는지 없는지 검증하는 함수	
-//		public boolean SelectSameId(String id) {
-//	    	connect();
-//	    	String sql = "select member_id from member member_id=?";
-//	    	
-//	    	try {
-//	    		psmt = conn.prepareStatement(sql);
-//	    		psmt.setString(1, id);
-//	    		rs = psmt.executeQuery();
-//	    		
-//	    		while (rs.next()) {
-//	    			return true;
-//	    		}
-//	    	} catch (SQLException e) {
-//	    		e.printStackTrace();
-//	    	} finally {
-//	    		disConnect();
-//	    	}
-//	    	return false;
-//		}
+		// 2. DB에 있는 지 확인하기
+        LoginDAO bado = new LoginDAO();
+        boolean hasSameId = bado.selectSameId(id);       
 		
-//		// 3. 결과 전달하기
-//		fetch('removeReply.do?rno=' + rno)
-//		.then(result => result.json())
-//		.then(result => {
-//
-//		})
-//		.catch(err => console.log(err));
-		
+		// 3. 결과 전달하기
+		request.setAttribute("hasSameId", hasSameId);
+		request.getRequestDispatcher("WEB-INF/html/signup.jsp").forward(request, response);
 	}
 
 }
