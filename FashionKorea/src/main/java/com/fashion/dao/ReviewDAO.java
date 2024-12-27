@@ -12,9 +12,9 @@ public class ReviewDAO extends DAO {
 		List<Review> result = new ArrayList<>();
 		String sql = "select re.comments, " //
 				+ "re.wdate, " //
-				+ "re.r_score, " //
-				+ "re.n_title, " //
-				+ "re.n_image, " //
+				+ "re.score, " //
+				+ "re.title, " //
+				+ "re.image, " //
 				+ "m.member_name " //
 				+ "from review re " //
 				+ "join member m on re.member_no = m.member_no "
@@ -28,9 +28,9 @@ public class ReviewDAO extends DAO {
 			while (rs.next()) {
 				Review rv = new Review();
 				rv.setComments(rs.getString("comments"));
-				rv.setRScore(rs.getString("r_score"));
-				rv.setNTitle(rs.getString("n_title"));
-//				rv.setNImage(rs.getString("n_image"));
+				rv.setScore(rs.getString("score"));
+				rv.setTitle(rs.getString("title"));
+				rv.setImage(rs.getString("image"));
 
 				result.add(rv);
 			}
@@ -42,4 +42,25 @@ public class ReviewDAO extends DAO {
 		return result;
 	}
 
+	public Integer selectCountReview(int cno) {
+		int result = 0;
+		String sql = "select count(review_no) as count"
+				+ "	  from review"
+				+ "	  where clothes_no=?";
+		connect();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, cno);
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return result;
+	}
 }

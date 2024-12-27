@@ -48,8 +48,8 @@ public class ProductListControl implements Control {
 			}
 			isFamousList.add(isFamous);
 			
-//			Integer reviewCnt = rdao.selectCountReview(clothesNo);
-//			reviewCntList.add(reviewCnt);
+			Integer reviewCnt = rdao.selectCountReview(clothesNo);
+			reviewCntList.add(reviewCnt);
 		}
 		
 		request.setAttribute("clothesList", clothesList);
