@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.fashion.control.CartControl;
 import com.fashion.control.CartFormControl;
 import com.fashion.control.Control;
+import com.fashion.control.DeleteMemberControl;
+import com.fashion.control.DeleteMyPageCheckControl;
 import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
 import com.fashion.control.LogoutControl;
@@ -43,6 +45,8 @@ public class FrontControl extends HttpServlet {
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
 		map.put("/upDateMember.ko", new UpDateMemberControl()); // 회원정보 수정
 		map.put("/upDateMyPageCheck.ko", new UpDateMyPageCheckControl());
+		map.put("/deleteMember.ko", new DeleteMemberControl());
+		map.put("/deleteMyPageCheck.ko", new DeleteMyPageCheckControl());
 
 		map.put("/loginForm.ko", new LoginFormControl());
 		map.put("/login.ko", new LoginControl()); // 로그인 페이지 보기
