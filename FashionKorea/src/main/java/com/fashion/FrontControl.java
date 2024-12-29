@@ -15,13 +15,17 @@ import com.fashion.control.CartFormControl;
 import com.fashion.control.Control;
 import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
+import com.fashion.control.LogoutControl;
 import com.fashion.control.MainControl;
 import com.fashion.control.MyPageControl;
 import com.fashion.control.ProductDetailControl;
 import com.fashion.control.ProductDetailFormControl;
 import com.fashion.control.ProductListControl;
+import com.fashion.control.SelectSameIdcontrol;
 import com.fashion.control.SignupControl;
 import com.fashion.control.SignupProcessControl;
+import com.fashion.control.UpDateMemberControl;
+import com.fashion.control.UpDateMyPageCheckControl;
 
 public class FrontControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,21 +39,25 @@ public class FrontControl extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 
 		map.put("/main.ko", new MainControl()); // 목록보기
+		
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
+		map.put("/upDateMember.ko", new UpDateMemberControl()); // 회원정보 수정
+		map.put("/upDateMyPageCheck.ko", new UpDateMyPageCheckControl());
 
 		map.put("/loginForm.ko", new LoginFormControl());
 		map.put("/login.ko", new LoginControl()); // 로그인 페이지 보기
+		map.put("/logout.ko", new LogoutControl()); // 로그아웃
 
 		map.put("/signup.ko", new SignupControl()); // 회원가입 페이지
 		map.put("/signupProcess.ko", new SignupProcessControl()); // 회원가입 프로세스 제어
+		map.put("/selectSameId.ko", new SelectSameIdcontrol()); // 아이디 중복검사
 
 		map.put("/productList.ko", new ProductListControl()); // 상품 목록
-		
-		map.put("/productDetail.ko", new ProductDetailControl());
 		
 		map.put("/cartForm.ko", new CartFormControl());
 		map.put("/cart.ko", new CartControl());
 		
+		map.put("/productDetail.ko", new ProductDetailControl());
 		map.put("/productDetailForm.ko", new ProductDetailFormControl());
 	}
 
@@ -64,6 +72,13 @@ public class FrontControl extends HttpServlet {
 
 		// 요청url === 실행할 컨트롤
 		Control control = map.get(path);
+
+		if (control == null) {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND, "Page not found");
+			return;
+		}
+		System.out.println("Request Path: " + path);
+		System.out.println("Control Object: " + (control != null ? control.getClass().getName() : "null"));
 		control.exec(request, response);
 	}
 }
