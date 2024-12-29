@@ -17,11 +17,6 @@ public class MyPageControl implements Control {
 		 HttpSession session = request.getSession();
 	        String memberId = (String) session.getAttribute("member_id");
 
-//	        if (memberId == null) {
-//	            response.sendRedirect("loginForm.ko");
-//	            return;
-//	        }
-
 	        LoginDAO ldao = new LoginDAO();
 	        MemberVO member = ldao.getMemberInfo(memberId);
 
