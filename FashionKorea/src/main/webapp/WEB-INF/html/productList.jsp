@@ -32,7 +32,7 @@
 						<a href="productDetailForm.ko?cno=${cloth.clothesNo}#header">
 							<div class="comment"><i class="fa fa-comments"></i>${reviewCntList.get(i)} 개의 리뷰</div>
 						</a>
-						<!-- div class="view"><i class="fa fa-eye"></i>chicken waffle</div -->
+						<!--- div class="view"><i class="fa fa-eye"></i>chicken waffle</div --->
 					</div>
 					<div class="product__item__text">
 						<ul>
