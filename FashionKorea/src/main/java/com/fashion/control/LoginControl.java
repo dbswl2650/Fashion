@@ -28,8 +28,6 @@ public class LoginControl implements Control {
 			session.setAttribute("member_id", id);
 			session.setAttribute("member_no", loginResult.getMemberNo()); // 서버존재.
 			
-			System.out.println(session.getAttribute("member_no") + "번으로 로그인");
-			
 			// 로그인 성공 시 메인 페이지로 이동
 			response.sendRedirect("main.ko");		
 		} else {
