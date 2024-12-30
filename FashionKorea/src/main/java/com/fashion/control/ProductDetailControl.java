@@ -6,8 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fashion.dao.LikeItDAO;
-
 public class ProductDetailControl implements Control {
 
 	@Override
