@@ -35,7 +35,7 @@ if (loginInfo != null) {
 		
 		<br>
      <div class="btns" align="center">
-    	<button type="submit" class="btn btn-primary" onclick= "upDateMyPageCheck.ko">수정하기</button>
+    	<button type="submit" class="btn btn-primary" onclick="upDateMyPageCheck.ko">수정하기</button>
         <button type="button" class="btn btn-danger">회원탈퇴</button>
      </div>
 	</div>

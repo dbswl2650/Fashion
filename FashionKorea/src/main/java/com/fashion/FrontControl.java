@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.fashion.control.CartControl;
 import com.fashion.control.CartFormControl;
 import com.fashion.control.Control;
+import com.fashion.control.LikeItDeleteControl;
+import com.fashion.control.LikeItInsertControl;
 import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
 import com.fashion.control.LogoutControl;
@@ -59,6 +61,9 @@ public class FrontControl extends HttpServlet {
 		
 		map.put("/productDetail.ko", new ProductDetailControl());
 		map.put("/productDetailForm.ko", new ProductDetailFormControl());
+		
+		map.put("/likeItInsertForm.ko", new LikeItInsertControl());
+		map.put("/likeItDeleteForm.ko", new LikeItDeleteControl());
 	}
 
 	@Override

@@ -28,7 +28,7 @@ vertical-align:center;}
 							src="images/product/${clothes.image}" alt="${clothes.image}" />
 					</div>
 					<div class="col-md-6">
-						<h1 class="display-6 fw-bolder">${clothes.name }</h1>
+						<h1 class="display-6 fw-bolder">${clothes.name}</h1>
 						<div class="fs-5 mb-5">
 							<input type="hidden" value="${clothes.price}" id="price"
 								name="price"> <span class="text-decoration-none">${clothes.price}</span>원
@@ -58,7 +58,10 @@ vertical-align:center;}
 							<button class="btn btn-outline-dark" type="submit">바로 구매하기</button>
 							&nbsp
 							<button class="btn btn-outline-dark flex-shrink-0" type="button">
-								<i class="bi-cart-fill me-1"></i> 장바구니 담기	</button>
+								<i class="bi-cart-fill me-1"></i>장바구니 담기
+							</button>
+							<button class="btn btn-outline-dark" type="button" id="liketoggle">
+							</button>
 						</div>
 					</div>
 				</div>
@@ -124,11 +127,51 @@ vertical-align:center;}
 	</form>
 	
 <script>
+toggleOnOff(${hasLike});
+
+function toggleOnOff(onoff) {
+	if(onoff == true) {
+		liketoggle.innerHTML = "찜 해제";
+		liketoggle.onclick = unlike;
+		liketoggle.formmethod = "delete";
+	}
+	else {
+		liketoggle.innerHTML = "찜하기";
+		liketoggle.onclick = like;
+		liketoggle.formmethod = "post";
+	}
+}
+
+function like() {
+	fetch('likeItInsertForm.ko?cno=' + ${clothes.clothesNo})
+	.then(result => result.json())
+	.then(result => {
+		console.log('hello');
+		if (result.retCode == 'OK') {
+			console.log('is OK');
+			toggleOnOff(true);
+		}
+	})
+}
+
+function unlike() {
+	fetch('likeItDeleteForm.ko?cno=' + ${clothes.clothesNo})
+	.then(result => result.json())
+	.then(result => {
+		console.log('henlo');
+		if (result.retCode == 'OK') {
+			console.log('is OK');
+			toggleOnOff(false);
+		}
+	})
+}
+
+
 document.querySelectorAll('btn-outline-dark flex-shrink-0').forEach(item => {
 	item.addEventListener('click', e => {
 	     alert("상품을 장바구니에 담았습니다")
-	}
-})
+	});
+});
 </script>
 
 </body>

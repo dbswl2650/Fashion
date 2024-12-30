@@ -6,13 +6,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fashion.dao.LikeItDAO;
+
 public class ProductDetailControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		req.getRequestDispatcher("WEB-INF/html/productDetail.jsp").forward(req, resp);
-
 	}
-
 }
 
