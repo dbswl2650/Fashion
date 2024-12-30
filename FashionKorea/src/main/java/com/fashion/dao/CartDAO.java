@@ -1,63 +1,120 @@
 package com.fashion.dao;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fashion.vo.Cart;
 import com.fashion.vo.CartItem;
-public class CartDAO extends DAO{
+import com.fashion.vo.Clothes;
+
+public class CartDAO extends DAO {
+
+	public List<CartItem> selectCart(String memberId) {
+
+	       connect();
+	       String sql = "SELECT ca.cart_no, c.image, c.name, c.price, ca.quantity, (c.price * ca.quantity) AS total_price "
+	                  + "FROM cart ca "
+	                  + "JOIN clothes c ON ca.clothes_no = c.clothes_no "
+	                  + "JOIN member m ON ca.member_no = m.member_no "
+	                  + "WHERE m.member_id = ?";
+
+	       List<CartItem> cartItems = new ArrayList<>();
+	       try {
+	           psmt = conn.prepareStatement(sql);
+	           psmt.setString(1, memberId); 
+	           rs = psmt.executeQuery();
+	           
+	           while (rs.next()) {
+	               CartItem cartItem = new CartItem();
+	               cartItem.setCartNo(rs.getInt("cart_no"));
+	               cartItem.setImage(rs.getString("image"));
+	               cartItem.setName(rs.getString("name"));
+	               cartItem.setPrice(rs.getInt("price"));
+	               cartItem.setQuantity(rs.getInt("quantity"));
+	               cartItem.setTotalPrice(rs.getInt("total_price"));
+	               cartItems.add(cartItem);
+	           }
+	       } catch (SQLException e) {
+	           e.printStackTrace();
+	       } finally {
+	           disConnect();
+	       }
+	       return cartItems;
+	   }
 	
-	public List<CartItem> selectCart(String member_no) {
-	connect();
-	String sql = "SELECT c.image AS image,"//
-			+ "          c.name AS name,"//
-			+ "          c.price AS price,"//
-			+ "          ca.quantity AS quantity,"//
-			+ "          (c.price * ca.quantity) AS totalPrice"//
-			+ " FROM     cart ca"//
-			+ "          JOIN clothes c ON ca.clothes_no = c.clothes_no"//
-			+ " WHERE    ca.member_no = ?";
-	List<CartItem> clist = new ArrayList<>();
-	try {
-		psmt = conn.prepareStatement(sql);
-		psmt.setString(1, member_no);
-		
-		rs = psmt.executeQuery();
-		while (rs.next()) {
-			CartItem cvo = new CartItem();
-			cvo.setImage(rs.getString("image"));
-			cvo.setName(rs.getString("name"));
-			cvo.setPrice(rs.getInt("price"));
-			cvo.setQuantity(rs.getInt("quantity"));
-			cvo.setTotalPrice(rs.getInt("totalPrice"));
-			
-			clist.add(cvo);
-		}
-	} catch (SQLException e) {
-		e.printStackTrace();
-	} finally {
-		disConnect();
-	}
-	return clist;
-}
+	
+	public boolean deleteCartItem(int cart_no) {
+	       connect(); 
+	       String sql = "DELETE "
+	       		+ "      FROM    cart "
+	       		+ "      WHERE   cart_no = ?";
+	       
+	       try {
+	           psmt = conn.prepareStatement(sql);
+	           psmt.setInt(1, cart_no);  
+	           int r = psmt.executeUpdate(); 
+	           if (r > 0) {  
+	               return true;
+	           }
+	       } catch (SQLException e) {
+	           e.printStackTrace();  
+	       } finally {
+	           disConnect();  
+	       }
+	       return false;  
+	   }
 	
 	
-	public boolean deleteReply(int clothes_no) {
+	public boolean updateCartItem(int cartNo, int quantity) {
 		connect();
-		String sql = "delete "
-				+ "   from     cart "
-				+ "   where    clothes_no = ?";
-		
+		String sql = "UPDATE cart "
+				+ "   SET    quantity = ? "
+				+ "   WHERE  cart_no = ?";
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, clothes_no);
+			psmt.setInt(1, quantity); 
+	        psmt.setInt(2, cartNo); 
 			int r = psmt.executeUpdate();
-			if(r > 0) {		
-					return true;}
+			if (r > 0) {
+				return true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			disConnect();
 		}
 		return false;
 	}
+
+	
+	
+
+
+
+	public Cart insertCart(Cart cart) {
+		connect();
+		String sql = "insert into cart(cart_no, clothes_no, quantity, member_no) " //
+				   + "values (?, ?, ?, ?)";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, cart.getCartNo());
+			psmt.setInt(2, cart.getClothesNo());
+			psmt.setInt(3, cart.getQuantity());
+			psmt.setInt(4, cart.getMemberNo());
+
+			int r = psmt.executeUpdate();
+			if (r > 0) {
+				return cart;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return null;
+	}
+
 }

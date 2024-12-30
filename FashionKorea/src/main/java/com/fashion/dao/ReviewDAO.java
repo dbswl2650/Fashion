@@ -8,7 +8,7 @@ import com.fashion.vo.Review;
 
 public class ReviewDAO extends DAO {
 
-	public List<Review> review(String review) {
+	public List<Review> review(int review) {
 		connect();
 		List<Review> result = new ArrayList<>();
 		String sql = "select re.review_no, "
@@ -23,7 +23,7 @@ public class ReviewDAO extends DAO {
 				+ "where re.clothes_no = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, review);
+			psmt.setInt(1, review);
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {

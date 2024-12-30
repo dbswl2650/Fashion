@@ -9,11 +9,19 @@
 <head>
 <title>제품상세</title>
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" ></script>
-<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js "></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet">
+</script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js "></script>
 <style>
-tr{
-vertical-align:center;}
+tr {
+	vertical-align: center;
+}
+a{
+text-decoration-line: none;
+}
 </style>
 </head>
 
@@ -28,7 +36,7 @@ vertical-align:center;}
 							src="images/product/${clothes.image}" alt="${clothes.image}" />
 					</div>
 					<div class="col-md-6">
-						<h1 class="display-6 fw-bolder">${clothes.name }</h1>
+						<h1 class="display-6 fw-bolder">${clothes.name}</h1>
 						<div class="fs-5 mb-5">
 							<input type="hidden" value="${clothes.price}" id="price"
 								name="price"> <span class="text-decoration-none">${clothes.price}</span>원
@@ -54,12 +62,12 @@ vertical-align:center;}
 						<br>
 
 						<div class="d-flex">
-
-							<button class="btn btn-outline-dark" type="submit">바로
-								구매하기</button>
 							&nbsp
-							<button class="btn btn-outline-dark flex-shrink-0" type="button">
-								<i class="bi-cart-fill me-1"></i> 장바구니 담기
+							<button class="btn btn-outline-dark flex-shrink-0" type="submit">
+								<i class="bi-cart-fill me-1"></i>
+								<a href="cartForm.ko?cno=${clothes.clothesNo}">장바구니 바로가기</a>
+							</button>
+							<button class="btn btn-outline-dark" type="button" id="liketoggle">
 							</button>
 						</div>
 					</div>
@@ -71,7 +79,9 @@ vertical-align:center;}
 		<hr class="my-4">
 
 		<div class="container">
-			<div class="box"><a href="#description">상품상세</a></div>
+			<div class="box">
+				<a href="#description">상품상세</a>
+			</div>
 			<div class="box">
 				<a href="#header">리뷰</a>
 			</div>
@@ -96,6 +106,7 @@ vertical-align:center;}
 
 		<table class="table">
 			<thead id="header">
+				<!-- header는 리뷰의 헤더라는 뜻 -->
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">이미지</th>
@@ -110,7 +121,8 @@ vertical-align:center;}
 				<c:forEach var="reviews" items="${review}">
 					<tr>
 						<th scope="row">${reviews.reviewNo}</th>
-						<td><img style="height:80px;" src="images/product/${reviews.image}"></td>
+						<td><img style="height: 80px;"
+							src="images/product/${reviews.image}"></td>
 						<td>${reviews.memberName}</td>
 						<td>${reviews.score}</td>
 						<td>${reviews.title}</td>
@@ -120,10 +132,56 @@ vertical-align:center;}
 				</c:forEach>
 			</tbody>
 		</table>
+		<button type="button" class="btn btn-primary">추가</button>
+		<button type="button" class="btn btn-danger">삭제</button>
 
 	</form>
+<script>
+toggleOnOff(${hasLike});
+
+function toggleOnOff(onoff) {
+	if(onoff == true) {
+		liketoggle.innerHTML = "찜 해제";
+		liketoggle.onclick = unlike;
+	}
+	else {
+		liketoggle.innerHTML = "찜하기";
+		liketoggle.onclick = like;
+	}
+}
+
+function like() {
+	fetch('likeItInsertForm.ko?cno=' + ${clothes.clothesNo})
+	.then(result => result.json())
+	.then(result => {
+		console.log('hello');
+		if (result.retCode == 'OK') {
+			console.log('is OK');
+			toggleOnOff(true);
+		}
+	})
+}
+
+function unlike() {
+	fetch('likeItDeleteForm.ko?cno=' + ${clothes.clothesNo})
+	.then(result => result.json())
+	.then(result => {
+		console.log('henlo');
+		if (result.retCode == 'OK') {
+			console.log('is OK');
+			toggleOnOff(false);
+		}
+	})
+}
+
+
+document.querySelectorAll('btn-outline-dark flex-shrink-0').forEach(item => {
+	item.addEventListener('click', e => {
+	     alert("상품을 장바구니에 담았습니다")
+	});
+});
+</script>
 </body>
 </html>
-
 
 <jsp:include page="./footer.jsp"></jsp:include>

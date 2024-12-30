@@ -46,3 +46,7 @@ a:hover {
 table #body tr{
 	vertical-align:center;
 }
+#btn btn-primary{
+	text-align:center;
+	margin: 0 auto;
+}
