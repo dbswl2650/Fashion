@@ -25,7 +25,7 @@ public class MyPageControl implements Control {
 		
 		if (member != null) {
 		    request.setAttribute("memberInfo", member);
-		request.getRequestDispatcher("WEB-INF/html/myPage.jsp").forward(request, response);
+		    request.getRequestDispatcher("WEB-INF/html/myPage.jsp").forward(request, response);
 		}
 	}
 }

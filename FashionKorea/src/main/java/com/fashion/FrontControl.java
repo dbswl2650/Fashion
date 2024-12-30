@@ -20,6 +20,7 @@ import com.fashion.control.CartInsertItem;
 import com.fashion.control.Control;
 import com.fashion.control.LikeItDeleteControl;
 import com.fashion.control.LikeItInsertControl;
+import com.fashion.control.LikeItListControl;
 import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
 import com.fashion.control.LogoutControl;
@@ -73,6 +74,7 @@ public class FrontControl extends HttpServlet {
 		
 		map.put("/likeItInsertForm.ko", new LikeItInsertControl());
 		map.put("/likeItDeleteForm.ko", new LikeItDeleteControl());
+		map.put("/likeItList.ko", new LikeItListControl());
 	}
 
 	@Override

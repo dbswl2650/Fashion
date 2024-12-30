@@ -22,7 +22,7 @@
       <a href="#"><i class="fa-solid fa-cart-shopping">구매내역</i></a>
     </li>
     <li>
-      <a href="#"><i class="fa-solid fa-heart">찜</i></a>
+      <a href="likeItList.ko"><i class="fa-solid fa-heart">찜</i></a>
     </li>
   </ul>
 </aside>

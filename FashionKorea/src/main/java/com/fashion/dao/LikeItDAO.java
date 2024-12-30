@@ -8,7 +8,7 @@ public class LikeItDAO extends DAO {
 	public List<Integer> selectLikes(int memberNo) {
 		connect();
 		List<Integer> result = new ArrayList<>();
-		String sql = "select clothes_no from like_it where member_no=?";
+		String sql = "select clothes_no from like_it where member_no=? order by clothes_no";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
