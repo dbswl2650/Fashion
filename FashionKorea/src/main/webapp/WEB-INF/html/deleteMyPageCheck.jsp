@@ -16,9 +16,9 @@
     </div>
 <% } %>
 
-<form class="w3-container w3-card-4" action="upDateMember.ko" method="post">
+<form class="w3-container w3-card-4" action="DeleteMyPageCheckControl.ko" method="post">
     <div>
-        <h1>회원정보 수정</h1>
+        <h1>회원정보 탈퇴</h1>
         <label>ID 확인</label>
         <input class="w3-input" type="text" name="id" value="<%= memberId %>" readonly="readonly">
     </div>

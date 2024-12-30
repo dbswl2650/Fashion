@@ -31,3 +31,5 @@ public class DeleteMyPageCheckControl implements Control {
 		}
 	}
 }
+
+

@@ -121,18 +121,20 @@ public class LoginDAO extends DAO {
 		    }
 		    return false;
 		}
+
 		
 //		 회원정보 탈퇴..
-		public boolean deleteMember(MemberVO member) {
+		public boolean deleteMember(int memberNo) {
 		    connect();
 		    String sql = "DELETE FROM member WHERE member_no = ?";
 
 		    try {
 		        psmt = conn.prepareStatement(sql);
-		        psmt.setInt(1, member.getMemberNo());
+		        psmt.setInt(1, memberNo);
 
-		        int r = psmt.executeUpdate();
-		        return r > 0;
+		        if (psmt.executeUpdate() > 1) {
+		        	return true;
+		        }
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    } finally {
