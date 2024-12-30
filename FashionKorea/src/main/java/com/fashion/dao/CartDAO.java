@@ -7,7 +7,7 @@ public class CartDAO extends DAO{
 	
 	public List<CartItem> selectCart(String memberId) {
 	       connect();
-	       String sql = "SELECT c.image, c.name, c.price, ca.quantity, (c.price * ca.quantity) AS total_price "
+	       String sql = "SELECT ca.cart_no, c.image, c.name, c.price, ca.quantity, (c.price * ca.quantity) AS total_price "
 	                  + "FROM cart ca "
 	                  + "JOIN clothes c ON ca.clothes_no = c.clothes_no "
 	                  + "JOIN member m ON ca.member_no = m.member_no "
@@ -21,6 +21,7 @@ public class CartDAO extends DAO{
 	           
 	           while (rs.next()) {
 	               CartItem cartItem = new CartItem();
+	               cartItem.setCartNo(rs.getInt("cart_no"));
 	               cartItem.setImage(rs.getString("image"));
 	               cartItem.setName(rs.getString("name"));
 	               cartItem.setPrice(rs.getInt("price"));
@@ -57,4 +58,30 @@ public class CartDAO extends DAO{
 	       }
 	       return false;  
 	   }
+	
+	
+	public boolean updateCartItem(int cartNo, int quantity) {
+		connect();
+		String sql = "UPDATE cart "
+				+ "   SET    quantity = ? "
+				+ "   WHERE  cart_no = ?";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, quantity); 
+	        psmt.setInt(2, cartNo); 
+			int r = psmt.executeUpdate();
+			if (r > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return false;
+	}
+	
+	
+
 }
