@@ -10,22 +10,26 @@ import javax.servlet.http.HttpSession;
 import com.fashion.dao.LoginDAO;
 import com.fashion.vo.MemberVO;
 
-public class MyPageControl implements Control {
+public class DeleteMyPageCheckControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("member_id");
-		
-		System.out.println("member_id : " + session.getAttribute("member_id"));
-		System.out.println("member_no : " + session.getAttribute("member_no"));
 		
 		LoginDAO ldao = new LoginDAO();
 		MemberVO member = ldao.getMemberInfo(memberId);
 		
-		if (member != null) {
-		    request.setAttribute("memberInfo", member);
-		    request.getRequestDispatcher("WEB-INF/html/myPage.jsp").forward(request, response);
+		System.out.println(member.getMemberId());
+		String name = member.getMemberName();
+		
+		if (member != null) {	
+			request.setAttribute("memberInfo", member);
+			request.getRequestDispatcher("WEB-INF/html/deleteMyPageCheck.jsp").forward(request, response);
 		}
 	}
 }
+
+

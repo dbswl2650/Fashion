@@ -18,11 +18,20 @@ import com.fashion.control.CartInfoDeleteControl;
 import com.fashion.control.CartInsertItemControl;
 
 import com.fashion.control.Control;
+
+import com.fashion.control.DeleteMyPageCheckControl;
+import com.fashion.control.DeleteMyPageServiceImplControl;
+
+import com.fashion.control.LikeItDeleteControl;
+import com.fashion.control.LikeItInsertControl;
+import com.fashion.control.LikeItListControl;
+
 import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
 import com.fashion.control.LogoutControl;
 import com.fashion.control.MainControl;
 import com.fashion.control.MyPageControl;
+import com.fashion.control.MyPageFormControl;
 import com.fashion.control.ProductDetailControl;
 import com.fashion.control.ProductDetailFormControl;
 import com.fashion.control.ProductListControl;
@@ -46,8 +55,13 @@ public class FrontControl extends HttpServlet {
 		map.put("/main.ko", new MainControl()); // 목록보기
 		
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
+		map.put("/myPageForm.ko", new MyPageFormControl());
+		map.put("/upDateMyPageCheck.ko", new UpDateMyPageCheckControl()); // 수정전 인증
 		map.put("/upDateMember.ko", new UpDateMemberControl()); // 회원정보 수정
-		map.put("/upDateMyPageCheck.ko", new UpDateMyPageCheckControl());
+
+		map.put("/deleteMyPageServiceImpl.ko", new DeleteMyPageServiceImplControl());
+		map.put("/deleteMyPageCheck.ko", new DeleteMyPageCheckControl());
+
 
 		map.put("/loginForm.ko", new LoginFormControl());
 		map.put("/login.ko", new LoginControl()); // 로그인 페이지 보기
@@ -65,6 +79,12 @@ public class FrontControl extends HttpServlet {
 		
 		map.put("/cartInsertItem.ko", new CartInsertItemControl()); // 장바구니 추가 기능
 		map.put("/productDetailForm.ko", new ProductDetailFormControl()); // 상품상세 목록
+		
+		map.put("/productDetailForm.ko", new ProductDetailFormControl());
+		
+		map.put("/likeItInsertForm.ko", new LikeItInsertControl());
+		map.put("/likeItDeleteForm.ko", new LikeItDeleteControl());
+		map.put("/likeItList.ko", new LikeItListControl());
 	}
 
 	@Override
