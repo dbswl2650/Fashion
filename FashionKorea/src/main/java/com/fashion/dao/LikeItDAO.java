@@ -25,14 +25,14 @@ public class LikeItDAO extends DAO {
 		}
 		return result;
 	}
-	public boolean hasLike(int mno, int clothesNo) {
+	public boolean hasLike(int memberNo, int clothesNo) {
 		connect();
 		boolean result = false;
-		String sql = "select count(*) from like_it where member_no=? and clothes_no=?";
+		String sql = "select * from like_it where member_no=? and clothes_no=?";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, mno);
+			psmt.setInt(1, memberNo);
 			psmt.setInt(2, clothesNo);
 			rs = psmt.executeQuery();
 			

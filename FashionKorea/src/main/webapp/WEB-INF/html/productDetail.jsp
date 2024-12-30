@@ -133,12 +133,10 @@ function toggleOnOff(onoff) {
 	if(onoff == true) {
 		liketoggle.innerHTML = "찜 해제";
 		liketoggle.onclick = unlike;
-		liketoggle.formmethod = "delete";
 	}
 	else {
 		liketoggle.innerHTML = "찜하기";
 		liketoggle.onclick = like;
-		liketoggle.formmethod = "post";
 	}
 }
 
