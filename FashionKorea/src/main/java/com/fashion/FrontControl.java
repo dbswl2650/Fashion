@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fashion.control.CartInfoUpdateControl;
 import com.fashion.control.CartFormControl;
+
 import com.fashion.control.CartInfoDeleteControl;
+
+import com.fashion.control.CartInsertItem;
+
 import com.fashion.control.Control;
 import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
@@ -59,7 +63,8 @@ public class FrontControl extends HttpServlet {
 		map.put("/updateCart.ko", new CartInfoUpdateControl()); //장바구니 수량 변경
 		map.put("/delCartInfo.ko", new CartInfoDeleteControl());//장바구니 삭제
 		
-		map.put("/productDetail.ko", new ProductDetailControl());
+		map.put("/cartInsertItem.ko", new CartInsertItem());
+		
 		map.put("/productDetailForm.ko", new ProductDetailFormControl());
 	}
 

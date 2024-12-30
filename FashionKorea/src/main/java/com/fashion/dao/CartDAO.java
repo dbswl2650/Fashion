@@ -1,11 +1,17 @@
 package com.fashion.dao;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fashion.vo.Cart;
 import com.fashion.vo.CartItem;
-public class CartDAO extends DAO{
-	
+import com.fashion.vo.Clothes;
+
+public class CartDAO extends DAO {
+
 	public List<CartItem> selectCart(String memberId) {
+
 	       connect();
 	       String sql = "SELECT ca.cart_no, c.image, c.name, c.price, ca.quantity, (c.price * ca.quantity) AS total_price "
 	                  + "FROM cart ca "
@@ -81,7 +87,34 @@ public class CartDAO extends DAO{
 		}
 		return false;
 	}
+
 	
 	
+
+
+
+	public Cart insertCart(Cart cart) {
+		connect();
+		String sql = "insert into cart(cart_no, clothes_no, quantity, member_no) " //
+				   + "values (?, ?, ?, ?)";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, cart.getCartNo());
+			psmt.setInt(2, cart.getClothesNo());
+			psmt.setInt(3, cart.getQuantity());
+			psmt.setInt(4, cart.getMemberNo());
+
+			int r = psmt.executeUpdate();
+			if (r > 0) {
+				return cart;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return null;
+	}
 
 }
