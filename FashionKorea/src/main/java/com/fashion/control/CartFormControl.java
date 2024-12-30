@@ -14,18 +14,20 @@ import com.fashion.vo.CartItem;
 import com.fashion.vo.MemberVO;
 
 public class CartFormControl implements Control {
+       @Override
+       public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+           resp.setContentType("text/json;charset=utf-8");
+           
+           HttpSession session = req.getSession();
+           String memberId = (String) session.getAttribute("member_id");
+           LoginDAO ldao = new LoginDAO();
+           MemberVO mvo = ldao.getMemberInfo(memberId);                  
+           CartDAO cartDAO = new CartDAO();
+           List<CartItem> cartItem = cartDAO.selectCart(memberId);          
+           req.setAttribute("cartItem", cartItem);         
+           req.getRequestDispatcher("WEB-INF/html/cart.jsp").forward(req, resp);
+       }
+   
 
-	@Override
-	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		resp.setContentType("text/json;charset=utf-8");
-		HttpSession session = req.getSession();
-		String memberid = (String) session.getAttribute("member_id");
-		LoginDAO ldao = new LoginDAO();
-		MemberVO mvo=ldao.getMemberInfo(memberid);
-		System.out.println(mvo.getMemberNo());
-		
-		req.getRequestDispatcher("WEB-INF/html/cart.jsp").forward(req, resp);
-	}
 
 }
