@@ -107,17 +107,30 @@ text-align: center;
   
 <!-- 아이디 중복확인 -->
 function idcheck() {
-	fetch('loginForm.ko')
-	.then(result => result.json())
-	.then(result => {
-		if ('${hasSameId}' == true) {
-			alert("중복된 아이디입니다!");
-		}
-		else {
-			alert("사용 가능한 아이디입니다.");
-		}
-	})
-	.catch(err => console.log(err));
+    const uid = document.getElementById('uid').value;
+
+    if (!uid.trim()) {
+        alert("아이디를 입력해주세요.");
+        return;
+    }
+
+    fetch('selectSameId.ko', {
+        method: 'POST',
+        headers: {'Content-Type': 'text/json'},       
+        body: JSON.stringify({ uid })
+    })
+        .then(response => response.json())
+        .then(result => {
+            const resultElement = document.getElementById('result');
+            if (result.hasSameId) {
+                resultElement.textContent = "중복된 아이디입니다.";
+                resultElement.style.color = "red";
+            } else {
+                resultElement.textContent = "사용 가능한 아이디입니다.";
+                resultElement.style.color = "green";
+            }
+        })
+        .catch(err => console.error("Error:", err));
 }
 </script>
 

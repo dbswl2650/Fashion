@@ -58,6 +58,7 @@ h1 {
 		 <input	type="password" name="pw" id="pw" placeholder="비밀번호" />
 		<button>로그인</button>
 		<button type="button" onclick="location.href='signup.ko'">회원가입</button>
+		<button type="button" onclick="location.href='deleteMyPageCheck.ko'">회원탈퇴</button>
 	</div>
 </form>
 <link href="./css/login.css" rel="stylesheet" />

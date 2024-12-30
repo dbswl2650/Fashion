@@ -5,7 +5,9 @@
 <jsp:include page="./header.jsp"></jsp:include>
 <jsp:include page="./sidebar.jsp"></jsp:include>
 <link href="./css/headerfooter.css" rel="stylesheet"/>
+
 <link href="./css/upDateMember.css" rel="stylesheet"/>
+
 <%	
 	
 	String loginInfo = (String) session.getAttribute("member_id");
@@ -15,6 +17,7 @@
 
 <form action="upDateMember.ko" method="post">
     <div>
+
     	<h1><i class="fa-solid fa-pen">수정 하기</i></h1>
         <label for="memberId">아이디:</label>
         <input class="form-control" type="text" id="member_id" name="member_id" value="${memberInfo.memberId}" readonly>
@@ -51,5 +54,6 @@
     <div class="btns" align="center">
     	<button type="submit" class="btn btn-primary">수정</button>
     </div>
+
 </form>
 <jsp:include page="./footer.jsp"></jsp:include>

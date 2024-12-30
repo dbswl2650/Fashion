@@ -18,9 +18,14 @@ import com.fashion.control.CartInfoDeleteControl;
 import com.fashion.control.CartInsertItem;
 
 import com.fashion.control.Control;
+
+import com.fashion.control.DeleteMyPageCheckControl;
+import com.fashion.control.DeleteMyPageServiceImplControl;
+
 import com.fashion.control.LikeItDeleteControl;
 import com.fashion.control.LikeItInsertControl;
 import com.fashion.control.LikeItListControl;
+
 import com.fashion.control.LoginControl;
 import com.fashion.control.LoginFormControl;
 import com.fashion.control.LogoutControl;
@@ -53,6 +58,10 @@ public class FrontControl extends HttpServlet {
 		map.put("/myPageForm.ko", new MyPageFormControl());
 		map.put("/upDateMyPageCheck.ko", new UpDateMyPageCheckControl()); // 수정전 인증
 		map.put("/upDateMember.ko", new UpDateMemberControl()); // 회원정보 수정
+
+		map.put("/deleteMyPageServiceImpl.ko", new DeleteMyPageServiceImplControl());
+		map.put("/deleteMyPageCheck.ko", new DeleteMyPageCheckControl());
+
 
 		map.put("/loginForm.ko", new LoginFormControl());
 		map.put("/login.ko", new LoginControl()); // 로그인 페이지 보기
