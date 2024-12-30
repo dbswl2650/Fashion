@@ -17,11 +17,6 @@ public class MyPageControl implements Control {
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("member_id");
 		
-//	    if (memberId == null) {
-//	        response.sendRedirect("loginForm.ko");
-//	        return;
-//	    }
-		
 		System.out.println("member_id : " + session.getAttribute("member_id"));
 		System.out.println("member_no : " + session.getAttribute("member_no"));
 		
@@ -33,5 +28,4 @@ public class MyPageControl implements Control {
 		request.getRequestDispatcher("WEB-INF/html/myPage.jsp").forward(request, response);
 		}
 	}
-
 }

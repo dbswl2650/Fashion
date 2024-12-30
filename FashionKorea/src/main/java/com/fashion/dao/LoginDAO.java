@@ -68,7 +68,7 @@ public class LoginDAO extends DAO {
 		public MemberVO getMemberInfo(String memberId) {
 		    String sql = "SELECT * FROM member WHERE member_id = ?";
 		    MemberVO member = null;
-
+		    
 		    try {
 		        connect();
 		        psmt = conn.prepareStatement(sql);
@@ -112,8 +112,7 @@ public class LoginDAO extends DAO {
 		        psmt.setString(6, member.getMemberAge());
 		        psmt.setString(7, member.getMemberId());
 
-		        int r = psmt.executeUpdate();
-		        return r > 0;
+		        return psmt.executeUpdate() > 0;
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    } finally {

@@ -10,8 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fashion.control.CartControl;
+import com.fashion.control.CartInfoUpdateControl;
 import com.fashion.control.CartFormControl;
+
+import com.fashion.control.CartInfoDeleteControl;
+
+import com.fashion.control.CartInsertItem;
+
 import com.fashion.control.Control;
 import com.fashion.control.LikeItDeleteControl;
 import com.fashion.control.LikeItInsertControl;
@@ -20,6 +25,7 @@ import com.fashion.control.LoginFormControl;
 import com.fashion.control.LogoutControl;
 import com.fashion.control.MainControl;
 import com.fashion.control.MyPageControl;
+import com.fashion.control.MyPageFormControl;
 import com.fashion.control.ProductDetailControl;
 import com.fashion.control.ProductDetailFormControl;
 import com.fashion.control.ProductListControl;
@@ -43,8 +49,9 @@ public class FrontControl extends HttpServlet {
 		map.put("/main.ko", new MainControl()); // 목록보기
 		
 		map.put("/myPage.ko", new MyPageControl()); // 마이페이지 보기
+		map.put("/myPageForm.ko", new MyPageFormControl());
+		map.put("/upDateMyPageCheck.ko", new UpDateMyPageCheckControl()); // 수정전 인증
 		map.put("/upDateMember.ko", new UpDateMemberControl()); // 회원정보 수정
-		map.put("/upDateMyPageCheck.ko", new UpDateMyPageCheckControl());
 
 		map.put("/loginForm.ko", new LoginFormControl());
 		map.put("/login.ko", new LoginControl()); // 로그인 페이지 보기
@@ -56,10 +63,12 @@ public class FrontControl extends HttpServlet {
 
 		map.put("/productList.ko", new ProductListControl()); // 상품 목록
 		
-		map.put("/cartForm.ko", new CartFormControl());
-		map.put("/cart.ko", new CartControl());
+		map.put("/cartForm.ko", new CartFormControl()); //회원 장바구니 
+		map.put("/updateCart.ko", new CartInfoUpdateControl()); //장바구니 수량 변경
+		map.put("/delCartInfo.ko", new CartInfoDeleteControl());//장바구니 삭제
 		
-		map.put("/productDetail.ko", new ProductDetailControl());
+		map.put("/cartInsertItem.ko", new CartInsertItem());
+		
 		map.put("/productDetailForm.ko", new ProductDetailFormControl());
 		
 		map.put("/likeItInsertForm.ko", new LikeItInsertControl());

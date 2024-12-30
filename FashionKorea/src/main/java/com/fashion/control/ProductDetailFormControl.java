@@ -2,6 +2,7 @@ package com.fashion.control;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,10 +18,13 @@ public class ProductDetailFormControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Object member_no = req.getSession().getAttribute("member_no");
 		int mno = member_no != null ? (int) member_no : 0;
-		int cno = Integer.parseInt(req.getParameter("cno"));
+		int cno = Integer.parseInt(req.getParameter("cno")); //사용자한테 cno정보를 받음
 		
-		ClothesDAO cdao = new ClothesDAO();
-		Clothes clothes = cdao.selectOneClothes(cno);
+//		String quantity = req.getParameter("quantity");
+//		String memberNo = req.getParameter("memberNo");
+
+		ClothesDAO cdao = new ClothesDAO(); //ClothesDAO에서 cdao변수를 생성해서 정보를 담음
+		Clothes clothes = cdao.selectOneClothes(cno); //selectOneCohtes메소드를 불러와 cdao변수에 담고 그 값을 clothes에 담음
 		
 		ReviewDAO rdao = new ReviewDAO();
 		List<Review> result = rdao.review(cno);
