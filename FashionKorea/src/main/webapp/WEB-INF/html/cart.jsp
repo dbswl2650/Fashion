@@ -94,14 +94,15 @@ h5 {
 				</thead>
 				<tbody>
 					<c:forEach var="cartItem" items="${cartItem}">
+					
 						<tr data-pcode="${cartItem.cartNo}">
 							<th scope="row">
 								<div class="d-flex align-items-center">
-									<img src="images/{cart.image}">
+									<img src="images/${cartItem.image}">
 									<class ="img-fluid me-5
 										rounded-circle"
                                         style="width: 80px; height: 80px;"
-										alt="{cart.name}">
+										alt="${cartItem.name}">
 								</div>
 							</th>
 							<td>
@@ -182,17 +183,52 @@ h5 {
 
 	<link href="./css/cart.css" rel="stylesheet" />
 	<script>
+	
+	
+	
 //삭제 
 document.querySelectorAll('i.fa-times').forEach(icon => {
   icon.addEventListener('click', (e) => {
-    let pcode = e.target.closest('tr').getAttribute('data-pcode');
-    e.target.closest('tr').remove();
-    totalSum();
-
-    removeCart(logId, pcode);
+    let pcode = e.target.closest('tr');
+    let pcode2 = pcode.getAttribute("data-pcode");
+    
+    removeCart(pcode2); 
+    pcode.remove();
+    
   })
 })
-
+function removeCart(cartNo){
+	
+	// get
+	fetch('delCartInfo.ko?cartNo=' + cartNo)
+	
+	.then(res => res.json())
+	.then(result => {
+		//실제 정상적으로 결과가 돌아올 경우
+		if(result==true){	
+		console.log(result);
+			alert('삭제되었습니다')
+		}else{
+			alert('실패')
+		} 
+	})
+	.catch(err => console.log(err)); 
+	
+	/* // post
+	fetch('delCartInfo.ko', {
+		method : 'post',
+		headers : {
+			'content-type' : 'application/x-www-form-urlencoded;charset=utf-8'
+		},
+		body : 'cartNo='+cartNo
+	})
+	.then(res => res.json())
+	.then(result => {
+		//실제 정상적으로 결과가 돌아올 경우
+		console.log(result);
+	})
+	.catch(err => console.log(err));*/
+} 
 // 더하기 
     document.querySelectorAll('i.fa-plus').forEach(plusIcon => {
       plusIcon.addEventListener('click', (e) => {
