@@ -18,35 +18,24 @@ public class UpDateMemberControl implements Control {
 
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("member_id");
-
 		LoginDAO ldao = new LoginDAO();
 		MemberVO member = ldao.getMemberInfo(memberId);
-
+		
 		if (member != null) {
 			member.setMemberName(
-					request.getParameter("member_name") != null && !request.getParameter("member_name").isEmpty()
-							? request.getParameter("member_name")
-							: member.getMemberName());
+					request.getParameter("member_name") != null ? request.getParameter("member_name") : member.getMemberName());
 
 			member.setMemberMail(
-					request.getParameter("member_mail") != null && !request.getParameter("member_mail").isEmpty()
-							? request.getParameter("member_mail")
-							: member.getMemberMail());
+					request.getParameter("member_mail") != null ? request.getParameter("member_mail") : member.getMemberMail());
 
 			member.setMemberAdd(
-					request.getParameter("member_add") != null && !request.getParameter("member_add").isEmpty()
-							? request.getParameter("member_add")
-							: member.getMemberAdd());
+					request.getParameter("member_add") != null ? request.getParameter("member_add") : member.getMemberAdd());
 
 			member.setMemberPhone(
-					request.getParameter("member_phone") != null && !request.getParameter("member_phone").isEmpty()
-							? request.getParameter("member_phone")
-							: member.getMemberPhone());
+					request.getParameter("member_phone") != null ? request.getParameter("member_phone") : member.getMemberPhone());
 
 			member.setMemberAge(
-					request.getParameter("member_age") != null && !request.getParameter("member_age").isEmpty()
-							? request.getParameter("member_age")
-							: member.getMemberAge());
+					request.getParameter("member_age") != null ? request.getParameter("member_age") : member.getMemberAge());
 
 			member.setMemberPw(request.getParameter("member_pw") != null && !request.getParameter("member_pw").isEmpty()
 					? request.getParameter("member_pw")
@@ -59,7 +48,7 @@ public class UpDateMemberControl implements Control {
 			}
 
 			request.setAttribute("memberInfo", member);
-			request.getRequestDispatcher("WEB-INF/html/upDateMember.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/html/myPage.jsp").forward(request, response);
 		}
 	}
 }
