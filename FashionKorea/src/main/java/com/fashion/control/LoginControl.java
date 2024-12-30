@@ -19,7 +19,6 @@ public class LoginControl implements Control {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		System.out.println("로그인 시도: ID=" + id + ", PW=" + pw);
-		
 		System.out.println(id + pw);
 		LoginDAO ldao = new LoginDAO();
 		MemberVO member = ldao.login(id, pw);

@@ -93,7 +93,7 @@ vertical-align:center;}
 		</section>
 
 		<table class="table">
-			<thead id="header">
+			<thead id="header">	<!-- header는 리뷰의 헤더라는 뜻 -->
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">이미지</th>

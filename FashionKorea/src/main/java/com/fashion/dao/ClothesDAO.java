@@ -26,9 +26,6 @@ public class ClothesDAO extends DAO {
 			+ "					  image_detail=?" + "					where clothes_no=?";
 	private String deleteSql = "delete from clothes" + "					where clothes_no=?";
 	
-	
-
-	
 	public int selectAllClothes() {
 		int count = 0;
 		if (connect() == false) {
@@ -123,20 +120,37 @@ public class ClothesDAO extends DAO {
 		try {
 			psmt = conn.prepareStatement("select max(clothes_no) as max_no from clothes");
 			rs = psmt.executeQuery();
-			int new_cno = rs.getInt("max_no") + 1;
-
+//<<<<<<< HEAD
+//			
+//=======
+//			int new_cno = rs.getInt("max_no") + 1;
+//
+//>>>>>>> refs/heads/main
 			psmt = conn.prepareStatement(insertSql);
-			psmt.setInt(1, new_cno);
-			psmt.setInt(2, clothes.getCategoryNo());
-			psmt.setString(3, clothes.getName());
-			psmt.setInt(4, clothes.getPrice());
-			psmt.setString(5, clothes.getColor());
-			psmt.setString(6, clothes.getClothesSize());
-			psmt.setString(7, clothes.getImage());
-			psmt.setString(8, clothes.getCategory());
-			psmt.setString(9, clothes.getAbout());
-			psmt.setString(10, clothes.getImageDetail());
-
+//<<<<<<< HEAD
+			psmt.setInt(1, clothes.getCategoryNo());
+			psmt.setString(2, clothes.getName());
+			psmt.setInt(3, clothes.getPrice());
+			psmt.setString(4, clothes.getColor());
+			psmt.setString(5, clothes.getClothesSize());
+			psmt.setString(6, clothes.getImage());
+			psmt.setString(7, clothes.getCategory());
+			psmt.setString(8, clothes.getAbout());
+			psmt.setString(9, clothes.getImageDetail());
+			
+//=======
+//			psmt.setInt(1, new_cno);
+//			psmt.setInt(2, clothes.getCategoryNo());
+//			psmt.setString(3, clothes.getName());
+//			psmt.setInt(4, clothes.getPrice());
+//			psmt.setString(5, clothes.getColor());
+//			psmt.setString(6, clothes.getClothesSize());
+//			psmt.setString(7, clothes.getImage());
+//			psmt.setString(8, clothes.getCategory());
+//			psmt.setString(9, clothes.getAbout());
+//			psmt.setString(10, clothes.getImageDetail());
+//
+//>>>>>>> refs/heads/main
 			if (psmt.executeUpdate() > 1) {
 				return true;
 			}

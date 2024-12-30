@@ -8,7 +8,7 @@
 <main>
 	<!-- 머찐 캐러셀 -->
 	<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-		<div class="carousel-inner">
+		<div class="carousel-inner" style="z-index: -1;">
 			<div class="carousel-item active">
 				<img src="images/main/slide1.jpg" class="d-block w-100" alt="slide1">
 			</div>
@@ -37,10 +37,5 @@
 		</div>
 	</div>
 </main>
-<style>
-	div.carousel-inner {
-		z-index: -1;
-	}
-</style>
 
 <jsp:include page="./footer.jsp"></jsp:include>
