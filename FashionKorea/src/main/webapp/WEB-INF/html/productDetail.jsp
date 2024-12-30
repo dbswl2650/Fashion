@@ -55,12 +55,10 @@ vertical-align:center;}
 
 						<div class="d-flex">
 
-							<button class="btn btn-outline-dark" type="submit">바로
-								구매하기</button>
+							<button class="btn btn-outline-dark" type="submit">바로 구매하기</button>
 							&nbsp
 							<button class="btn btn-outline-dark flex-shrink-0" type="button">
-								<i class="bi-cart-fill me-1"></i> 장바구니 담기
-							</button>
+								<i class="bi-cart-fill me-1"></i> 장바구니 담기	</button>
 						</div>
 					</div>
 				</div>
@@ -120,10 +118,20 @@ vertical-align:center;}
 				</c:forEach>
 			</tbody>
 		</table>
+					<button type="button" class="btn btn-primary">추가</button>
+					<button type="button" class="btn btn-danger">삭제</button>
 
 	</form>
+	
+<script>
+document.querySelectorAll('btn-outline-dark flex-shrink-0').forEach(item => {
+	item.addEventListener('click', e => {
+	     alert("상품을 장바구니에 담았습니다")
+	}
+})
+</script>
+
 </body>
 </html>
-
 
 <jsp:include page="./footer.jsp"></jsp:include>
