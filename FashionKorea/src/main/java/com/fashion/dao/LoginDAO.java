@@ -120,6 +120,27 @@ public class LoginDAO extends DAO {
 		    }
 		    return false;
 		}
+
+		
+//		 회원정보 탈퇴..
+		public boolean deleteMember(int memberNo) {
+		    connect();
+		    String sql = "DELETE FROM member WHERE member_no = ?";
+
+		    try {
+		        psmt = conn.prepareStatement(sql);
+		        psmt.setInt(1, memberNo);
+
+		        if (psmt.executeUpdate() > 1) {
+		        	return true;
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+		        disConnect();
+		    }
+		    return false;
+		}
 		
 		 //id 중복검사 같은 id가 있는지 없는지 검증하는 함수	
 		public boolean selectSameId(String id) {

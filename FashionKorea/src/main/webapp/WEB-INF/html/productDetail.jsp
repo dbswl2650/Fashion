@@ -48,8 +48,8 @@ text-decoration-line: none;
 									<input type="hidden" id="stockQuantity" name="stockQuantity">
 									<span class="input-group-text">주문 수량</span>
 								</div>
-								<input class="form-control text-center me-3" id="count"
-									name="count" type="number" value="1" style="max-width: 5rem" />
+								<input class="form-control text-center me-3" id="quantity"
+									name="quantity" type="number" value="1" style="max-width: 5rem" />
 							</div>
 
 							<div class="container bg-light">
@@ -63,11 +63,9 @@ text-decoration-line: none;
 
 						<div class="d-flex">
 							&nbsp
-							<button class="btn btn-outline-dark flex-shrink-0" type="submit">
+							<button class="btn btn-outline-dark flex-shrink-0" type="submit" cno=${cloth.clothesNo} >
 								<i class="bi-cart-fill me-1"></i>
 								<a href="cartForm.ko?cno=${clothes.clothesNo}">장바구니 바로가기</a>
-							</button>
-							<button class="btn btn-outline-dark" type="button" id="liketoggle">
 							</button>
 						</div>
 					</div>
@@ -132,8 +130,6 @@ text-decoration-line: none;
 				</c:forEach>
 			</tbody>
 		</table>
-		<button type="button" class="btn btn-primary">추가</button>
-		<button type="button" class="btn btn-danger">삭제</button>
 
 	</form>
 <script>
