@@ -67,6 +67,8 @@ text-decoration-line: none;
 								<i class="bi-cart-fill me-1"></i>
 								<a href="cartForm.ko?cno=${clothes.clothesNo}">장바구니 바로가기</a>
 							</button>
+							<button class="btn btn-outline-dark flex-shrink-0" type="button" id="liketoggle">
+							</button>
 						</div>
 					</div>
 				</div>
