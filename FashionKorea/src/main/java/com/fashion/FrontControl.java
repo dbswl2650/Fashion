@@ -32,6 +32,8 @@ import com.fashion.control.LogoutControl;
 import com.fashion.control.MainControl;
 import com.fashion.control.MyPageControl;
 import com.fashion.control.MyPageFormControl;
+import com.fashion.control.OrderControl;
+import com.fashion.control.OrderPageControl;
 import com.fashion.control.ProductDetailControl;
 import com.fashion.control.ProductDetailFormControl;
 import com.fashion.control.ProductListControl;
@@ -83,6 +85,8 @@ public class FrontControl extends HttpServlet {
 		map.put("/cartForm.ko", new CartFormControl()); //회원 장바구니 
 		map.put("/updateCart.ko", new CartInfoUpdateControl()); //장바구니 수량 변경
 		map.put("/delCartInfo.ko", new CartInfoDeleteControl());//장바구니 삭제
+		map.put("/orderPage.ko", new OrderPageControl());//주문창
+		map.put("/updateorderPage.ko", new OrderControl());//주문창
 		
 		map.put("/cartInsertItem.ko", new CartInsertItemControl()); // 장바구니 추가 기능
 		map.put("/productDetailForm.ko", new ProductDetailFormControl()); // 상품상세 목록

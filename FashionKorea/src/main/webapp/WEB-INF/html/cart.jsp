@@ -171,7 +171,7 @@ h5 {
 					<button
 						class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
 						type="button">
-						<p class="rrrr">구매하기</p>
+						<a href="orderPage.ko">구매하기</a>
 					</button>
 				</div>
 			</div>
@@ -229,32 +229,95 @@ function removeCart(cartNo){
 	})
 	.catch(err => console.log(err));*/
 } 
-// 더하기 
-    document.querySelectorAll('i.fa-plus').forEach(plusIcon => {
-      plusIcon.addEventListener('click', (e) => {
-        
+//더하기 아이콘 클릭 등록.
+document.querySelectorAll('i.fa-plus').forEach(plusIcon => {
+  plusIcon.addEventListener('click', (e) => {
+    // console.dir(e.target.closest('div.quantity').children[1].value);
 
-        let pcode = e.target.closest('tr').getAttribute('data-pcode');
+    let pcode = e.target.closest('tr');
+    let pcode2 = pcode.getAttribute('data-pcode');
 
-        
-        let currentQty = parseInt(e.target.closest('div.quantity').children[1].value);
-        if(currentQty<10){
+    // 현재수량 + 1
+    let currentQty = parseInt(e.target.closest('div.quantity').children[1].value);
+    if(currentQty<10){
 
-        currentQty++;
-        }else{
-          return
-        }
-        e.target.closest('div.quantity').children[1].value = currentQty;
-        
-        let price = e.target.closest('tr').children[2].firstElementChild.innerText;
-        price = parseInt(price.replace('원', '')); 
-        console.log(price * currentQty);
+    currentQty++;
+    }else{
+      return
+    }
+    e.target.closest('div.quantity').children[1].value = currentQty;
+    // 가격.
+    let price = e.target.closest('tr').children[2].firstElementChild.innerText;
+    price = parseInt(price.replace('원', '')); // 2000 원 -> 2000
+    console.log(price * currentQty);
 
-        e.target.closest('tr').children[4].firstElementChild.innerText = price * currentQty + " 원";
+    e.target.closest('tr').children[4].firstElementChild.innerText = price * currentQty + " 원";
 
-        totalSum()
-        saveQty(logId, pcode, 1);
-      });
+    totalSum()
+    updateCartQty(pcode2, currentQty);
+  });
+});
+
+
+
+// 빼기 아이콘 클릭 등록.
+document.querySelectorAll('i.fa-minus').forEach(minusIcon => {
+  minusIcon.addEventListener('click', (e) => {
+    console.dir(e.target.closest('div.quantity').children[1].value);
+    
+    let pcode = e.target.closest('tr');
+    let pcode2 = pcode.getAttribute('data-pcode');
+
+    // 현재수량 - 1
+    let currentQty = parseInt(e.target.closest('div.quantity').children[1].value);
+    
+    if(currentQty>1){
+      currentQty--
+      //event.preventDefault()
+    }else{
+    return;
+    }
+    e.target.closest('div.quantity').children[1].value = currentQty;
+    
+    // 가격
+    let price = e.target.closest('tr').children[2].firstElementChild.innerText;
+    price = parseInt(price.replace('원', '')); // 2000 원 -> 2000
+    console.log(price * currentQty);
+    e.target.closest('tr').children[4].firstElementChild.innerText = price * currentQty + " 원";
+
+    totalSum();
+    updateCartQty(pcode2, currentQty);
+  });
+});
+
+function updateCartQty(cartNo, quantity) {
+	  fetch('updateCart.ko?cartNo='+cartNo+'&quantity='+quantity)
+	    .then(res => res.json())
+	    .then(result => {
+	      // 실제 정상적으로 결과가 돌아올 경우
+	      if (result == true) {
+	        console.log('Cart updated successfully');
+	        
+	      } else {
+	        alert('실패');
+	      }
+	    })
+	    .catch(err => console.log(err));
+	}
+
+//합계금액 계산
+function totalSum() {
+  // 각 tr의 금액부분 ("4000 원") -> "4000" -> 4000 변경 후 합계.
+  let sum = 0;
+  document.querySelectorAll('tr>td:nth-of-type(4)')
+    .forEach(item => {
+      let subTotal = item.firstElementChild.innerText;
+      subTotal = parseInt(subTotal.replace("원", ""));
+      sum += subTotal;
     });
+  // Cart Total 의 Total 의 위치에 합산결과 출력.
+  document.querySelector('p.mb-0.pe-4').innerText = sum + " 원";
+}
+totalSum();
 </script>
 	<jsp:include page="./footer.jsp"></jsp:include>
