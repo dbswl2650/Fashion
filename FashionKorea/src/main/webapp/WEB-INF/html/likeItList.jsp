@@ -13,6 +13,8 @@
 <jsp:include page="./header.jsp"></jsp:include>
 <jsp:include page="./sidebar.jsp"></jsp:include>
 
+<!-- 찜 목록 완성 -->
+
 <%
 String loginInfo = (String) session.getAttribute("member_id");
 MemberVO memberInfo = (MemberVO) session.getAttribute("loginInfo");
