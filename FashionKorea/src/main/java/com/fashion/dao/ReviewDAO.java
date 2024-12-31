@@ -11,16 +11,14 @@ public class ReviewDAO extends DAO {
 	public List<Review> review(int review) {
 		connect();
 		List<Review> result = new ArrayList<>();
-		String sql = "select re.review_no, "
-				+ "re.comments, " //
+		String sql = "select re.review_no, " + "re.comments, " //
 				+ "re.wdate, " //
 				+ "re.score, " //
 				+ "re.title, " //
 				+ "re.image, " //
 				+ "m.member_name " //
 				+ "from review re " //
-				+ "join member m on re.member_no = m.member_no "
-				+ "where re.clothes_no = ? ";
+				+ "join member m on re.member_no = m.member_no " + "where re.clothes_no = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, review);
@@ -49,9 +47,7 @@ public class ReviewDAO extends DAO {
 
 	public Integer selectCountReview(int cno) {
 		int result = 0;
-		String sql = "select count(review_no) as count"
-				+ "	  from review"
-				+ "	  where clothes_no=?";
+		String sql = "select count(review_no) as count" + "	  from review" + "	  where clothes_no=?";
 		connect();
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -68,4 +64,112 @@ public class ReviewDAO extends DAO {
 		}
 		return result;
 	}
+
+	public List<Review> searchReviews(String keyword) {
+		// TODO Auto-generated method stub
+		connect();
+		List<Review> reviews = new ArrayList<>();
+		String sql = "SELECT * FROM review WHERE (title LIKE ? OR comments LIKE ?) AND type = '게시글'";
+		try {
+			psmt = conn.prepareStatement(sql);
+			String searchKeyword = "%" + keyword + "%";
+			psmt.setString(1, searchKeyword);
+			psmt.setString(2, searchKeyword);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				Review review = new Review();
+				review.setReviewNo(rs.getInt("review_no"));
+				review.setTitle(rs.getString("title"));
+				review.setComments(rs.getString("comments"));
+				review.setWdateDate(rs.getDate("wdate"));
+				review.setImage(rs.getString("image"));
+				reviews.add(review);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disConnect();
+		}
+		return reviews;
+	}
+
+	public List<Review> getAllReviews() {
+		connect();
+		List<Review> reviews = new ArrayList<>();
+		String sql = "SELECT * FROM review WHERE type = '게시글'";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				Review review = new Review();
+				review.setReviewNo(rs.getInt("review_no"));
+				review.setTitle(rs.getString("title"));
+				review.setComments(rs.getString("comments"));
+				review.setWdateDate(rs.getDate("wdate"));
+				review.setImage(rs.getString("image"));
+				reviews.add(review);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disConnect();
+		}
+		return reviews;
+	}
+
+	public boolean insertReview(Review review) {
+		connect();
+		String sql = "INSERT INTO review (review_no, title, comments, member_no, clothes_no, image, type, wdate) "
+	               + "VALUES (review_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, review.getTitle());
+	        psmt.setString(2, review.getComments() != null ? review.getComments() : "");
+	        psmt.setInt(3, review.getMemberNo());
+	        psmt.setInt(4, 0);
+	        psmt.setString(5, review.getImage());
+	        psmt.setString(6, "게시글"); 
+	        psmt.setDate(7, new java.sql.Date(System.currentTimeMillis()));
+	        
+	        int rs = psmt.executeUpdate();
+	        return rs > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }finally {
+			disConnect();
+		}
+	    return false;
+	}
+
+	public Review selectReview(int reviewNo) {
+		connect();
+		String sql = "select * from review where review_no = ?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, reviewNo);
+			rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				Review rvo = new Review();
+				rvo.setReviewNo(rs.getInt("review_no"));
+				rvo.setComments(rs.getString("comments"));
+				rvo.setTitle(rs.getString("title"));
+				rvo.setImage(rs.getString("image"));
+				rvo.setWdateDate(rs.getDate("wdate"));
+
+				return rvo;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return null;
+	}
+	
 }

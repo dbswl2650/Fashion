@@ -34,7 +34,7 @@
 				<a href="productList.ko">상품 페이지</a>
 				<span>|</span>
 				<a href="cartForm.ko">장바구니</a>
-				<a href="signup.ko">회원가입</a>
+				<a href="reviewList.ko">게시판</a>
 				<%
 				String loginInfo = (String) session.getAttribute("member_id");
 				/*>MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");<*/

@@ -35,6 +35,9 @@ import com.fashion.control.MyPageFormControl;
 import com.fashion.control.ProductDetailControl;
 import com.fashion.control.ProductDetailFormControl;
 import com.fashion.control.ProductListControl;
+import com.fashion.control.ReviewControl;
+import com.fashion.control.ReviewFormControl;
+import com.fashion.control.ReviewListControl;
 import com.fashion.control.SelectSameIdcontrol;
 import com.fashion.control.SignupControl;
 import com.fashion.control.SignupProcessControl;
@@ -58,6 +61,10 @@ public class FrontControl extends HttpServlet {
 		map.put("/myPageForm.ko", new MyPageFormControl());
 		map.put("/upDateMyPageCheck.ko", new UpDateMyPageCheckControl()); // 수정전 인증
 		map.put("/upDateMember.ko", new UpDateMemberControl()); // 회원정보 수정
+		
+		map.put("/review.ko", new ReviewControl()); // 게시글
+		map.put("/reviewForm.ko", new ReviewFormControl());
+		map.put("/reviewList.ko", new ReviewListControl());
 
 		map.put("/deleteMyPageServiceImpl.ko", new DeleteMyPageServiceImplControl());
 		map.put("/deleteMyPageCheck.ko", new DeleteMyPageCheckControl());

@@ -1,0 +1,99 @@
+@charset "UTF-8";
+.review-board {
+  max-width: 800px;
+  height: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 게시글 제목 스타일 */
+.review-board h1 {
+  font-size: 2em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 검색 폼 스타일 */
+.review-search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.review-search input {
+  padding: 10px;
+  width: 70%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.review-search button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.review-search button:hover {
+  background-color: #444;
+}
+
+/* 게시글 목록 스타일 */
+.review-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.review-list li {
+  margin: 10px 0;
+  font-size: 1em;
+  color: #333;
+}
+
+.review-list li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.review-list li a:hover {
+  text-decoration: underline;
+}
+
+.review-list li span {
+  font-size: 0.9em;
+  color: #777;
+  margin-left: 10px;
+}
+
+/* 검색 결과 없음 메시지 스타일 */
+.no-reviews {
+  font-size: 1em;
+  color: #555;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* 게시글 작성 버튼 스타일 */
+.create-review-btn {
+  display: block;
+  text-decoration: none;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1em;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.create-review-btn:hover {
+  background-color: #444;
+}
