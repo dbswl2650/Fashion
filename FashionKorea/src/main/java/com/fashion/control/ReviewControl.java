@@ -18,7 +18,7 @@ public class ReviewControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		ReviewDAO rdao = new ReviewDAO();
 
 		if (request.getMethod().equals("GET")) {

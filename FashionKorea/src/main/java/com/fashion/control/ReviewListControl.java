@@ -14,6 +14,8 @@ public class ReviewListControl implements Control {
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+
 		String keyword = request.getParameter("keyword"); // 검색어
 		String page = request.getParameter("page");
 		ReviewDAO rdao = new ReviewDAO();

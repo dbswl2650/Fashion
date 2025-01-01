@@ -107,7 +107,7 @@ public class ReviewDAO extends DAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			disConnect();
 		}
 		return reviews;
@@ -132,7 +132,7 @@ public class ReviewDAO extends DAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			disConnect();
 		}
 		return reviews;
@@ -177,37 +177,37 @@ public class ReviewDAO extends DAO {
 	public boolean insertReview(Review review) {
 		connect();
 		String sql = "INSERT INTO review (review_no, title, comments, member_no, clothes_no, image, type, wdate) "
-	               + "VALUES (review_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+				+ "VALUES (review_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
-			
+
 			psmt.setString(1, review.getTitle());
-	        psmt.setString(2, review.getComments() != null ? review.getComments() : "");
-	        psmt.setInt(3, review.getMemberNo());
-	        psmt.setInt(4, 0);
-	        psmt.setString(5, review.getImage());
-	        psmt.setString(6, "게시글"); 
-	        psmt.setDate(7, new java.sql.Date(System.currentTimeMillis()));
-	        
-	        int rs = psmt.executeUpdate();
-	        return rs > 0;
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }finally {
+			psmt.setString(2, review.getComments() != null ? review.getComments() : "");
+			psmt.setInt(3, review.getMemberNo());
+			psmt.setInt(4, 0);
+			psmt.setString(5, review.getImage());
+			psmt.setString(6, "게시글");
+			psmt.setDate(7, new java.sql.Date(System.currentTimeMillis()));
+
+			int rs = psmt.executeUpdate();
+			return rs > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			disConnect();
 		}
-	    return false;
+		return false;
 	}
 
 	public Review selectReview(int reviewNo) {
 		connect();
 		String sql = "select * from review where review_no = ?";
-		
+
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, reviewNo);
 			rs = psmt.executeQuery();
-			
+
 			while (rs.next()) {
 				Review rvo = new Review();
 				rvo.setReviewNo(rs.getInt("review_no"));
@@ -225,6 +225,40 @@ public class ReviewDAO extends DAO {
 			disConnect();
 		}
 		return null;
+	}
+
+	public boolean updateReview(Review review) {
+		connect();
+		String sql = "UPDATE review SET title = ?, comments = ? WHERE review_no = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, review.getTitle());
+			psmt.setString(2, review.getComments());
+			psmt.setInt(3, review.getReviewNo());
+			
+			return psmt.executeUpdate() > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return false;
+	}
+	
+	public boolean deleteReview(int reviewNo) {
+	    connect();
+	    String sql = "DELETE FROM review WHERE review_no = ?";
+	    try {
+	        psmt = conn.prepareStatement(sql);
+	        psmt.setInt(1, reviewNo);
+
+	        return psmt.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        disConnect();
+	    }
+	    return false;
 	}
 	
 }
