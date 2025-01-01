@@ -17,10 +17,6 @@
             <label for="image">이미지:</label>
             <input type="file" class="form-control" name="image">
         </div>
-        <div class="form-group">
-        	<label for="score">점수:</label>
-        	<input type="range" class="form-control" name="score" min="1" step="1" max="5">
-        </div>
         <input type="hidden" name="member_no" value="${sessionScope.member_no}">
         <button type="submit">등록</button>
     </form>

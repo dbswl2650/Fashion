@@ -38,16 +38,13 @@ public class ReviewListControl implements Control {
 		max_page = max_page < total_page ? max_page : total_page;
 		
 		List<Review> reviews = rdao.selectReviews(keyword, page_num);
-//		if (keyword != null && !keyword.isEmpty()) {
-//			// 검색어가 있으면 검색
-//			reviews = rdao.searchReviews(keyword);
-//		} else {
-//			// 검색어 없으면 모든 게시글 조회
-//			reviews = rdao.getAllReviews();
-//		}
+		if (keyword != null && !keyword.isEmpty()) {
 
-//		System.out.println("reviews are " + reviews);
-//		System.out.println("reviews.size is " + reviews.size());
+			reviews = rdao.searchReviews(keyword);
+		} else {
+
+			reviews = rdao.getAllReviews();
+		}
 		
 		request.setAttribute("reviews", reviews);
 		request.setAttribute("keyword", keyword);

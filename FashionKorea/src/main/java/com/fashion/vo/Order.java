@@ -1,5 +1,8 @@
 package com.fashion.vo;
 
+import lombok.Data;
+
+@Data
 public class Order {
 	int ordersNo;
 	int memberNo; 

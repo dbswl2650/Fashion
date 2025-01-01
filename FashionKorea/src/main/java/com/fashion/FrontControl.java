@@ -33,6 +33,7 @@ import com.fashion.control.MainControl;
 import com.fashion.control.MyPageControl;
 import com.fashion.control.MyPageFormControl;
 import com.fashion.control.OrderControl;
+import com.fashion.control.OrderHistoryControl;
 import com.fashion.control.OrderPageControl;
 import com.fashion.control.ProductDetailControl;
 import com.fashion.control.ProductDetailFormControl;
@@ -66,11 +67,11 @@ public class FrontControl extends HttpServlet {
 		map.put("/upDateMyPageCheck.ko", new UpDateMyPageCheckControl()); // 수정전 인증
 		map.put("/upDateMember.ko", new UpDateMemberControl()); // 회원정보 수정
 		
-		map.put("/review.ko", new ReviewControl()); // 게시글
+		map.put("/review.ko", new ReviewControl()); // 게시글 추가
 		map.put("/reviewForm.ko", new ReviewFormControl());
-		map.put("/reviewList.ko", new ReviewListControl());
-		map.put("/reviewUpDate.ko", new ReviewUpDateControl());
-		map.put("/reviewDelete.ko", new ReviewDeleteControl());
+		map.put("/reviewList.ko", new ReviewListControl()); // 게시글 목록
+		map.put("/reviewUpDate.ko", new ReviewUpDateControl());// 게시글 수정
+		map.put("/reviewDelete.ko", new ReviewDeleteControl());// 게시글 삭제
 
 		map.put("/deleteMyPageServiceImpl.ko", new DeleteMyPageServiceImplControl());
 		map.put("/deleteMyPageCheck.ko", new DeleteMyPageCheckControl());
@@ -90,6 +91,7 @@ public class FrontControl extends HttpServlet {
 		map.put("/updateCart.ko", new CartInfoUpdateControl()); //장바구니 수량 변경
 		map.put("/delCartInfo.ko", new CartInfoDeleteControl());//장바구니 삭제
 		map.put("/orderPage.ko", new OrderPageControl());//주문창
+		map.put("/orderHistory.ko", new OrderHistoryControl());
 		map.put("/updateorderPage.ko", new OrderControl());//주문창
 		
 		map.put("/cartInsertItem.ko", new CartInsertItemControl()); // 장바구니 추가 기능
