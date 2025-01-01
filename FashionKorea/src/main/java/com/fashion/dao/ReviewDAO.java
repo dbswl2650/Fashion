@@ -176,8 +176,8 @@ public class ReviewDAO extends DAO {
 	}
 	public boolean insertReview(Review review) {
 		connect();
-		String sql = "INSERT INTO review (review_no, title, comments, member_no, clothes_no, image, type, wdate, score) "
-				+ "VALUES (review_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO review (review_no, title, comments, member_no, clothes_no, image, type, wdate) "
+				+ "VALUES (review_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 
@@ -188,7 +188,6 @@ public class ReviewDAO extends DAO {
 			psmt.setString(5, review.getImage());
 			psmt.setString(6, "게시글");
 			psmt.setDate(7, new java.sql.Date(System.currentTimeMillis()));
-			psmt.setString(8, review.getScore());
 
 			int rs = psmt.executeUpdate();
 			return rs > 0;
