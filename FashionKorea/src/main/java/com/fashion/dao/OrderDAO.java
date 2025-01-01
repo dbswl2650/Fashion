@@ -23,31 +23,9 @@ public class OrderDAO extends DAO {
 	        e.printStackTrace();
 	    } finally {
 	        disConnect();
-	    }
+	    } 
 	    return false;
 	}
 
-	public boolean insertOrderItem(int ordersNo, int clothesNo, int quantity) {
-		   connect();
-		   String sql = "INSERT INTO orders_item "
-		   		+ "(ordersitem_no, orders_no, clothes_no, quantity) "
-		   		+ "VALUES (orderitem_seq.nextval, ?, ?, ?)";
-		   
-		   try {
-		       psmt = conn.prepareStatement(sql);
-		       psmt.setInt(1, ordersNo);
-		       psmt.setInt(2, clothesNo);
-		       psmt.setInt(3, quantity);
-		       int r = psmt.executeUpdate();
-		       if(r > 0) {
-		           return true;
-		       }
-		   } catch (SQLException e) {
-		       e.printStackTrace();
-		   } finally {
-		       disConnect();
-		   }
-		   return false;
-		}
 
 }

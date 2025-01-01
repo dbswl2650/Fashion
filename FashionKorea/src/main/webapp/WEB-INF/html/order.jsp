@@ -8,7 +8,7 @@
    <title>주문/결제</title>
 </head>
 <body>
-   <div class="container py-5">
+   <div class="container">
        <h2>주문/결제</h2>
        
            <div>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@page import="com.fashion.vo.MemberVO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,16 +34,38 @@
 				<a href="productList.ko">상품 페이지</a>
 				<span>|</span>
 				<a href="cartForm.ko">장바구니</a>
-				<a href="signup.ko">회원가입</a>
+				<a href="reviewList.ko">게시판</a>
+				<%
+				String loginInfo = (String) session.getAttribute("member_id");
+				/*>MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");<*/
+				if (loginInfo == null) {
+				%>
 				<a href="loginForm.ko">로그인</a>
+				<%
+				} else {
+				String memberName = loginInfo;
+				%>
+				<a href="myPage.ko">마이페이지 (<%=memberName%>)</a>
+				<a href="logout.ko">로그아웃</a>
+				<%
+				}
+				%>
 
 			</div>
 		</nav>
 		<script>
-			searchbar.value = <%=request.getParameter("search")%>;
-			searchbar.oninput = function() {
+			let search = '<%=request.getParameter("search")%>';
+			if (search == 'null') {
+				searchbar.value = '';
+			}
+			else {
+				searchbar.value = search;
+			}
+			
+			searchbutton.onclick = function() {
 				let search = searchbar.value;
-				searchbutton.href = "productList.ko?search=" + search;
+				if (search != null && search != "")
+					searchbutton.href = "productList.ko?search=" + search;
 			}
 		</script>
 	</header>
