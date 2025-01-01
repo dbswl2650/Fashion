@@ -1,74 +1,90 @@
 @charset "UTF-8";
+.review-detailbody {
+	height: 600px;
+}
 .review-detail {
-    width: 100%;
-    max-width: 800px;
-    margin: 50px auto; /* 상단 여백을 주어 헤더와 간격을 두기 */
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.review-detail h1 {
-    font-size: 2.5em;
-    color: #333;
-    text-align: center;
-    margin-top: 0;
-}
-
-.review-detail p {
-    font-size: 1.2em;
-    color: #555;
-    margin: 20px 0;
-}
-
-.review-detail p strong {
-    font-weight: bold;
-    color: #000;
-}
-
-.review-detail img {
-    display: block;
     margin: 20px auto;
+    margin-top: 150px;
+    padding: 20px;
+    max-width: 800px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.review-detail a {
-    display: inline-block;
-    text-decoration: none;
-    background-color: #333;
-    color: #fff;
-    padding: 12px 15px;
-    border-radius: 5px;
-    font-size: 1em;
-    text-align: center;
-    margin-top: 30px;
+.review-detail .table {
     width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
 }
 
-.review-detail a:hover {
-    background-color: #45a049;
+.review-detail .table th, 
+.review-detail .table td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-/* 미디어 쿼리 */
-@media (max-width: 768px) {
-    .review-detail {
-        padding: 20px;
-        max-width: 90%;
-    }
+.review-detail .table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    text-align: center;
+}
 
-    .review-detail h1 {
-        font-size: 2em;
-    }
+.review-detail .table img {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-    .review-detail p {
-        font-size: 1em;
-    }
+textarea.form-control {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+    background-color: #fdfdfd;
+}
 
-    .review-detail a {
-        font-size: 0.9em;
-        padding: 10px 12px;
-    }
+.review-detail td[colspan="3"] textarea {
+    width: calc(100% - 20px);
+}
+
+.review-detail td[colspan="4"] {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.review-detail .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-detail .btn-warning {
+    background-color: #ffc107;
+}
+
+.review-detail .btn-warning:hover {
+    background-color: #e0a800;
+    box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+}
+
+.review-detail .btn-danger {
+    background-color: #dc3545;
+}
+
+.review-detail .btn-danger:hover {
+    background-color: #c82333;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
 }
