@@ -38,8 +38,10 @@ import com.fashion.control.ProductDetailControl;
 import com.fashion.control.ProductDetailFormControl;
 import com.fashion.control.ProductListControl;
 import com.fashion.control.ReviewControl;
+import com.fashion.control.ReviewDeleteControl;
 import com.fashion.control.ReviewFormControl;
 import com.fashion.control.ReviewListControl;
+import com.fashion.control.ReviewUpDateControl;
 import com.fashion.control.SelectSameIdcontrol;
 import com.fashion.control.SignupControl;
 import com.fashion.control.SignupProcessControl;
@@ -67,6 +69,8 @@ public class FrontControl extends HttpServlet {
 		map.put("/review.ko", new ReviewControl()); // 게시글
 		map.put("/reviewForm.ko", new ReviewFormControl());
 		map.put("/reviewList.ko", new ReviewListControl());
+		map.put("/reviewUpDate.ko", new ReviewUpDateControl());
+		map.put("/reviewDelete.ko", new ReviewDeleteControl());
 
 		map.put("/deleteMyPageServiceImpl.ko", new DeleteMyPageServiceImplControl());
 		map.put("/deleteMyPageCheck.ko", new DeleteMyPageCheckControl());

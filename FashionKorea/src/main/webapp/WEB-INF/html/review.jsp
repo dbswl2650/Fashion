@@ -28,9 +28,15 @@
 							value="${review.comments}" /></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="4" align="center"><input type="submit"
-					class="btn btn-warning" value="수 정"> <input type="submit"
-					class="btn btn-danger" value="삭 제"></td>
+				<td colspan="4" align="center"><form method="get"
+						action="reviewUpDate.ko" style="display: inline;">
+						<input type="hidden" name="review_no" value="${review.reviewNo}">
+						<button type="submit" class="btn btn-warning">수 정</button>
+					</form> 
+					<form method="POST" action="reviewDelete.ko" style="display: inline;">
+						<input type="hidden" name="review_no" value="${review.reviewNo}">
+						<button type="submit" class="btn btn-danger">삭 제</button>
+					</form>
 			</tr>
 		</table>
 	</div>
