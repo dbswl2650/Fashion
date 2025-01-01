@@ -20,11 +20,9 @@ public class OrderControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		    resp.setContentType("text/json;charset=utf-8");
-		    // 세션에서 회원번호 가져오기
+		    
 		    HttpSession session = req.getSession();
-		    
-		    
-		    
+		  		    		    
 		    int memberNo = (Integer) session.getAttribute("member_no");
 		    int total = Integer.parseInt(req.getParameter("total"));
 		    
