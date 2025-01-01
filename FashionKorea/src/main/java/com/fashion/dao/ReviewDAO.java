@@ -47,11 +47,30 @@ public class ReviewDAO extends DAO {
 
 	public Integer selectCountReview(int cno) {
 		int result = 0;
-		String sql = "select count(review_no) as count" + "	  from review" + "	  where clothes_no=?";
+		String sql = "select count(review_no) as count from review where clothes_no=?";
 		connect();
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, cno);
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return result;
+	}
+	
+	public Integer selectCountAllReview() {
+		int result = 0;
+		String sql = "select count(review_no) as count from review";
+		connect();
+		try {
+			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
@@ -119,6 +138,42 @@ public class ReviewDAO extends DAO {
 		return reviews;
 	}
 
+	public List<Review> selectReviews(String keyword, int page) {
+		// TODO Auto-generated method stub
+		connect();
+		List<Review> reviews = new ArrayList<>();
+		String sql = "select * from review where review_no >= " + (page * 10 - 9);
+		
+		if (keyword != null && !keyword.isEmpty()) {
+			// 검색어가 있으면 검색
+			sql += " and (title like '%'||'" + keyword + "'||'%' "
+				+ " or comments like '%'||'" + keyword + "'||'%')";
+		}
+		
+		System.out.println("the sql is " + sql);
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			int count = 0;
+			while (rs.next() && count < 10) {
+				Review review = new Review();
+				review.setReviewNo(rs.getInt("review_no"));
+				review.setTitle(rs.getString("title"));
+				review.setComments(rs.getString("comments"));
+				review.setWdateDate(rs.getDate("wdate"));
+				review.setImage(rs.getString("image"));
+				reviews.add(review);
+				count++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disConnect();
+		}
+		return reviews;
+	}
 	public boolean insertReview(Review review) {
 		connect();
 		String sql = "INSERT INTO review (review_no, title, comments, member_no, clothes_no, image, type, wdate) "
