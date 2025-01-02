@@ -35,7 +35,6 @@ import com.fashion.control.MyPageFormControl;
 import com.fashion.control.OrderControl;
 import com.fashion.control.OrderHistoryControl;
 import com.fashion.control.OrderPageControl;
-import com.fashion.control.ProductDetailControl;
 import com.fashion.control.ProductDetailFormControl;
 import com.fashion.control.ProductListControl;
 import com.fashion.control.ReviewControl;
@@ -96,8 +95,6 @@ public class FrontControl extends HttpServlet {
 		
 		map.put("/cartInsertItem.ko", new CartInsertItemControl()); // 장바구니 추가 기능
 		map.put("/productDetailForm.ko", new ProductDetailFormControl()); // 상품상세 목록
-		
-		map.put("/productDetailForm.ko", new ProductDetailFormControl());
 		
 		map.put("/likeItInsertForm.ko", new LikeItInsertControl());
 		map.put("/likeItDeleteForm.ko", new LikeItDeleteControl());

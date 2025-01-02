@@ -4,6 +4,7 @@
 
 <link href="./css/headerfooter.css" rel="stylesheet" />
 <link href="./css/productDetail.css" rel="stylesheet" />
+<link href="./css/review.css" rel="stylesheet" />
 <jsp:include page="./header.jsp"></jsp:include>
 
 <head>
@@ -19,8 +20,9 @@
 tr {
 	vertical-align: center;
 }
-a{
-text-decoration-line: none;
+
+a {
+	text-decoration-line: none;
 }
 </style>
 </head>
@@ -38,8 +40,8 @@ text-decoration-line: none;
 					<div class="col-md-6">
 						<h1 class="display-6 fw-bolder">${clothes.name}</h1>
 						<div class="fs-5 mb-5">
-							<input type="hidden" value="${clothes.price}" id="price" name="price"> 
-							<span class="text-decoration-none">${clothes.price}</span>원
+							<input type="hidden" value="${clothes.price}" id="price"
+								name="price"> <span class="text-decoration-none">${clothes.price}</span>원
 						</div>
 						<hr class="my-4">
 						<div class="input-group fs-5 mb-5">
@@ -60,15 +62,18 @@ text-decoration-line: none;
 						</div>
 						<br>
 
+
+
 						<div class="d-flex">
 							&nbsp
-							<button class="btn btn-outline-dark flex-shrink-0" type="submit" cno=${cloth.clothesNo} >
+							<button class="btn btn-outline-dark flex-shrink-0" type="submit"
+								cno=${cloth.clothesNo} >
 								<i class="bi-cart-fill me-1"></i>
 								<!-- a href="cartInsertItem.ko?cno=${clothes.clothesNo}">장바구니 바로가기</a -->
 								장바구니 바로가기
 							</button>
-							<button class="btn btn-outline-dark flex-shrink-0" type="button" id="liketoggle">
-							</button>
+							<button class="btn btn-outline-dark flex-shrink-0" type="button"
+								id="liketoggle"></button>
 						</div>
 					</div>
 				</div>
@@ -103,38 +108,78 @@ text-decoration-line: none;
 				</div>
 			</div>
 		</section>
-
-		<table class="table">
-			<thead id="header">
-				<!-- header는 리뷰의 헤더라는 뜻 -->
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">이미지</th>
-					<th scope="col">회원이름</th>
-					<th scope="col">점수</th>
-					<th scope="col">제목</th>
-					<th scope="col">내용</th>
-					<th scope="col">날짜</th>
-				</tr>
-			</thead>
-			<tbody id="body">
-				<c:forEach var="reviews" items="${review}">
+		<form action="productDetailForm.ko?cno=${clothes.clothesNo}#header" method="post">
+			<div class="review-detail">
+				<table class="table">
 					<tr>
-						<th scope="row">${reviews.reviewNo}</th>
-						<td><img style="height: 80px;"
-							src="images/product/${reviews.image}"></td>
-						<td>${reviews.memberName}</td>
-						<td>${reviews.score}</td>
-						<td>${reviews.title}</td>
-						<td>${reviews.comments}</td>
-						<td>${reviews.wdateDate}</td>
+						<th>이미지</th>
+						<td><input type="file" name="image"></td>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-
+					<tr>
+						<th>회원이름</th>
+						<td><input type="text" class="form-control" name="reviewName"></td>
+					</tr>
+					<tr>
+						<th>점수</th>
+						<td><select name="score">
+								<option value="★">★</option>
+								<option>★★</option>
+								<option>★★★</option>
+								<option>★★★★</option>
+								<option>★★★★★</option>
+						</select></td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td><input type="text" class="form-control" name="title"></td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td><textarea type="text" class="form-control"
+								name="comments"></textarea></td>
+					</tr>
+					<tr>
+						<th>작성일</th>
+						<td><input type="date" name="wDate"></td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2"><input type="hidden"
+							name="member_no" value="${sessionScope.member_no}">
+							<button type="submit">작성하기</button></td>
+					</tr>
+				</table>
+			</div>
+			<table class="table">
+				<thead id="header">
+					<!-- header는 리뷰의 헤더라는 뜻 -->
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">이미지</th>
+						<th scope="col">회원이름</th>
+						<th scope="col">점수</th>
+						<th scope="col">제목</th>
+						<th scope="col">내용</th>
+						<th scope="col">날짜</th>
+					</tr>
+				</thead>
+				<tbody id="body">
+					<c:forEach var="reviews" items="${review}">
+						<tr>
+							<th scope="row">${reviews.reviewNo}</th>
+							<td><img style="height: 80px;"
+								src="images/product/${reviews.image}"></td>
+							<td>${reviews.memberName}</td>
+							<td>${reviews.score}</td>
+							<td>${reviews.title}</td>
+							<td>${reviews.comments}</td>
+							<td>${reviews.wdateDate}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</form>
 	</form>
-<script>
+	<script>
 toggleOnOff(${hasLike});
 
 function toggleOnOff(onoff) {
