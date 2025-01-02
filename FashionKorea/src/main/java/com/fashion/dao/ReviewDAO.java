@@ -285,5 +285,4 @@ public class ReviewDAO extends DAO {
 		}
 		return false;
 	}
-	
 }

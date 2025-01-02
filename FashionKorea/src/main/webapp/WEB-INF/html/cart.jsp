@@ -42,7 +42,6 @@
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
-
 <style>
 .display-6.mb-4 {
 	color: rgba(0, 0, 0, 0.993);
@@ -71,6 +70,7 @@ h5 {
 	border: none;
 	border-radius: 10px;
 }
+
 </style>
 </head>
 
@@ -98,9 +98,12 @@ h5 {
 						<tr data-pcode="${cartItem.cartNo}">
 							<th scope="row">
 								<div class="d-flex align-items-center">
-									<img src="images/${cartItem.image}"
-										class="img-fluid me-5 rounded-circle"
-                                        style="width: 80px; height: 80px;"
+									<img style="width: 130px; height: 130px;" src="images/product/${cartItem.image}">
+									<class ="img-fluid me-5
+										rounded-circle"
+                                        style="width: 40px; height: 40px;"
+                         
+                                       
 										alt="${cartItem.name}">
 								</div>
 							</th>
@@ -115,7 +118,7 @@ h5 {
 									<div class="input-group-btn">
 										<button
 											class="btn btn-sm btn-minus rounded-circle bg-light border">
-											<i class="fa fa-minus"></i>
+											<i class="fa fa-minus" style="color: black;"></i>
 										</button>
 									</div>
 									<input type="text"
@@ -124,7 +127,7 @@ h5 {
 									<div class="input-group-btn">
 										<button
 											class="btn btn-sm btn-plus rounded-circle bg-light border">
-											<i class="fa fa-plus"></i>
+											<i class="fa fa-plus" style="color: black;"></i>
 										</button>
 									</div>
 								</div>
@@ -169,8 +172,8 @@ h5 {
 					</div>
 					<button
 						class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
-						type="button">
-						<a href="orderPage.ko">구매하기</a>
+						style="background-color: black;color: white;border: none;cursor: pointer;width: 70%;" type="button">
+						<a href="orderPage.ko" style="color: white;">구매하기</a>
 					</button>
 				</div>
 			</div>
@@ -293,9 +296,8 @@ function updateCartQty(cartNo, quantity) {
 	  fetch('updateCart.ko?cartNo='+cartNo+'&quantity='+quantity)
 	    .then(res => res.json())
 	    .then(result => {
-	      // 실제 정상적으로 결과가 돌아올 경우
+	      // 결과
 	      if (result == true) {
-	        console.log('Cart updated successfully');
 	        
 	      } else {
 	        alert('실패');

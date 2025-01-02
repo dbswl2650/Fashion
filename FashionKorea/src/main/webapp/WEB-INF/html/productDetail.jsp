@@ -250,6 +250,43 @@ document.querySelectorAll('btn-outline-dark flex-shrink-0').forEach(item => {
 	     alert("상품을 장바구니에 담았습니다")
 	});
 });
+
+/* function Review() {
+	let name = document.querySelector('.table').getElementsByTagName("td")[1].children[0].value;
+	let score = document.querySelector('.table').getElementsByTagName("td")[2].children[0].value;
+	let title = document.querySelector('.table').getElementsByTagName("td")[3].children[0].value;
+	let comments = document.querySelector('.table').getElementsByTagName("td")[4].children[0].value;
+	let date = document.querySelector('.table').getElementsByTagName("td")[5].children[0].value;
+	console.log(name);
+	let html=`
+	<tr>
+		<th scope="row"></th>
+			<td><img style="height: 80px;" src="images/product/"></td>
+			<td>\${name}</td>
+			<td>\${score}</td>
+			<td>\${title}</td>
+			<td>\${comments}</td>
+			<td>\${date}</td>
+	</tr>
+	`
+	document.querySelector('.reply').innerHTML += html;
+    console.log(document.querySelector('.table').getElementsByTagName("td")[1].children) */
+    
+	
+   	   /* fetch('productDetailForm.ko?cno=' + cno+'&title=' + ) 
+	   .then(res => res.json())
+	   .then(result => {
+	       if(result['retCode'] == 'Success') {
+	           alert('리뷰가 작성됐습니다');
+	       } else {
+	           alert('작성실패');
+	       }
+	   })
+	   .catch(err => console.log(err));
+	}*/
+	
+	}
+	
 </script>
 </body>
 </html>
