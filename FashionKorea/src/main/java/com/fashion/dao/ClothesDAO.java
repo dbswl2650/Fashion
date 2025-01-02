@@ -82,11 +82,11 @@ public class ClothesDAO extends DAO {
 		
 		String where = "";
 		if (search != null && search != "") {
-			where = " where name like '%'||'" + search + "'||'%'" 
+			where = " and (name like '%'||'" + search + "'||'%'" 
 					+ "	or color like '%'||'" + search + "'||'%'"
 					+ "	or clothes_size like '%'||'" + search + "'||'%'"
 					+ "	or category like '%'||'" + search + "'||'%'"
-					+ "	or about like '%'||'" + search + "'||'%'";
+					+ "	or about like '%'||'" + search + "'||'%')";
 		}
 		
 		try {
