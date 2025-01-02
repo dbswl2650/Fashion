@@ -18,7 +18,7 @@
 	float: left;
 	width: 30%;
 	padding: 10px;
-	font-size:15px
+	font-size:17px
 }
 .box a {
 	text-decoration-line: none;
@@ -32,15 +32,22 @@ a:visited {
 	font-size: 50px;
 }
 
-.lead:hover {
+.lead {
+	font-size:30px;
 	color: blue;
+	animation: lead 1s infinite;
+}
+@keyframes lead{
+	25% {color: black;}
+	50% {color: blue;}
+	75% {color: black;}
 }
 
 a:hover {
 	color: green;
 }
 .table thead th{
-	background-color:grey;
+	background-color:rgb(54, 54, 54);
 	color:white;
 }
 table #body tr{

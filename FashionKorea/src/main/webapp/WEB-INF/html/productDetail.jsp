@@ -3,7 +3,7 @@
 
 <link href="./css/headerfooter.css" rel="stylesheet" />
 <link href="./css/productDetail.css" rel="stylesheet" />
-<link href="./css/review.css" rel="stylesheet" />
+<link href="./css/reviews.css" rel="stylesheet" />
 <jsp:include page="./header.jsp"></jsp:include>
 
 <head>
@@ -22,6 +22,12 @@ tr {
 
 a {
 	text-decoration-line: none;
+}
+h1{
+	font-size: 50px;
+	text-align:center;
+	margin: 35px;
+	font-weight:bolder;
 }
 </style>
 </head>
@@ -60,15 +66,10 @@ a {
 							</div>
 						</div>
 						<br>
-
-
-
 						<div class="d-flex">
 							&nbsp
-							<button class="btn btn-outline-dark flex-shrink-0" type="submit"
-								cno=${cloth.clothesNo} >
+							<button class="btn btn-outline-dark flex-shrink-0" type="submit" cno=${cloth.clothesNo} >
 								<i class="bi-cart-fill me-1"></i>
-								<!-- a href="cartInsertItem.ko?cno=${clothes.clothesNo}">장바구니 바로가기</a -->
 								장바구니 바로가기
 							</button>
 							<button class="btn btn-outline-dark flex-shrink-0" type="button"
@@ -81,7 +82,6 @@ a {
 		</section>
 
 		<hr class="my-4">
-
 		<div class="container">
 			<div class="box">
 				<a href="#description">상품상세</a>
@@ -89,7 +89,9 @@ a {
 			<div class="box">
 				<a href="#header">리뷰</a>
 			</div>
-			<div class="box">상품문의</div>
+			<div class="box">
+			<a href="reviewList.ko">상품문의</a>
+			</div>
 		</div>
 		<br> <br>
 		<!-- Related items section-->
@@ -98,7 +100,6 @@ a {
 				<p class="lead" id="description" style="text-align: center;">제품
 					상세 설명</p>
 			</div>
-
 			<div class="container px-4 px-lg-5 mt-5">
 				<div class="text-center">
 					<img class="card-img-top rounded mb-5 mb-md-0"
@@ -109,6 +110,39 @@ a {
 		</section>
 	</form>
 	<form action="productDetailForm.ko?cno=${clothes.clothesNo}" method="post">
+		
+		<table class="table">
+			<thead id="header">
+				<!-- header는 리뷰의 헤더라는 뜻 -->
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">이미지</th>
+					<th scope="col">회원이름</th>
+					<th scope="col">점수</th>
+					<th scope="col">제목</th>
+					<th scope="col">내용</th>
+					<th scope="col">날짜</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="body">
+				<c:forEach var="reviews" items="${review}">
+					<tr>
+						<th scope="row">${reviews.reviewNo}</th>
+						<td><img style="height: 80px;" src="images/product/${reviews.image}"></td>
+						<td>${reviews.memberName}</td>
+						<td>${reviews.score}</td>
+						<td>${reviews.title}</td>
+						<td>${reviews.comments}</td>
+						<td>${reviews.wdateDate}</td>
+						<td><button class="btn btn-md rounded-circle bg-light border mt-4">
+									<i class="fa fa-times text-danger"></i>
+								</button></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<h1> 리뷰 작성 </h1>
 		<div class="review-detail">
 			<table class="table">
 				<tr>
@@ -144,41 +178,13 @@ a {
 					<td><input type="date" name="wDate"></td>
 				</tr>
 				<tr>
-					<td align="center" colspan="2"><input type="hidden"
-						name="member_no" value="${sessionScope.member_no}">
-						<button type="submit">작성하기</button>
+					<td align="center" colspan="2">
+						<input type="hidden" name="member_no" value="${sessionScope.member_no}">
+						<button class="btn btn-outline-dark flex-shrink-0" type="submit">작성하기</button>
 					</td>
 				</tr>
 			</table>
 		</div>
-		<table class="table">
-			<thead id="header">
-				<!-- header는 리뷰의 헤더라는 뜻 -->
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">이미지</th>
-					<th scope="col">회원이름</th>
-					<th scope="col">점수</th>
-					<th scope="col">제목</th>
-					<th scope="col">내용</th>
-					<th scope="col">날짜</th>
-				</tr>
-			</thead>
-			<tbody id="body">
-				<c:forEach var="reviews" items="${review}">
-					<tr>
-						<th scope="row">${reviews.reviewNo}</th>
-						<td><img style="height: 80px;"
-							src="images/product/${reviews.image}"></td>
-						<td>${reviews.memberName}</td>
-						<td>${reviews.score}</td>
-						<td>${reviews.title}</td>
-						<td>${reviews.comments}</td>
-						<td>${reviews.wdateDate}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
 	</form>
 <script>
 toggleOnOff(${hasLike});
@@ -216,76 +222,41 @@ function unlike() {
 	})
 }
 
-/*
-function addReview() {
-	BIGGGFORM.action = 'productDetailForm.ko?cno=' + ${clothes.clothesNo};
-	fetch('productDetailForm.ko?cno=' + ${clothes.clothesNo}, {
-		method: 'POST',
-		body: JSON.stringfy({
-			title: reviewTitle,
-			comments: reviewComments,
-			image: reviewImage,
-			score: reviewScore
-		})
-	})
-	.then(result => result.json())
-	.then(result => {
-		if(result.retCode == 'OK') {
-			alert('리뷰 등록 성공');
-			location.href = "productDetailForm.ko?cno=" + ${clothes.clothesNo};
-		}
-		else {
-			alert('리뷰 등록 실패');
-		}
-	})
-	.catch(error => console.log(error))
-	.finally(function() {
-		BIGGGFORM.action = "cartInsertItem.ko?cno=" + ${clothes.clothesNo};
-	});
-}
-*/
-
 document.querySelectorAll('btn-outline-dark flex-shrink-0').forEach(item => {
 	item.addEventListener('click', e => {
 	     alert("상품을 장바구니에 담았습니다")
 	});
 });
 
-/* function Review() {
-	let name = document.querySelector('.table').getElementsByTagName("td")[1].children[0].value;
-	let score = document.querySelector('.table').getElementsByTagName("td")[2].children[0].value;
-	let title = document.querySelector('.table').getElementsByTagName("td")[3].children[0].value;
-	let comments = document.querySelector('.table').getElementsByTagName("td")[4].children[0].value;
-	let date = document.querySelector('.table').getElementsByTagName("td")[5].children[0].value;
-	console.log(name);
-	let html=`
-	<tr>
-		<th scope="row"></th>
-			<td><img style="height: 80px;" src="images/product/"></td>
-			<td>\${name}</td>
-			<td>\${score}</td>
-			<td>\${title}</td>
-			<td>\${comments}</td>
-			<td>\${date}</td>
-	</tr>
-	`
-	document.querySelector('.reply').innerHTML += html;
-    console.log(document.querySelector('.table').getElementsByTagName("td")[1].children) */
-    
-	
-   	   /* fetch('productDetailForm.ko?cno=' + cno+'&title=' + ) 
-	   .then(res => res.json())
-	   .then(result => {
-	       if(result['retCode'] == 'Success') {
-	           alert('리뷰가 작성됐습니다');
-	       } else {
-	           alert('작성실패');
-	       }
-	   })
-	   .catch(err => console.log(err));
-	}*/
-	
-	}
+// 삭제
+document.querySelectorAll('i.fa-times').forEach(icon => {
+	  icon.addEventListener('click', (e) => {
+	    let pcode = e.target.closest('tr');
+	    let pcode2 = pcode.getAttribute("data-pcode");
+	    
+	    removeCart(pcode2); 
+	    pcode.remove();
+	    
+	  })
+	})
+	function removeCart(cno){
+		
+		// get
+		fetch('delReviewInfo.ko?cno=' + cno)
+		
+		.then(res => res.json())
+		.then(result => {
+			//실제 정상적으로 결과가 돌아올 경우
+			if(result==true){	
+			console.log(result);
+				alert('삭제되었습니다')
+			}else{
+				alert('실패')
+			} 
+		})
+		.catch(err => console.log(err)); 
+		
+}
 	
 </script>
 </body>
