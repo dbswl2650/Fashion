@@ -39,7 +39,7 @@ public class ProductDetailFormControl implements Control {
 	        String image = req.getParameter("image");
 	        String score = req.getParameter("score");
 	        
-	        System.out.println("title" + title)
+	        System.out.println("title" + title);
 	        
 	        Review reviews = new Review();
 	        reviews.setTitle(title);
