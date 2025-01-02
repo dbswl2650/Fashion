@@ -26,7 +26,6 @@ public class ReviewFormControl implements Control {
         }
 
         if (request.getMethod().equals("GET")) {
-            // 작성 폼으로 이동
             request.getRequestDispatcher("WEB-INF/html/reviewForm.jsp").forward(request, response);
         }
 	}

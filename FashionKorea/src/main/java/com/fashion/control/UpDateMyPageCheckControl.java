@@ -32,15 +32,11 @@ public class UpDateMyPageCheckControl implements Control {
 			String confirmPw = request.getParameter("confirm_pw");
 			System.out.println(confirmPw);
 			if (inputPw != null && !inputPw.equals(memberPw)) {
-				System.out.println("Password does not match.");
-				request.setAttribute("error", "비밀번호가 일치하지 않습니다.");
 				request.getRequestDispatcher("WEB-INF/html/upDateMyPageCheck.jsp").forward(request, response);
 				return;
 			}
 
 			if (confirmPw != null && !confirmPw.equals(inputPw)) {
-				System.out.println("Confirm Password does not match.");
-				request.setAttribute("error", "비밀번호 재확인 값이 일치하지 않습니다.");
 				request.getRequestDispatcher("WEB-INF/html/upDateMyPageCheck.jsp").forward(request, response);
 				return;
 			}
@@ -51,7 +47,6 @@ public class UpDateMyPageCheckControl implements Control {
 
 		} else {
 			System.out.println("Member not found.");
-			request.setAttribute("error", "회원 정보를 찾을 수 없습니다.");
 			request.getRequestDispatcher("WEB-INF/html/myPage.jsp").forward(request, response);
 		}
 	}

@@ -38,8 +38,6 @@ public class ReviewControl implements Control {
             String title = mr.getParameter("title");
             String comments = mr.getParameter("comments");
             String image = mr.getFilesystemName("image");
-            String score = "★";
-            score = score.repeat(Integer.parseInt(mr.getParameter("score")));
             
             int memberNo = Integer.parseInt(mr.getParameter("member_no"));
 
@@ -48,16 +46,14 @@ public class ReviewControl implements Control {
             review.setComments(comments != null ? comments : "");
             review.setMemberNo(memberNo);
             review.setImage(image);
-            review.setClothesNo(4);
+            review.setClothesNo(0);
             review.setType("게시글");
             review.setWdateDate(new java.sql.Date(System.currentTimeMillis()));
-            review.setScore(score);
 
             boolean success = rdao.insertReview(review);
             if (success) {
                 response.sendRedirect("reviewList.ko");
             } else {
-                request.setAttribute("error", "게시글 등록에 실패했습니다.");
                 request.getRequestDispatcher("WEB-INF/html/reviewForm.jsp").forward(request, response);
             }
         }

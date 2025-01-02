@@ -139,13 +139,12 @@ public class ReviewDAO extends DAO {
 	}
 
 	public List<Review> selectReviews(String keyword, int page) {
-		// TODO Auto-generated method stub
 		connect();
 		List<Review> reviews = new ArrayList<>();
 		String sql = "select * from review where review_no >= " + (page * 10 - 9);
 		
 		if (keyword != null && !keyword.isEmpty()) {
-			// 검색어가 있으면 검색
+
 			sql += " and (title like '%'||'" + keyword + "'||'%' "
 				+ " or comments like '%'||'" + keyword + "'||'%')";
 		}
@@ -176,8 +175,8 @@ public class ReviewDAO extends DAO {
 	}
 	public boolean insertReview(Review review) {
 		connect();
-		String sql = "INSERT INTO review (review_no, title, comments, member_no, clothes_no, image, type, wdate, score) "
-				+ "VALUES (review_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO review (review_no, title, comments, member_no, clothes_no, image, type, wdate) "
+				+ "VALUES (review_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 
@@ -188,7 +187,6 @@ public class ReviewDAO extends DAO {
 			psmt.setString(5, review.getImage());
 			psmt.setString(6, "게시글");
 			psmt.setDate(7, new java.sql.Date(System.currentTimeMillis()));
-			psmt.setString(8, review.getScore());
 
 			int rs = psmt.executeUpdate();
 			return rs > 0;
