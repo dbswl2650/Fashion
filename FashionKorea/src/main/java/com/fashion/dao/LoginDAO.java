@@ -131,9 +131,8 @@ public class LoginDAO extends DAO {
 		        psmt = conn.prepareStatement(sql);
 		        psmt.setInt(1, memberNo);
 
-		        if (psmt.executeUpdate() > 1) {
-		        	return true;
-		        }
+		        return psmt.executeUpdate() > 0;
+		        
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    } finally {
