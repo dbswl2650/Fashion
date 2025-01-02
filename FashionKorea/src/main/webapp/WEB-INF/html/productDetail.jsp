@@ -26,7 +26,7 @@ text-decoration-line: none;
 </head>
 
 <body>
-	<form action="cartForm.ko" method="post">
+	<form action="cartInsertItem.ko?cno=${clothes.clothesNo}" method="post">
 		<!-- Product section-->
 		<section class="py-5">
 			<div class="container px-4 px-lg-5 my-5">
@@ -38,8 +38,8 @@ text-decoration-line: none;
 					<div class="col-md-6">
 						<h1 class="display-6 fw-bolder">${clothes.name}</h1>
 						<div class="fs-5 mb-5">
-							<input type="hidden" value="${clothes.price}" id="price"
-								name="price"> <span class="text-decoration-none">${clothes.price}</span>원
+							<input type="hidden" value="${clothes.price}" id="price" name="price"> 
+							<span class="text-decoration-none">${clothes.price}</span>원
 						</div>
 						<hr class="my-4">
 						<div class="input-group fs-5 mb-5">
@@ -51,7 +51,6 @@ text-decoration-line: none;
 								<input class="form-control text-center me-3" id="quantity"
 									name="quantity" type="number" value="1" style="max-width: 5rem" />
 							</div>
-
 							<div class="container bg-light">
 								<h6>총 상품 금액</h6>
 								<h4 name="totalPrice" id="totalPrice" class="font-weight-bold">
@@ -65,7 +64,8 @@ text-decoration-line: none;
 							&nbsp
 							<button class="btn btn-outline-dark flex-shrink-0" type="submit" cno=${cloth.clothesNo} >
 								<i class="bi-cart-fill me-1"></i>
-								<a href="cartForm.ko?cno=${clothes.clothesNo}">장바구니 바로가기</a>
+								<!-- a href="cartInsertItem.ko?cno=${clothes.clothesNo}">장바구니 바로가기</a -->
+								장바구니 바로가기
 							</button>
 							<button class="btn btn-outline-dark flex-shrink-0" type="button" id="liketoggle">
 							</button>
