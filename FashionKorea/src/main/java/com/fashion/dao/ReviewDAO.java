@@ -269,7 +269,7 @@ public class ReviewDAO extends DAO {
 			psmt.setString(1, reviews.getTitle());
 			psmt.setString(2, reviews.getComments() != null ? reviews.getComments() : "");
 			psmt.setInt(3, reviews.getMemberNo());
-			psmt.setInt(4, 0);
+			psmt.setInt(4, reviews.getClothesNo());
 			psmt.setString(5, reviews.getImage());
 			psmt.setString(6, "리뷰");
 			psmt.setDate(7, new java.sql.Date(System.currentTimeMillis()));
