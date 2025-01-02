@@ -36,7 +36,7 @@ public class CartInsertItemControl implements Control {
 //		System.out.println(cart);
 		
 		CartDAO cartDAO = new CartDAO(); // cartDAO변수 생성, DB에 정보를 저장
-		Cart cartNo = cartDAO.insertCart(cart);
+		Cart cartNo = cartDAO.insertCart(cart); 
 		
 		req.setAttribute("cart", cartNo);
 		req.getRequestDispatcher("cartForm.ko").forward(req, resp);

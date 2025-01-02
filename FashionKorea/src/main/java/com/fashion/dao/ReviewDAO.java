@@ -259,4 +259,31 @@ public class ReviewDAO extends DAO {
 	    return false;
 	}
 	
+	public boolean insertReviews(Review reviews) {
+		connect();
+		String sql = "INSERT INTO review (review_no, title, comments, member_no, clothes_no, image, type, wdate, score) "
+				+ "VALUES (review_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, reviews.getTitle());
+			psmt.setString(2, reviews.getComments() != null ? reviews.getComments() : "");
+			psmt.setInt(3, reviews.getMemberNo());
+			psmt.setInt(4, 0);
+			psmt.setString(5, reviews.getImage());
+			psmt.setString(6, "리뷰");
+			psmt.setDate(7, new java.sql.Date(System.currentTimeMillis()));
+			psmt.setString(8, reviews.getScore());
+			
+			int rs = psmt.executeUpdate();
+			return rs > 0;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return false;
+	}
+	
 }
