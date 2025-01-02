@@ -108,77 +108,76 @@ a {
 				</div>
 			</div>
 		</section>
-		<form action="productDetailForm.ko?cno=${clothes.clothesNo}#header" method="post">
-			<div class="review-detail">
-				<table class="table">
-					<tr>
-						<th>이미지</th>
-						<td><input type="file" name="image"></td>
-					</tr>
-					<tr>
-						<th>회원이름</th>
-						<td><input type="text" class="form-control" name="reviewName"></td>
-					</tr>
-					<tr>
-						<th>점수</th>
-						<td><select name="score">
-								<option value="★">★</option>
-								<option>★★</option>
-								<option>★★★</option>
-								<option>★★★★</option>
-								<option>★★★★★</option>
-						</select></td>
-					</tr>
-					<tr>
-						<th>제목</th>
-						<td><input type="text" class="form-control" name="title"></td>
-					</tr>
-					<tr>
-						<th>내용</th>
-						<td><textarea type="text" class="form-control"
-								name="comments"></textarea></td>
-					</tr>
-					<tr>
-						<th>작성일</th>
-						<td><input type="date" name="wDate"></td>
-					</tr>
-					<tr>
-						<td align="center" colspan="2"><input type="hidden"
-							name="member_no" value="${sessionScope.member_no}">
-							<button type="submit">작성하기</button></td>
-					</tr>
-				</table>
-			</div>
-			<table class="table">
-				<thead id="header">
-					<!-- header는 리뷰의 헤더라는 뜻 -->
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">이미지</th>
-						<th scope="col">회원이름</th>
-						<th scope="col">점수</th>
-						<th scope="col">제목</th>
-						<th scope="col">내용</th>
-						<th scope="col">날짜</th>
-					</tr>
-				</thead>
-				<tbody id="body">
-					<c:forEach var="reviews" items="${review}">
-						<tr>
-							<th scope="row">${reviews.reviewNo}</th>
-							<td><img style="height: 80px;"
-								src="images/product/${reviews.image}"></td>
-							<td>${reviews.memberName}</td>
-							<td>${reviews.score}</td>
-							<td>${reviews.title}</td>
-							<td>${reviews.comments}</td>
-							<td>${reviews.wdateDate}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</form>
 	</form>
+
+	<div class="review-detail">
+		<table class="table">
+			<tr>
+				<th>이미지</th>
+				<td><input type="file" name="image"></td>
+			</tr>
+			<tr>
+				<th>회원이름</th>
+				<td><input type="text" class="form-control" name="reviewName" value=""></td>
+			</tr>
+			<tr>
+				<th>점수</th>
+				<td><select name="score">
+						<option value="★">★</option>
+						<option>★★</option>
+						<option>★★★</option>
+						<option>★★★★</option>
+						<option>★★★★★</option>
+				</select></td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td><input type="text" class="form-control" name="title"></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea type="text" class="form-control" name="comments"></textarea></td>
+			</tr>
+			<tr>
+				<th>작성일</th>
+				<td><input type="date" name="wDate"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="hidden"
+					name="member_no" value="${sessionScope.member_no}">
+					<button onclick="Review()">작성하기</button></td>
+			</tr>
+		</table>
+	</div>
+	<table class="table">
+		<thead id="header">
+			<!-- header는 리뷰의 헤더라는 뜻 -->
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">이미지</th>
+				<th scope="col">회원이름</th>
+				<th scope="col">점수</th>
+				<th scope="col">제목</th>
+				<th scope="col">내용</th>
+				<th scope="col">날짜</th>
+			</tr>
+		</thead>
+		<tbody id="body" class="reply">
+			<c:forEach var="reviews" items="${review}">
+				<tr>
+					<th scope="row">${reviews.reviewNo}</th>
+					<td><img style="height: 80px;"
+						src="images/product/${reviews.image}"></td>
+					<td>${reviews.memberName}</td>
+					<td>${reviews.score}</td>
+					<td>${reviews.title}</td>
+					<td>${reviews.comments}</td>
+					<td>${reviews.wdateDate}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
 	<script>
 toggleOnOff(${hasLike});
 
@@ -223,6 +222,43 @@ document.querySelectorAll('btn-outline-dark flex-shrink-0').forEach(item => {
 	     alert("상품을 장바구니에 담았습니다")
 	});
 });
+
+/* function Review() {
+	let name = document.querySelector('.table').getElementsByTagName("td")[1].children[0].value;
+	let score = document.querySelector('.table').getElementsByTagName("td")[2].children[0].value;
+	let title = document.querySelector('.table').getElementsByTagName("td")[3].children[0].value;
+	let comments = document.querySelector('.table').getElementsByTagName("td")[4].children[0].value;
+	let date = document.querySelector('.table').getElementsByTagName("td")[5].children[0].value;
+	console.log(name);
+	let html=`
+	<tr>
+		<th scope="row"></th>
+			<td><img style="height: 80px;" src="images/product/"></td>
+			<td>\${name}</td>
+			<td>\${score}</td>
+			<td>\${title}</td>
+			<td>\${comments}</td>
+			<td>\${date}</td>
+	</tr>
+	`
+	document.querySelector('.reply').innerHTML += html;
+    console.log(document.querySelector('.table').getElementsByTagName("td")[1].children) */
+    
+	
+   	   /* fetch('productDetailForm.ko?cno=' + cno+'&title=' + ) 
+	   .then(res => res.json())
+	   .then(result => {
+	       if(result['retCode'] == 'Success') {
+	           alert('리뷰가 작성됐습니다');
+	       } else {
+	           alert('작성실패');
+	       }
+	   })
+	   .catch(err => console.log(err));
+	}*/
+	
+	}
+	
 </script>
 </body>
 </html>
