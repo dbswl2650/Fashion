@@ -7,18 +7,20 @@ import java.util.List;
 import com.fashion.vo.Review;
 
 public class ReviewDAO extends DAO {
-
+	
 	public List<Review> review(int review) {
 		connect();
 		List<Review> result = new ArrayList<>();
-		String sql = "select re.review_no, " + "re.comments, " //
-				+ "re.wdate, " //
-				+ "re.score, " //
-				+ "re.title, " //
-				+ "re.image, " //
-				+ "m.member_name " //
-				+ "from review re " //
-				+ "join member m on re.member_no = m.member_no " + "where re.clothes_no = ? ";
+		String sql = "select re.review_no, " 
+				+ "re.comments, "
+				+ "re.wdate, "
+				+ "re.score, "
+				+ "re.title, "
+				+ "re.image, "
+				+ "m.member_name "
+				+ "from review re join member m "
+				+ "on re.member_no = m.member_no " 
+				+ "where re.clothes_no = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, review);
@@ -150,14 +152,11 @@ public class ReviewDAO extends DAO {
 				+ " or comments like '%'||'" + keyword + "'||'%')";
 		}
 		
-		System.out.println("the sql is " + sql);
-		
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 
-			int count = 0;
-			while (rs.next() && count < 10) {
+			for(int count = 0; rs.next() && count < 10; count++) {
 				Review review = new Review();
 				review.setReviewNo(rs.getInt("review_no"));
 				review.setTitle(rs.getString("title"));
@@ -165,7 +164,6 @@ public class ReviewDAO extends DAO {
 				review.setWdateDate(rs.getDate("wdate"));
 				review.setImage(rs.getString("image"));
 				reviews.add(review);
-				count++;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
