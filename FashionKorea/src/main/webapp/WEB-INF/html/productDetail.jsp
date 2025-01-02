@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="./css/headerfooter.css" rel="stylesheet" />
@@ -109,76 +108,79 @@ a {
 			</div>
 		</section>
 	</form>
-
-	<div class="review-detail">
-		<table class="table">
-			<tr>
-				<th>이미지</th>
-				<td><input type="file" name="image"></td>
-			</tr>
-			<tr>
-				<th>회원이름</th>
-				<td><input type="text" class="form-control" name="reviewName" value=""></td>
-			</tr>
-			<tr>
-				<th>점수</th>
-				<td><select name="score">
-						<option value="★">★</option>
-						<option>★★</option>
-						<option>★★★</option>
-						<option>★★★★</option>
-						<option>★★★★★</option>
-				</select></td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td><input type="text" class="form-control" name="title"></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td><textarea type="text" class="form-control" name="comments"></textarea></td>
-			</tr>
-			<tr>
-				<th>작성일</th>
-				<td><input type="date" name="wDate"></td>
-			</tr>
-			<tr>
-				<td align="center" colspan="2"><input type="hidden"
-					name="member_no" value="${sessionScope.member_no}">
-					<button onclick="Review()">작성하기</button></td>
-			</tr>
-		</table>
-	</div>
-	<table class="table">
-		<thead id="header">
-			<!-- header는 리뷰의 헤더라는 뜻 -->
-			<tr>
-				<th scope="col">#</th>
-				<th scope="col">이미지</th>
-				<th scope="col">회원이름</th>
-				<th scope="col">점수</th>
-				<th scope="col">제목</th>
-				<th scope="col">내용</th>
-				<th scope="col">날짜</th>
-			</tr>
-		</thead>
-		<tbody id="body" class="reply">
-			<c:forEach var="reviews" items="${review}">
+	<form action="productDetailForm.ko?cno=${clothes.clothesNo}" method="post">
+		<div class="review-detail">
+			<table class="table">
 				<tr>
-					<th scope="row">${reviews.reviewNo}</th>
-					<td><img style="height: 80px;"
-						src="images/product/${reviews.image}"></td>
-					<td>${reviews.memberName}</td>
-					<td>${reviews.score}</td>
-					<td>${reviews.title}</td>
-					<td>${reviews.comments}</td>
-					<td>${reviews.wdateDate}</td>
+					<th>이미지</th>
+					<td><input type="file" name="image"></td>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
-	<script>
+				<tr>
+					<th>회원이름</th>
+					<td><input type="text" class="form-control" name="reviewName"></td>
+				</tr>
+				<tr>
+					<th>점수</th>
+					<td>
+						<select name="score">
+							<option value="★">★</option>
+							<option>★★</option>
+							<option>★★★</option>
+							<option>★★★★</option>
+							<option>★★★★★</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td><input type="text" class="form-control" name="title"></td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><textarea type="text" class="form-control" name="comments"></textarea></td>
+				</tr>
+				<tr>
+					<th>작성일</th>
+					<td><input type="date" name="wDate"></td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2"><input type="hidden"
+						name="member_no" value="${sessionScope.member_no}">
+						<button type="submit">작성하기</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<table class="table">
+			<thead id="header">
+				<!-- header는 리뷰의 헤더라는 뜻 -->
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">이미지</th>
+					<th scope="col">회원이름</th>
+					<th scope="col">점수</th>
+					<th scope="col">제목</th>
+					<th scope="col">내용</th>
+					<th scope="col">날짜</th>
+				</tr>
+			</thead>
+			<tbody id="body">
+				<c:forEach var="reviews" items="${review}">
+					<tr>
+						<th scope="row">${reviews.reviewNo}</th>
+						<td><img style="height: 80px;"
+							src="images/product/${reviews.image}"></td>
+						<td>${reviews.memberName}</td>
+						<td>${reviews.score}</td>
+						<td>${reviews.title}</td>
+						<td>${reviews.comments}</td>
+						<td>${reviews.wdateDate}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</form>
+<script>
 toggleOnOff(${hasLike});
 
 function toggleOnOff(onoff) {
@@ -196,7 +198,6 @@ function like() {
 	fetch('likeItInsertForm.ko?cno=' + ${clothes.clothesNo})
 	.then(result => result.json())
 	.then(result => {
-		console.log('hello');
 		if (result.retCode == 'OK') {
 			console.log('is OK');
 			toggleOnOff(true);
@@ -208,7 +209,6 @@ function unlike() {
 	fetch('likeItDeleteForm.ko?cno=' + ${clothes.clothesNo})
 	.then(result => result.json())
 	.then(result => {
-		console.log('henlo');
 		if (result.retCode == 'OK') {
 			console.log('is OK');
 			toggleOnOff(false);
@@ -216,6 +216,34 @@ function unlike() {
 	})
 }
 
+/*
+function addReview() {
+	BIGGGFORM.action = 'productDetailForm.ko?cno=' + ${clothes.clothesNo};
+	fetch('productDetailForm.ko?cno=' + ${clothes.clothesNo}, {
+		method: 'POST',
+		body: JSON.stringfy({
+			title: reviewTitle,
+			comments: reviewComments,
+			image: reviewImage,
+			score: reviewScore
+		})
+	})
+	.then(result => result.json())
+	.then(result => {
+		if(result.retCode == 'OK') {
+			alert('리뷰 등록 성공');
+			location.href = "productDetailForm.ko?cno=" + ${clothes.clothesNo};
+		}
+		else {
+			alert('리뷰 등록 실패');
+		}
+	})
+	.catch(error => console.log(error))
+	.finally(function() {
+		BIGGGFORM.action = "cartInsertItem.ko?cno=" + ${clothes.clothesNo};
+	});
+}
+*/
 
 document.querySelectorAll('btn-outline-dark flex-shrink-0').forEach(item => {
 	item.addEventListener('click', e => {

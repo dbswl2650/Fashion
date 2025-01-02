@@ -43,6 +43,33 @@ public class ProductDetailFormControl implements Control {
 //       
 //        boolean reviews = rdao.insertReviews(title, comments, member_no, clothesNo, image, type, score);
 //        
+		
+// 		if (req.getMethod().equals("POST")) {
+// 			String title = req.getParameter("title");
+// 	        String comments = req.getParameter("comments");
+// 	        String image = req.getParameter("image");
+// 	        String score = req.getParameter("score");
+	        
+// 	        System.out.println("title" + title)
+	        
+// 	        Review reviews = new Review();
+// 	        reviews.setTitle(title);
+// 	        reviews.setComments(comments != null ? comments : "");
+// 	        reviews.setMemberNo(mno);
+// 	        reviews.setImage(image);
+// 	        reviews.setClothesNo(0);
+// 	        reviews.setType("리뷰");
+// 	        reviews.setWdateDate(new java.sql.Date(System.currentTimeMillis()));
+// 	        reviews.setScore(score);
+	        
+// 			if(rdao.insertReviews(review)) {
+// 				resp.sendRedirect("productDetail.ko");
+// 			}
+// 			else {
+// 				req.getRequestDispatcher("WEB-INF/html/productDetail.jsp").forward(req, resp);
+// 			}
+// 		}
+		
 		req.setAttribute("clothes", clothes);
 		req.setAttribute("review", result);
 		req.setAttribute("hasLike", hasLike);
