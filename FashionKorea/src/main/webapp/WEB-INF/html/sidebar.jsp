@@ -19,7 +19,7 @@
       <a href="myPage.ko"><i class="fa-solid fa-cat"></i> 내 프로필</a>
     </li> 
     <li>
-      <a href="#"><i class="fa-solid fa-cart-shopping">구매내역</i></a>
+      <a href="orderHistory.ko"><i class="fa-solid fa-cart-shopping">구매내역</i></a>
     </li>
     <li>
       <a href="likeItList.ko"><i class="fa-solid fa-heart">찜</i></a>

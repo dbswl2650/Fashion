@@ -96,14 +96,14 @@ public class CartDAO extends DAO {
 	public Cart insertCart(Cart cart) {
 		connect();
 		String sql = "insert into cart(cart_no, clothes_no, quantity, member_no) " //
-				   + "values (?, ?, ?, ?)";
+				   + "values (cart_seq.nextval, ?, ?, ?)";
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, cart.getCartNo());
-			psmt.setInt(2, cart.getClothesNo());
-			psmt.setInt(3, cart.getQuantity());
-			psmt.setInt(4, cart.getMemberNo());
+//			psmt.setInt(1, cart.getCartNo());
+			psmt.setInt(1, cart.getClothesNo());
+			psmt.setInt(2, cart.getQuantity());
+			psmt.setInt(3, cart.getMemberNo());
 
 			int r = psmt.executeUpdate();
 			if (r > 0) {

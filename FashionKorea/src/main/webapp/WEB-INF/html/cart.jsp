@@ -102,6 +102,8 @@ h5 {
 									<class ="img-fluid me-5
 										rounded-circle"
                                         style="width: 40px; height: 40px;"
+                         
+                                       
 										alt="${cartItem.name}">
 								</div>
 							</th>

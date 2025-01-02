@@ -16,7 +16,7 @@ import com.fashion.vo.Review;
 public class ProductDetailFormControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Object member_no = req.getSession().getAttribute("member_no");
+		Integer member_no = (Integer) req.getSession().getAttribute("member_no");
 		int mno = member_no != null ? (int) member_no : 0;
 		int cno = Integer.parseInt(req.getParameter("cno")); //사용자한테 cno정보를 받음
 		
@@ -27,14 +27,42 @@ public class ProductDetailFormControl implements Control {
 		Clothes clothes = cdao.selectOneClothes(cno); //selectOneCohtes메소드를 불러와 cdao변수에 담고 그 값을 clothes에 담음
 		
 		ReviewDAO rdao = new ReviewDAO();
+		Review review = new Review();
 		List<Review> result = rdao.review(cno);
 		
 		LikeItDAO lidao = new LikeItDAO();
 		boolean hasLike = lidao.hasLike(mno, cno);
 		
+		if (req.getMethod().equals("POST")) {
+			String title = req.getParameter("title");
+	        String comments = req.getParameter("comments");
+	        String image = req.getParameter("image");
+	        String score = req.getParameter("score");
+	        
+	        System.out.println("title" + title)
+	        
+	        Review reviews = new Review();
+	        reviews.setTitle(title);
+	        reviews.setComments(comments != null ? comments : "");
+	        reviews.setMemberNo(mno);
+	        reviews.setImage(image);
+	        reviews.setClothesNo(0);
+	        reviews.setType("리뷰");
+	        reviews.setWdateDate(new java.sql.Date(System.currentTimeMillis()));
+	        reviews.setScore(score);
+	        
+			if(rdao.insertReviews(review)) {
+				resp.sendRedirect("productDetail.ko");
+			}
+			else {
+				req.getRequestDispatcher("WEB-INF/html/productDetail.jsp").forward(req, resp);
+			}
+		}
+		
 		req.setAttribute("clothes", clothes);
 		req.setAttribute("review", result);
 		req.setAttribute("hasLike", hasLike);
+		
 		req.getRequestDispatcher("WEB-INF/html/productDetail.jsp").forward(req, resp);
 	}
 }

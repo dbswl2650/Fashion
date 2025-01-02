@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="./css/headerfooter.css" rel="stylesheet" />
 <link href="./css/productDetail.css" rel="stylesheet" />
+<link href="./css/review.css" rel="stylesheet" />
 <jsp:include page="./header.jsp"></jsp:include>
 
 <head>
@@ -19,14 +19,15 @@
 tr {
 	vertical-align: center;
 }
-a{
-text-decoration-line: none;
+
+a {
+	text-decoration-line: none;
 }
 </style>
 </head>
 
 <body>
-	<form action="cartForm.ko" method="post">
+	<form action="cartInsertItem.ko?cno=${clothes.clothesNo}" method="post">
 		<!-- Product section-->
 		<section class="py-5">
 			<div class="container px-4 px-lg-5 my-5">
@@ -51,7 +52,6 @@ text-decoration-line: none;
 								<input class="form-control text-center me-3" id="quantity"
 									name="quantity" type="number" value="1" style="max-width: 5rem" />
 							</div>
-
 							<div class="container bg-light">
 								<h6>총 상품 금액</h6>
 								<h4 name="totalPrice" id="totalPrice" class="font-weight-bold">
@@ -61,14 +61,18 @@ text-decoration-line: none;
 						</div>
 						<br>
 
+
+
 						<div class="d-flex">
 							&nbsp
-							<button class="btn btn-outline-dark flex-shrink-0" type="submit" cno=${cloth.clothesNo} >
+							<button class="btn btn-outline-dark flex-shrink-0" type="submit"
+								cno=${cloth.clothesNo} >
 								<i class="bi-cart-fill me-1"></i>
-								<a href="cartForm.ko?cno=${clothes.clothesNo}">장바구니 바로가기</a>
+								<!-- a href="cartInsertItem.ko?cno=${clothes.clothesNo}">장바구니 바로가기</a -->
+								장바구니 바로가기
 							</button>
-							<button class="btn btn-outline-dark flex-shrink-0" type="button" id="liketoggle">
-							</button>
+							<button class="btn btn-outline-dark flex-shrink-0" type="button"
+								id="liketoggle"></button>
 						</div>
 					</div>
 				</div>
@@ -103,7 +107,50 @@ text-decoration-line: none;
 				</div>
 			</div>
 		</section>
-
+	</form>
+	<form action="productDetailForm.ko?cno=${clothes.clothesNo}" method="post">
+		<div class="review-detail">
+			<table class="table">
+				<tr>
+					<th>이미지</th>
+					<td><input type="file" name="image"></td>
+				</tr>
+				<tr>
+					<th>회원이름</th>
+					<td><input type="text" class="form-control" name="reviewName"></td>
+				</tr>
+				<tr>
+					<th>점수</th>
+					<td>
+						<select name="score">
+							<option value="★">★</option>
+							<option>★★</option>
+							<option>★★★</option>
+							<option>★★★★</option>
+							<option>★★★★★</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td><input type="text" class="form-control" name="title"></td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><textarea type="text" class="form-control" name="comments"></textarea></td>
+				</tr>
+				<tr>
+					<th>작성일</th>
+					<td><input type="date" name="wDate"></td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2"><input type="hidden"
+						name="member_no" value="${sessionScope.member_no}">
+						<button type="submit">작성하기</button>
+					</td>
+				</tr>
+			</table>
+		</div>
 		<table class="table">
 			<thead id="header">
 				<!-- header는 리뷰의 헤더라는 뜻 -->
@@ -132,7 +179,6 @@ text-decoration-line: none;
 				</c:forEach>
 			</tbody>
 		</table>
-
 	</form>
 <script>
 toggleOnOff(${hasLike});
@@ -152,7 +198,6 @@ function like() {
 	fetch('likeItInsertForm.ko?cno=' + ${clothes.clothesNo})
 	.then(result => result.json())
 	.then(result => {
-		console.log('hello');
 		if (result.retCode == 'OK') {
 			console.log('is OK');
 			toggleOnOff(true);
@@ -164,7 +209,6 @@ function unlike() {
 	fetch('likeItDeleteForm.ko?cno=' + ${clothes.clothesNo})
 	.then(result => result.json())
 	.then(result => {
-		console.log('henlo');
 		if (result.retCode == 'OK') {
 			console.log('is OK');
 			toggleOnOff(false);
@@ -172,6 +216,34 @@ function unlike() {
 	})
 }
 
+/*
+function addReview() {
+	BIGGGFORM.action = 'productDetailForm.ko?cno=' + ${clothes.clothesNo};
+	fetch('productDetailForm.ko?cno=' + ${clothes.clothesNo}, {
+		method: 'POST',
+		body: JSON.stringfy({
+			title: reviewTitle,
+			comments: reviewComments,
+			image: reviewImage,
+			score: reviewScore
+		})
+	})
+	.then(result => result.json())
+	.then(result => {
+		if(result.retCode == 'OK') {
+			alert('리뷰 등록 성공');
+			location.href = "productDetailForm.ko?cno=" + ${clothes.clothesNo};
+		}
+		else {
+			alert('리뷰 등록 실패');
+		}
+	})
+	.catch(error => console.log(error))
+	.finally(function() {
+		BIGGGFORM.action = "cartInsertItem.ko?cno=" + ${clothes.clothesNo};
+	});
+}
+*/
 
 document.querySelectorAll('btn-outline-dark flex-shrink-0').forEach(item => {
 	item.addEventListener('click', e => {

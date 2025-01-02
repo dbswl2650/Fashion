@@ -8,23 +8,47 @@ import com.fashion.vo.Clothes;
 import com.fashion.vo.Review;
 
 public class ClothesDAO extends DAO {
-	private String selectAllSql = "select count(clothes_no) as count" + "					   from clothes";
-	private String selectSomeSql = "select clothes_no" + "						from clothes";
-	private String selectOneSql = "select category_no," + "						 name," + "						 price,"
-			+ "						 color," + "						 clothes_size," + "						 image,"
-			+ "						 category," + "						 about,"
-			+ "						 image_detail" + "					   from clothes"
+	private String selectAllSql = "select count(clothes_no) as count" 
+			+ "					   from clothes"
+			+ "					   where clothes_no != 0";
+	private String selectSomeSql = "select clothes_no" 
+			+ "						from clothes"
+			+ "						where clothes_no != 0";
+	private String selectOneSql = "select category_no," 
+			+ "						 name," 
+			+ "						 price,"
+			+ "						 color," 
+			+ "						 clothes_size," 
+			+ "						 image,"
+			+ "						 category," 
+			+ "						 about,"
+			+ "						 image_detail" 
+			+ "					   from clothes"
 			+ "					   where clothes_no=?";
-	private String insertSql = "insert into clothes(clothes_no," + "					  category_no,"
-			+ "					  name," + "					  price," + "					  color,"
-			+ "					  clothes_size," + "					  image," + "					  category,"
-			+ "					  about," + "					  image_detail"
+	private String insertSql = "insert into clothes(clothes_no," 
+			+ "					  category_no,"
+			+ "					  name," 
+			+ "					  price," 
+			+ "					  color,"
+			+ "					  clothes_size," 
+			+ "					  image," 
+			+ "					  category,"
+			+ "					  about," 
+			+ "					  image_detail"
 			+ "					values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private String updateSql = "update clothes" + "					set category_no=?," + "					  name=?,"
-			+ "					  price=?," + "					  color=?," + "					  clothes_size=?,"
-			+ "					  image=?," + "					  category=?," + "					  about=?,"
-			+ "					  image_detail=?" + "					where clothes_no=?";
-	private String deleteSql = "delete from clothes" + "					where clothes_no=?";
+	private String updateSql = "update clothes" 
+			+ "					set category_no=?," 
+			+ "					  name=?,"
+			+ "					  price=?," 
+			+ "					  color=?," 
+			+ "					  clothes_size=?,"
+			+ "					  image=?," 
+			+ "					  category=?," 
+			+ "					  about=?,"
+			+ "					  image_detail=?" 
+			+ "					where clothes_no=?";
+	private String deleteSql = "delete from clothes" 
+			+ "					where clothes_no=?";
 	
 	public int selectAllClothes() {
 		int count = 0;
@@ -58,11 +82,11 @@ public class ClothesDAO extends DAO {
 		
 		String where = "";
 		if (search != null && search != "") {
-			where = " where name like '%'||'" + search + "'||'%'" 
+			where = " and (name like '%'||'" + search + "'||'%'" 
 					+ "	or color like '%'||'" + search + "'||'%'"
 					+ "	or clothes_size like '%'||'" + search + "'||'%'"
 					+ "	or category like '%'||'" + search + "'||'%'"
-					+ "	or about like '%'||'" + search + "'||'%'";
+					+ "	or about like '%'||'" + search + "'||'%')";
 		}
 		
 		try {

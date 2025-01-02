@@ -46,7 +46,7 @@ public class ReviewControl implements Control {
             review.setComments(comments != null ? comments : "");
             review.setMemberNo(memberNo);
             review.setImage(image);
-            review.setClothesNo(0);
+            review.setClothesNo(4);
             review.setType("게시글");
             review.setWdateDate(new java.sql.Date(System.currentTimeMillis()));
 
