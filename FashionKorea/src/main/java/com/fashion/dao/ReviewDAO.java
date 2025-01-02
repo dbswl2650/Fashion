@@ -265,7 +265,7 @@ public class ReviewDAO extends DAO {
 				+ "VALUES (review_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
-
+			
 			psmt.setString(1, reviews.getTitle());
 			psmt.setString(2, reviews.getComments() != null ? reviews.getComments() : "");
 			psmt.setInt(3, reviews.getMemberNo());
