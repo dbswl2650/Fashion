@@ -46,7 +46,7 @@ public class ReviewControl implements Control {
             review.setComments(comments != null ? comments : "");
             review.setMemberNo(memberNo);
             review.setImage(image);
-            review.setClothesNo(4);
+            review.setClothesNo(0);
             review.setType("게시글");
             review.setWdateDate(new java.sql.Date(System.currentTimeMillis()));
 
@@ -54,7 +54,6 @@ public class ReviewControl implements Control {
             if (success) {
                 response.sendRedirect("reviewList.ko");
             } else {
-                request.setAttribute("error", "게시글 등록에 실패했습니다.");
                 request.getRequestDispatcher("WEB-INF/html/reviewForm.jsp").forward(request, response);
             }
         }

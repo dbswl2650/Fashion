@@ -20,8 +20,5 @@
         <input type="hidden" name="member_no" value="${sessionScope.member_no}">
         <button type="submit">등록</button>
     </form>
-    <c:if test="${not empty error}">
-        <div class="error">${error}</div>
-    </c:if>
 </div>
 <jsp:include page="./footer.jsp"></jsp:include>
