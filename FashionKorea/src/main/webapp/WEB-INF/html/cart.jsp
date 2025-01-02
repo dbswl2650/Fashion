@@ -98,9 +98,8 @@ h5 {
 						<tr data-pcode="${cartItem.cartNo}">
 							<th scope="row">
 								<div class="d-flex align-items-center">
-									<img src="images/${cartItem.image}">
-									<class ="img-fluid me-5
-										rounded-circle"
+									<img src="images/${cartItem.image}"
+										class="img-fluid me-5 rounded-circle"
                                         style="width: 80px; height: 80px;"
 										alt="${cartItem.name}">
 								</div>
