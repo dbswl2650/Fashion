@@ -36,7 +36,7 @@
     </c:if>
 
 	<!-- 페이지 목록 탭 -->
-	<nav aria-label="Page navigation example">
+	<nav aria-label="Page navigation example" style="background-color: white;">
 		<ul class="pagination">
 			<li class="page-item"><a class="page-link" href="reviewList.ko?keyword=${keyword}&page=${minPage - 1}">Previous</a></li>
 			<c:forEach var="p" begin="${minPage}" end="${maxPage}">
