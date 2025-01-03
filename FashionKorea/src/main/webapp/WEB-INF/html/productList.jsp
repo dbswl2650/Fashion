@@ -10,7 +10,11 @@
 <link rel="stylesheet" href="./css/style.css" type="text/css"/>
 
 <jsp:include page="./header.jsp"></jsp:include>
-
+<style>
+.card-img-top{
+cursor: pointer;
+}
+</style>
 <main class="overflow-x-hidden overflow-y-visible bg-body">
 	<!-- 상품 목록 -->
 	<c:choose>
@@ -25,7 +29,7 @@
 					<c:set var="cloth" value="${clothesList.get(i)}"></c:set>
 					<c:set var="category" value="${categoryList.get(i)}"></c:set>
 					<div class="card product__item col-md-2">
-						<div class="card-img-top product__item__pic set-bg" data-setbg="images/product/${cloth.image}" style="background-image: url('images/product/${cloth.image}');">
+						 <div onclick="location.href='productDetailForm.ko?cno=${cloth.clothesNo}'" class="card-img-top product__item__pic set-bg" data-setbg="images/product/${cloth.image}" style="background-image: url('images/product/${cloth.image}');">
 							<c:if test="${isFamousList.get(i) == true}">
 								<div class="ep">인기</div>
 							</c:if>
