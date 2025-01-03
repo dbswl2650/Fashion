@@ -13,7 +13,7 @@
 <jsp:include page="./header.jsp"></jsp:include>
 
 <div class="review-board">
-    <h1> <strong style="font-size:50px;">🗨목록</strong> </h1>
+    <h1><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#5f6368"><path d="M240-400h480v-60H240v60Zm0-130h480v-60H240v60Zm0-130h480v-60H240v60ZM880-80 720-240H140q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h680q24 0 42 18t18 42v740ZM140-300h606l74 80v-600H140v520Zm0 0v-520 520Z"/></svg> 게시글 목록</h1>
 
     <!-- 검색 폼 -->
     <form action="reviewList.ko" method="get" class="review-search">
