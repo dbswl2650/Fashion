@@ -141,13 +141,12 @@ public class ReviewDAO extends DAO {
 	}
 
 	public List<Review> selectReviews(String keyword, int page) {
-		// TODO Auto-generated method stub
 		connect();
 		List<Review> reviews = new ArrayList<>();
 		String sql = "select * from review where review_no >= " + (page * 10 - 9);
 		
 		if (keyword != null && !keyword.isEmpty()) {
-			// 검색어가 있으면 검색
+
 			sql += " and (title like '%'||'" + keyword + "'||'%' "
 				+ " or comments like '%'||'" + keyword + "'||'%')";
 		}

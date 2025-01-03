@@ -2,28 +2,25 @@
 .form-container {
     width: 100%;
     max-width: 600px;
-    margin: 50px auto; /* 상단 여백을 주어 헤더와 간격을 두기 */
+    margin: 50px auto;
     padding: 30px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 제목 스타일 */
 h1 {
     font-size: 2em;
     color: #333;
     margin-top: 0;
 }
 
-/* 폼 항목 스타일 */
 form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* 입력 필드 라벨 스타일 */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -36,13 +33,11 @@ label {
     color: #555;
 }
 
-/* 텍스트 영역 스타일 */
 textarea {
     resize: vertical;
     height: 150px;
 }
 
-/* 제출 버튼 스타일 */
 button {
     background-color: #333;
     color: #fff;

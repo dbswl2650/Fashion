@@ -6,7 +6,6 @@
   padding: 20px;
 }
 
-/* 게시글 제목 스타일 */
 .review-board h1 {
   font-size: 2em;
   color: #333;
@@ -14,7 +13,6 @@
   margin-bottom: 20px;
 }
 
-/* 검색 폼 스타일 */
 .review-search {
   display: flex;
   justify-content: center;
@@ -44,7 +42,6 @@
   background-color: #444;
 }
 
-/* 게시글 목록 스타일 */
 .review-list {
   list-style: none;
   padding: 0;
@@ -73,7 +70,6 @@
   margin-left: 10px;
 }
 
-/* 검색 결과 없음 메시지 스타일 */
 .no-reviews {
   font-size: 1em;
   color: #555;
@@ -81,7 +77,6 @@
   margin: 20px 0;
 }
 
-/* 게시글 작성 버튼 스타일 */
 .create-review-btn {
   display: block;
   text-decoration: none;
