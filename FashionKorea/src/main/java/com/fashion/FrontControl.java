@@ -96,7 +96,7 @@ public class FrontControl extends HttpServlet {
 		
 		map.put("/cartInsertItem.ko", new CartInsertItemControl()); // 장바구니 추가 기능
 		map.put("/productDetailForm.ko", new ProductDetailFormControl()); // 상품상세 목록
-		map.put("delReviewInfo.ko", new ReviewInfoDeleteControl()); // 리뷰 삭제
+		map.put("/delReviewInfo.ko", new ReviewInfoDeleteControl()); // 리뷰 삭제
 		
 		map.put("/likeItInsertForm.ko", new LikeItInsertControl());
 		map.put("/likeItDeleteForm.ko", new LikeItDeleteControl());

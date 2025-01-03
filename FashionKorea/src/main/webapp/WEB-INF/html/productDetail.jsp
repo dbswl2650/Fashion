@@ -90,7 +90,7 @@ h1{
 				<a href="#header">리뷰</a>
 			</div>
 			<div class="box">
-			<a href="reviewList.ko">상품문의</a>
+			<a href="reviewList.ko">포텐 터진 게시판</a>
 			</div>
 		</div>
 		<br> <br>
@@ -239,10 +239,10 @@ document.querySelectorAll('i.fa-times').forEach(icon => {
 	    
 	  })
 	})
-	function removeCart(cno){
+	function removeCart(reviewNo){
 		
 		// get
-		fetch('delReviewInfo.ko?cno=' + cno)
+		fetch('delReviewInfo.ko?reviewNo=' + reviewNo)
 		
 		.then(res => res.json())
 		.then(result => {

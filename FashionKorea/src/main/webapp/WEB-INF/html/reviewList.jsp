@@ -13,7 +13,7 @@
 <jsp:include page="./header.jsp"></jsp:include>
 
 <div class="review-board">
-    <h1><i class="fa-solid fa-comments">게시글 목록</i></h1>
+    <h1> <strong style="font-size:50px;">🗨목록</strong> </h1>
 
     <!-- 검색 폼 -->
     <form action="reviewList.ko" method="get" class="review-search">
