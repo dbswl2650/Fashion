@@ -259,6 +259,27 @@ public class ReviewDAO extends DAO {
 	    return false;
 	}
 	
+	public boolean deleteReviewItem(int clothes_no) {
+	       connect(); 
+	       String sql = "DELETE "
+	       		+ "      FROM    clothes "
+	       		+ "      WHERE   clothes_no = ?";
+	       
+	       try {
+	           psmt = conn.prepareStatement(sql);
+	           psmt.setInt(1, clothes_no);  
+	           int r = psmt.executeUpdate(); 
+	           if (r > 0) {  
+	               return true;
+	           }
+	       } catch (SQLException e) {
+	           e.printStackTrace();  
+	       } finally {
+	           disConnect();  
+	       }
+	       return false;  
+	   }
+	
 	public boolean insertReviews(Review reviews) {
 		connect();
 		String sql = "INSERT INTO review (review_no, title, comments, member_no, clothes_no, image, type, wdate, score) "

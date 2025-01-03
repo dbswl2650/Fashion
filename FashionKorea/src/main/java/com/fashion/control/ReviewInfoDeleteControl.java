@@ -16,10 +16,10 @@ public class ReviewInfoDeleteControl implements Control {
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/json;charset=utf-8"); 
 		
-		String cno = request.getParameter("cno");
+		String reviewNo = request.getParameter("reviewNo");
 		
 		ReviewDAO reviewDAO = new ReviewDAO();
-		boolean isSuccessed = reviewDAO.deleteReview(Integer.valueOf(cno));
+		boolean isSuccessed = reviewDAO.deleteReview(Integer.valueOf(reviewNo));
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(isSuccessed);
